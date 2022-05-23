@@ -1,0 +1,39 @@
+! special 
+! modified Kali Linux 2021.2 terminal colorscheme
+*.foreground:   #c5d1eb
+*.background:   #1f2229
+*.cursorColor:  #ffffff
+*colorUL:       #47d4b9
+
+
+! black
+*.color0:       #272a35
+*.color8:       #198388
+
+! red
+*.color1:       #d41919
+*.color9:       #ec0101
+
+! green
+*.color2:       #5ebdab
+*.color10:      #47d4b9
+
+! yellow
+*.color3:       #fea44c
+*.color11:      #ff8a18
+
+! blue
+*.color4:       #367bf0
+*.color12:      #277fff
+
+! magenta
+*.color5:       #9755b3
+*.color13:      #962ac3
+
+! cyan
+*.color6:       #49aee6
+*.color14:      #05a1f7
+
+! white
+*.color7:       #c5d1eb
+*.color15:      #ffffff

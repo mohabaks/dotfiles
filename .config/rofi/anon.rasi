@@ -1,0 +1,200 @@
+/*
+ * Rofi Anon Theme
+ * Author: https://github.com/mohabaks
+ * Copyright: 2019 mohabaks
+ */
+
+configuration {
+    width:            40;
+    hide-scrollbar:   true;
+    font:             "Iosevka Slab 9";
+}
+
+* {
+    /** Anon colors **/
+    foreground:                  rgba ( 247, 247, 247, 100 % );
+    background:                  rgba ( 21, 24, 28, 100 % );
+
+    /* black + Grey */
+    color0:                      rgba ( 27, 31, 36, 100 %);
+    color8:                      rgba ( 62, 71, 82, 100%);
+
+    /* Red */
+    color1:                      rgba ( 210, 32, 22, 100%);
+
+    
+    selected-normal-foreground:  @color1;
+    selected-urgent-background:  rgba ( 29, 32, 33, 100 % );
+    selected-active-background:  rgba ( 68, 145, 237, 100 % );
+    selected-urgent-foreground:  rgba ( 249, 249, 249, 100 % );
+    selected-active-foreground:  rgba ( 249, 249, 249, 100 % );
+    selected-normal-background:  @color0;
+
+    alternate-active-background: @background;
+    alternate-normal-foreground: @foreground;
+    alternate-normal-background: @background;
+    alternate-urgent-background: rgba ( 29, 32, 33, 100 % );
+    alternate-urgent-foreground: @urgent-foreground;
+    alternate-active-foreground: @active-foreground;
+
+    normal-foreground:           @foreground;
+    normal-background:           @background;
+
+    urgent-foreground:           rgba ( 204, 102, 102, 100 % );
+    urgent-background:           rgba ( 29, 32, 33, 100 % );
+
+    active-foreground:           rgba ( 101, 172, 255, 100 % );
+    active-background:           rgba ( 29, 32, 33, 100 % );
+
+    border-color:                @color0;
+    spacing:                     2;
+    separatorcolor:              rgba ( 29, 32, 33, 100 % );
+    background-color:            @background;
+}
+
+#window {
+    background-color: @background;
+    border:           2;
+    padding:          5;
+}
+
+
+#listview {
+    background-color: @background;
+    columns:      4;
+    lines:        3;
+    spacing:      4px;
+    layout:       vertical; 
+    padding:      8;
+}
+
+#message {
+    border:       2px 0px 0px ;
+    border-color: @separatorcolor;
+    padding:      1px ;
+}
+#textbox {
+    text-color: @foreground;
+}
+#scrollbar {
+    width:        4px ;
+    border:       0;
+    handle-color: @alternate-normal-background;
+    handle-width: 8px ;
+    padding:      0;
+}
+
+#sidebar {
+    border:       4px 0px 0px ;
+    border-color: @separatorcolor;
+}
+
+#button {
+    spacing:    0;
+    text-color: @normal-foreground;
+}
+
+#button.selected {
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
+}
+
+#case-indicator {
+    spacing:    0;
+    text-color:  @foreground;
+    text-color: @normal-foreground;
+}
+
+#entry {
+    text-color:           @color1;
+    background-color:     @color0;
+    border-radius:        25px 25px 25px;
+    width:                20%;
+    horizontal-align:     0.5;
+    expand:               false;
+    padding:              3px 0px 3px 0px;
+    blink:                true;
+}
+
+#prompt {
+    enabled:    false;
+    padding:    0px 8px 0px 8px;
+    text-color: @normal-foreground;
+}
+
+#inputbar {
+  padding:  5px 5px 5px 180px;
+}
+ 
+#mainbox {
+    children:  [ inputbar,listview ];
+    spacing: 10px;
+    padding: 5px 5px 5px 5px;
+}
+
+
+#element {
+    border-radius:       0px;
+    text-color:   @foreground;
+    orientation:  vertical;
+    margin:       0px 5px 0px 5px;
+    padding:      10px 0px 10px 0px;
+}
+
+#element-icon {
+    size:    64px;
+    border:  0px;
+}
+
+#element-text {
+    expand:              true;
+    horizontal-align:    0.5;
+    vertical-align:      0.5;
+    margin:              5px 10px 0px 10px;
+}
+
+#element.normal.normal {
+    background-color: @normal-background;
+    text-color:       @normal-foreground;
+}
+
+#element.normal.urgent {
+    background-color: @urgent-background;
+    text-color:       @urgent-foreground;
+}
+
+#element.normal.active {
+    background-color: @active-background;
+    text-color:       @active-foreground;
+}
+
+#element.selected.normal {
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
+}
+
+#element.selected.urgent {
+    background-color: @selected-urgent-background;
+    text-color:       @selected-urgent-foreground;
+}
+
+#element.selected.active {
+    background-color: @selected-active-background;
+    text-color:       @selected-active-foreground;
+}
+
+#element.alternate.normal {
+    background-color: @alternate-normal-background;
+    text-color:       @alternate-normal-foreground;
+}
+
+#element.alternate.urgent {
+    background-color: @alternate-urgent-background;
+    text-color:       @alternate-urgent-foreground;
+}
+
+#element.alternate.active {
+    background-color: @alternate-active-background;
+    text-color:       @alternate-active-foreground;
+}
+

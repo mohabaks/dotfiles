@@ -1,0 +1,38 @@
+#! /bin/sh
+
+# load colors from Xresources
+. $HOME/.config/lemonbar/profile
+
+if xdo id -a "$PANEL_WM_NAME" > /dev/null ; then
+	printf "%s\n" "The panel is already running." >&2
+	exit 1
+fi
+
+trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
+
+# create a fifo for output
+[ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
+mkfifo "$PANEL_FIFO"
+
+bspc subscribe report > "$PANEL_FIFO" &
+
+# load colors specific for the bar
+. /home/mohabaks/.config/lemonbar/panel_colors
+
+# load system information
+/home/mohabaks/.config/lemonbar/sys_info > "$PANEL_FIFO" &
+
+# create a bar
+/home/mohabaks/.config/lemonbar/panel_bar < "$PANEL_FIFO" | lemonbar -b -n "$PANEL_WM_NAME" \
+	-g ${PANEL_WIDTH}x${PANEL_HEIGHT}+$PANEL_X+$PANEL_Y \
+	-f "$PANEL_ICON_FONT" \
+	-f "$PANEL_ICON_FONT1" \
+	-f "$PANEL_FONT" \
+	-F "$COLOR_DEFAULT_FG" \
+	-B "$COLOR_DEFAULT_BG" \
+	-p | sh &
+
+wid=$(xdo id -m -a "$PANEL_WM_NAME")
+xdo above -t "$(xdo id -N Bspwm -n root | sort | head -n 1)" "$wid"
+
+wait

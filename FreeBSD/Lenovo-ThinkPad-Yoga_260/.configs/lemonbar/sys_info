@@ -1,0 +1,87 @@
+#!/usr/local/bin/bash
+
+# load colors from Xresources
+. $HOME/.local/bin/color-parser
+
+
+icon() {
+    echo -n -e "\u$1"
+}
+
+clock() {
+        echo "%{F$GREEN}$(icon e015)%{F-} $(date +'%H:%M')"
+    #echo $(date +"%a %d %Y %H:%M")
+}
+
+temp(){
+  tmp=$(sysctl -a | grep tz0.temperature|awk '{print $NF}')
+  echo "%{F$GREEN}$(icon e01d)%{F-} $tmp"
+}
+
+ssid() {
+	ssid=$(wpa_cli status|grep ^ssid|cut -d "=" -f2)
+	if [ -n $ssid ];then
+		echo "%{F$GREEN}%{F-} $ssid"
+	else
+		echo "%{F$RED}%{F-} offline"
+	fi
+}
+
+mem(){
+  mem_used=$($HOME/.local/bin/free|grep mem_used:|cut -d "[" -f2|cut -d "]" -f1|tr -d " ")
+  echo "%{F$BLUE}$(icon e021)%{F-} $mem_used"
+}
+
+cpu() {
+  cp=$(ps aux  | awk 'BEGIN { sum = 0 }  { sum += $3 }; END { print sum }')
+  echo "%{F$CYAN}$(icon e026)%{F-} ${cp}%"
+}
+
+mail() {
+m=$($HOME/.config/lemonbar/.m)
+
+if [[ "$m" -gt 0 ]];then
+        echo "%{F$RED}$(icon e072)%{F-} $m"
+else
+        echo "%{F$RED}$(icon e072)%{F-} 0"
+fi
+}
+
+vol(){
+v=$(mixer vol |awk '{print $NF}'|cut -d ":" -f1)
+pcm=$(mixer pcm | awk '{print $NF}'|cut -d ":" -f1)
+if [ "$pcm" == "0" ];then
+        echo "%{F$RED}$(icon e04f)%{F-} muted"
+else
+        echo "%{F$YELLOW}$(icon e04d)%{F-} $v"
+fi
+}
+
+battery(){
+	batteryState=$(acpiconf -i 0|grep State|awk '{print $2}')
+	capacity=$(acpiconf -i 0|grep "Remaining capacity"|awk -F " " '{print $NF}')
+	if [ "$batteryState" == "charging" ];then
+		echo "%{F$RED} %{F-}$capacity "
+	elif [ "$batteryState" == "discharging" ];then
+		echo "%{F$CYAN} %{F-}$capacity "
+	elif [ "$batteryState" == "high" ];then
+		echo "%{F$MAGENTA} %{F-}Full "
+	fi
+}
+
+while :; do
+    center="C"
+    [ -z "$*" ] && items="temp cpu mem vol " || items="$@"
+    for item in $items; do
+        center="${center} $($item)";
+    done
+
+    right="R"
+    [ -z "$*" ] && i="ssid mail clock battery" || i="$@"
+    for it in $i; do
+        right="${right} $($it)";
+    done
+    echo "$right"
+    echo "$center"
+    sleep 2 # update interval
+done

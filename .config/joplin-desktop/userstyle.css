@@ -1,0 +1,14 @@
+pre {
+  background: #232a36 !important;
+  color: #c3d4f8 !important;
+  padding: 5px !important;
+  border-radius: 5px !important;
+}
+
+div, a, span {
+  font-family: Iosevka Term !important;
+}
+
+button {
+    font-family: Ubuntu, Arial, sans-serif !important;
+}

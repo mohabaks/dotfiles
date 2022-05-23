@@ -1,0 +1,9 @@
+#!/usr/local/bin/bash
+day=$(date "+%d")
+image="$HOME/.icons/Numix/64/places/calendar-$day.svg"
+case $BUTTON  in
+        1) $HOME/.config/popups/todo/todo ;;
+        3) notify-send -i "$image" " " "$(date "+%a %d %b %Y")" ;;
+esac
+
+date '+%R'

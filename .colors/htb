@@ -1,0 +1,40 @@
+! Author: https://github.com/mohabaks
+! Description: colorscheme based on hackthebox colors.
+
+! special
+*.foreground:   #c5d1eb
+*.background:   #111927
+*.cursorColor:  #c5d1eb
+*colorUL:       #9fef00
+
+! black
+*.color0:       #161f30
+*.color8:       #556072
+
+! red
+*.color1:       #f12446
+*.color9:       #f12446
+
+! green
+*.color2:       #9fef00
+*.color10:      #9fef00
+
+! yellow
+*.color3:       #ffaf00
+*.color11:      #ffaf00
+
+! blue
+*.color4:       #017ff2
+*.color12:      #017ff2
+
+! magenta
+*.color5:       #986ce8
+*.color13:      #986ce8
+
+! cyan
+*.color6:       #12a0a1
+*.color14:      #12a0a1
+
+! white
+*.color7:       #c5d1eb
+*.color15:      #c5d1eb

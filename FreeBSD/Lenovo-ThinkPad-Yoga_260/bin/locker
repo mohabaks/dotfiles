@@ -1,0 +1,8 @@
+#!/bin/sh
+lock="$HOME/.icons/Numix/48/status/locked.svg"
+image="$HOME/Pictures/Walls/00.jpg"
+
+exec xautolock -detectsleep \
+  -time 3 -locker "i3lock -i $image --ring-color=198388 --keyhl-color=47d4b9 --bshl-color=277fff --clock --date-color=c5d1eb --time-color=c5d1eb --inside-color=11121d88" \
+  -notify 30 \
+  -notifier "notify-send -i $lock -u normal -t 10000 -- 'LOCKING screen in 30 seconds'" &

@@ -1,0 +1,3 @@
+#! /usr/bin/bash
+# Description: get net ESSID
+qvm-run -p sys-net 'iwlist scanning 2>/dev/null|grep ESSID|cut -d":" -f2|tr -d \"'

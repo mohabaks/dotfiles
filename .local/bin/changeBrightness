@@ -1,0 +1,31 @@
+#!/bin/bash
+# changeBrightness
+
+# Arbitrary but unique message id
+msgId="55578"
+
+function get_brightness {
+  xbacklight -get|cut -d '.' -f1
+}
+
+function send_notification {
+  icon="/usr/share/icons/Numix/48/notifications/notification-display-brightness.svg"
+  brightness=$(get_brightness)
+  echo $brightness here
+  # Send the notification
+  #dunstify -a "changeBrightness" -i "$icon" -r "$msgId" -u low -h int:value:"$brightness" "Brightness: ${brightness}%"
+  dunstify -a "changeBrightness" -i "$icon" -r "$msgId" -u low "Brightness: ${brightness}%"
+}
+
+case $1 in
+  up)
+    # increase the backlight by 5%
+    xbacklight -inc 4
+    send_notification
+    ;;
+  down)
+    # decrease the backlight by 5%
+    xbacklight -dec 4
+    send_notification
+    ;;
+esac

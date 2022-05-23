@@ -1,0 +1,43 @@
+!
+!   Author: https://github.com/mohabaks
+!     Date: Fri 15 Dec 2017 14:05
+
+*colorUL:       #cd222f
+
+! special
+*.foreground:   #cfdceb
+*.background:   #0a0f14
+!*.background:   #080A11
+*.cursorColor:  #cfdceb
+
+! black
+*.color0:       #10171e
+*.color8:       #556072
+
+! red
+*.color1:       #cd222f
+*.color9:       #f3170d
+
+! green
+*.color2:       #0bde96
+*.color10:      #0bde96
+
+! yellow
+*.color3:       #ee8109
+*.color11:      #ee8109
+
+! blue
+*.color4:       #549dbc
+*.color12:      #549dbc
+
+! magenta
+*.color5:       #556072
+*.color13:      #c91b8e
+
+! cyan
+*.color6:       #0ba3a4
+*.color14:      #0ba3a4
+
+! white
+*.color7:       #d3dde8
+*.color15:      #d3dde8

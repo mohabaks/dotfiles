@@ -1,0 +1,15 @@
+#!/bin/bash
+
+msgId=201567
+icon_mute="/usr/share/icons/Adwaita/48x48/legacy/audio-volume-muted.png"
+icon_unmute="/usr/share/icons/Adwaita/48x48/legacy/audio-volume-medium.png"
+
+status=$(amixer -c 0 get Master | tail -1 | awk '{print $6}' | sed 's/[^a-z]*//g')
+
+if [[ $status == "on" ]];then
+        amixer sset Master toggle
+        dunstify -a "volumeMute" -u low -i "$icon_mute" -r "$msgId" "Volume Muted"
+else
+        amixer sset Master toggle
+        dunstify -a "volumeMute" -u low -i "$icon_unmute" -r "$msgId" "Volume Unmute"
+fi

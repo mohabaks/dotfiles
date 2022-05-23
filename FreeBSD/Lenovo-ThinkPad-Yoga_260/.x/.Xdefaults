@@ -1,0 +1,101 @@
+!    ░█  █░                                                               
+!     ▓▒▒▓   █▒██▒  ███   ▒███▒   ███   █   █   █▒██▒  ▓██▒   ███   ▒███▒ 
+!      ██    ██  █ ▓▓ ▒█  █▒ ░█  █▓ ▓█  █   █   ██  █ ▓█  ▓  ▓▓ ▒█  █▒ ░█ 
+!      ██    █     █   █  █▒░    █   █  █   █   █     █░     █   █  █▒░   
+!     ▒██░   █     █████  ░███▒  █   █  █   █   █     █      █████  ░███▒ 
+!     █▒▒█   █     █         ▒█  █   █  █   █   █     █░     █         ▒█ 
+!    ▒█  █░  █     ▓▓  █  █░ ▒█  █▓ ▓█  █▒ ▓█   █     ▓█  ▓  ▓▓  █  █░ ▒█ 
+!    █▒  ▒█  █      ███▒  ▒███▒   ███   ▒██▒█   █      ▓██▒   ███▒  ▒███▒                                                                       
+                                                                      
+
+!-----------------------------------------------------------------------
+!                         Xft settings
+!-----------------------------------------------------------------------
+
+Xft.dpi:                96
+Xft.autohint:           true
+Xft.antialias:          true
+Xft.rgba:               rgb
+Xft.hinting:            true
+Xft.hintstyle:          hintslight
+Xft.lcdfilter:          lcddefault
+
+
+!-----------------------------------------------------------------------
+!                        URxvt settings 
+!-----------------------------------------------------------------------
+
+URxvt.internalBorder:    15
+URxvt.externalBorder:    15
+!URxvt.lineSpace:        0
+!urxvt*shading:          30
+URxvt.depth:             32
+URxvt.saveLines:         10000
+URxvt*geometry:          96x30
+URxvt*terminalName:      rxvt-unicode-256color
+URxvt*visualBell:        false
+
+!! Scrollbar
+URxvt.scrollBar:          false
+URxvt.scrollBar_right:    false
+URxvt.scrollBar_floating: false
+URxvt.scrollstyle:        rxvt
+URxvt*scrollTtyOutput:    false
+URxvt*scrollWithBuffer:   true
+URxvt*scrollTtyKeypress:  true
+
+!! Fonts
+URxvt.xftAntialias:     true
+URxvt.xftHinting:	true
+URxvt.letterSpace:      true
+
+#define font1 ProFont
+#define font2 Symbola
+#define font3 Roboto Mono for Powerline
+
+URxvt*font:              xft:font1:size=8, xft:font2:size=13, xft:font3:size=13
+URxvt*boldMode:          
+URxvt*boldFont:          
+URxvt.bolditalicFont:
+URxvt.talicFont:
+
+!! Keybinding
+URxvt.keysym.C-Up:       perl:font-size:increase
+URxvt.keysym.C-Down:     perl:font-size:decrease
+URxvt.keysym.C-S-Up:     perl:font-size:incglobal
+URxvt.keysym.C-S-Down:   perl:font-size:decglobal
+!Home and End keys to jump to the beginning and end of lines
+URxvt*keysym.Home:       \033[1~
+URxvt*keysym.End:        \033[4~
+
+!! Tabs
+URxvt.tabbed.tabbar-bg:  -1
+URxvt.tabbed.tabbar-fg:  -2
+URxvt.tabbed.tab-bg:     -2
+URxvt.tabbed.tab-fg:     -1
+URxvt.tabbed.title-bg:   -1
+URxvt.tabbed.title-fg:   -2
+URxvt.tabbed.autohide:   true
+URxvt.tabbed.new-button: false
+URxvt.tabbed.title:      true
+
+!! Copy/Paste and URl handling
+! url-select (part of urxvt-perls package)
+URxvt.perl-ext-common:         default,selection-to-clipboard,matcher,keyboard-select
+URxvt.keysym.M-u:              perl:url-select:select_next
+URxvt.underlineURLs:           True 
+URxvt.keysym.M-Escape:         perl:keyboard-select:activate
+URxvt.url-select.autocopy:     true
+URxvt.url-select.underline:    true
+URxvt.url-launcher:            qutepriv
+URxvt.matcher.button:          1
+
+!! Disable the stupid ctrl+shift 'feature'
+URxvt.iso14755:            false
+URxvt.iso14755_52:         false
+
+!! Cursor
+Xcursor.theme:             Oreo Teal Cursors
+
+!! Color theme
+#include "/home/mohabaks/.colors/default"

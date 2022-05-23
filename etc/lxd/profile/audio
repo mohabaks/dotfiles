@@ -1,0 +1,53 @@
+config: {}
+description: ALSA Audio Profile
+devices:
+  controlC0:
+    gid: "996"
+    path: /dev/snd/controlC0
+    type: unix-char
+  hwC0D0:
+    gid: "996"
+    path: /dev/snd/hwC0D0
+    type: unix-char
+  hwC0D2:
+    gid: "996"
+    path: /dev/snd/hwC0D2
+    type: unix-char
+  pcmC0D0c:
+    gid: "996"
+    path: /dev/snd/pcmC0D0c
+    type: unix-char
+  pcmC0D0p:
+    gid: "996"
+    path: /dev/snd/pcmC0D0p
+    type: unix-char
+  pcmC0D2c:
+    gid: "996"
+    path: /dev/snd/pcmC0D2c
+    type: unix-char
+  pcmC0D3p:
+    gid: "996"
+    path: /dev/snd/pcmC0D3p
+    type: unix-char
+  pcmC0D7p:
+    gid: "996"
+    path: /dev/snd/pcmC0D7p
+    type: unix-char
+  pcmC0D8p:
+    gid: "996"
+    path: /dev/snd/pcmC0D8p
+    type: unix-char
+  pcmC0D9p:
+    gid: "996"
+    path: /dev/snd/pcmC0D9p
+    type: unix-char
+  pcmC0D10p:
+    gid: "996"
+    path: /dev/snd/pcmC0D10p
+    type: unix-char
+  timer:
+    gid: "996"
+    path: /dev/snd/timer
+    type: unix-char
+name: audio
+used_by: []

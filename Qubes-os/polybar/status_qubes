@@ -1,0 +1,9 @@
+#! /usr/bin/bash
+# Description: Display number of qubes spinned
+
+status_qubes() {
+    local qubes=$(qvm-ls --no-spinner --raw-data --fields FLAGS 2>/dev/null | grep -v '^0' | grep '^.r......' | wc -l)
+    echo "$qubes Qubes"
+}
+
+status_qubes

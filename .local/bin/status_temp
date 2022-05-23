@@ -1,0 +1,5 @@
+#!/bin/bash
+
+temp=$(sensors | grep 'Package'|cut -d " " -f5|tr -d "+")
+
+echo "$temp"

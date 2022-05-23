@@ -1,0 +1,10 @@
+#! /usr/bin/bash
+# Description: Display disk status
+
+status_disk() {
+    local used_disk=`df -h / | tail -n 1 | awk '{print $3}'`
+    local total_disk=`df -h / | tail -n 1 | awk '{print $2}'`
+    echo "$used_disk/$total_disk"
+}
+
+status_disk

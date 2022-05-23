@@ -1,0 +1,27 @@
+/* CSS variables */
+:root {
+    --wallpaper: url("/home/mohabaks/Pictures/Walls/wallhaven-41060.jpg");
+
+    /* Special */
+    --background: #0a0f14;
+    --foreground: #98d1ce;
+    --cursor: #98d1ce;
+
+    /* Colors */
+    --color0: #0a0f14;
+    --color1: #c33027;
+    --color2: #26a98b;
+    --color3: #edb54b;
+    --color4: #195465;
+    --color5: #4e5165;
+    --color6: #33859d;
+    --color7: #98d1ce;
+    --color8: #10151b;
+    --color9: #d26939;
+    --color10: #081f2d;
+    --color11: #245361;
+    --color12: #093748;
+    --color13: #888caa;
+    --color14: #599caa;
+    --color15: #d3ebe9;
+}

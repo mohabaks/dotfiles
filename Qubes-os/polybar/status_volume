@@ -1,0 +1,2 @@
+#!/bin/bash
+amixer sget Master|tail -n1|cut -d " " -f6|tr -d \[]

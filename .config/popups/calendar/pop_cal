@@ -1,0 +1,25 @@
+#!/bin/bash
+# Orignal Author: 2007, by Robert Manea Date
+# Modified by:  https://github.com/mohabaks  Wed 25 Oct 2017
+# Description: A simple popup calendar using dzen2
+#
+
+# Source colors
+. $HOME/.local/bin/color-parser
+
+TODAY=$(expr `date +'%d'` + 0)
+MONTH=`date +'%m'`
+YEAR=`date +'%Y'`
+LINES=$(cal -m | wc -l)
+LINES=$((LINES + 1))
+
+(
+#date +'%A, %d %b %Y %H:%M'
+date +'^bg($RED) '
+date +''
+
+n30f -d -x 585 -y 48 $HOME/.config/polybar/popups/calendar/bg.png &
+# current month, highlight header and today
+cal -m | sed -r -e "1,2 s/.*/^fg($RED)&^fg()/"  -e "s/(^| )($TODAY)($|)/\1^bg(#596b79)^fg(#b5b5b5)\2^fg()^bg()\3/") | dzen2 -fn "PragmataPro:pixelsize=12" -x 590 -y 40 -w 190 -h 15 -l $LINES -tw 0 -sa c -p -e 'onstart=uncollapse,hide;button1=exit;' -fg "$FG" -bg "$BG"
+
+pkill n30f

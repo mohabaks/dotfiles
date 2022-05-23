@@ -1,0 +1,9 @@
+#!/bin/bash
+day=$(date "+%d")
+image="/usr/share/icons/Numix/64/places/calendar-$day.svg"
+case $BUTTON  in
+        1) $HOME/.config/popups/todo/todo ;;
+        3) notify-send -i "$image" " " "$(cal --color=always | sed "s/..7m/<b><span color=\"#198388\">/;s/..27m/<\/span><\/b>/")" ;;
+esac
+
+date '+%R'

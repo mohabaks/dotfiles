@@ -1,0 +1,13 @@
+config: {}
+description: Default LXD profile
+devices:
+  downloads:
+    path: /home/kali/Downloads
+    source: /home/mohabaks/Downloads
+    type: disk
+  openvpn:
+    path: /home/kali/.config/openvpn
+    source: /home/mohabaks/.config/openvpn
+    type: disk
+name: shared
+used_by: []

@@ -1,0 +1,52 @@
+/**
+
+ * @name Dark Remix
+ * @version 1.0
+ * @description A Dark Mode Base On Kali-linux Colorscheme
+ * @source https://github.com/mohabaks/dark-remix
+
+**/
+
+@import url(https://raw.githack.com/hormelcookies/dark-discord/hormelcookies-patch-1/src/source.css);
+
+.theme-dark,
+.theme-light,
+:root {
+   --background-primary: #0B0D17 !important;
+   --background-secondary: #0E1120 !important;
+   --background-secondary-alt: #141728 !important;
+   --background-tertiary: #0B0D17 !important;
+   --background-accent: #141728 !important;
+   --background-floating: #0B0D17 !important;
+   --background-modifier-hover: rgba(255, 255, 255, 0.01) !important;
+   --background-modifier-active: rgba(255, 255, 255, 0.03) !important;
+   --background-modifier-selected: rgba(255, 255, 255, 0.04) !important;
+   --background-modifier-accent: hsla(0, 0%, 100%, 0.06) !important;
+   --channeltextarea-background: var(--background-accent) !important;
+   --deprecated-card-bg: rgba(0, 0, 0, 0.2) !important;
+   --deprecated-card-editable-bg: rgba(0, 0, 0, 0.1) !important;
+   --deprecated-text-input-bg: var(--deprecated-card-editable-bg) !important;
+   --deprecated-text-input-border: var(--background-floating) !important;
+   --deprecated-text-input-border-disabled: var(--background-tertiary) !important;
+   --activity-card-background: var(--background-primary) !important;
+   --channels-default: #c5d1eb !important;
+   --text-muted: #556072 !important;
+   --text-normal: #c5d1eb !important;
+   --interactive-normal: #c5d1eb !important;
+   --interactive-hover: #ff8a18 !important;
+   --interactive-active: #367bf0 !important;
+   --interactive-muted: #556072 !important;
+   --header-primary: #277fff !important;
+   --header-secondary: #198388 !important;
+   --toast-background: var(--background-primary) !important;
+   --toast-header: var(--background-tertiary) !important;
+   --toast-contents: var(--background-secondary) !important;
+   --toast-box-shadow: rgba(0, 0, 0, 0.2) !important;
+   --toast-border: var(--background-tertiary) !important;
+}
+
+*{
+ font-family: 'Anonymous Pro' !important;
+ font-size: 11pt !important;
+ src: url("Anonymous-Pro.ttf") format("truetype");
+}

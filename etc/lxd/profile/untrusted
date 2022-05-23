@@ -1,0 +1,21 @@
+config:
+  limits.cpu: "2"
+  limits.memory: 2GiB
+description: Untrusted Container Profile
+devices:
+  downloads:
+    path: /home/user/Downloads
+    source: /home/mohabaks/Downloads
+    type: disk
+  eth0:
+    name: eth0
+    nictype: bridged
+    parent: lxdbr1
+    type: nic
+  root:
+    path: /
+    pool: default
+    size: 8GiB
+    type: disk
+name: untrusted
+used_by: []

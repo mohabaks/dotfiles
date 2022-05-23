@@ -1,0 +1,10 @@
+#!/bin/bash
+
+sha1_string(){
+        if [[ $# -eq 0 ]];then
+                echo "Usage: sha1_string <string>"
+        else
+                echo "$1" | sha1sum | awk '{print $1}' | xclip -sel clip 
+                echo "output copied to clipboard"
+        fi
+}

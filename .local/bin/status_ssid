@@ -1,0 +1,19 @@
+#!/bin/bash
+TERMINAL=urxvtc
+pub=$(curl -s https://ipinfo.io/ip;echo)
+ssid=$(iwgetid -r)
+echo $priv
+
+icon="/usr/share/icons/Numix/64/devices/network-wireless.svg"
+
+case $BUTTON in
+        1) notify-send -i "$icon" " " "$(printf "  Public:  %s" "$pub")";;
+        3) setsid -f "$TERMINAL" -e doas iftop -i virbr0;;
+esac
+
+
+if [[ -n "$ssid" ]];then
+        echo $ssid
+else
+        echo offline
+fi

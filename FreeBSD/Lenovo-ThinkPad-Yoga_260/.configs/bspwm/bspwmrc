@@ -1,0 +1,113 @@
+#! /usr/local/bin/bash
+#                                                                      
+#  ▄▄                                                                   
+#  ██                                                                   
+#  ██▄███▄   ▄▄█████▄  ██▄███▄  ██      ██ ████▄██▄   ██▄████   ▄█████▄ 
+#  ██▀  ▀██  ██▄▄▄▄ ▀  ██▀  ▀██ ▀█  ██  █▀ ██ ██ ██   ██▀      ██▀    ▀ 
+#  ██    ██   ▀▀▀▀██▄  ██    ██  ██▄██▄██  ██ ██ ██   ██       ██       
+#  ███▄▄██▀  █▄▄▄▄▄██  ███▄▄██▀  ▀██  ██▀  ██ ██ ██   ██       ▀██▄▄▄▄█ 
+#  ▀▀ ▀▀▀     ▀▀▀▀▀▀   ██ ▀▀▀     ▀▀  ▀▀   ▀▀ ▀▀ ▀▀   ▀▀         ▀▀▀▀▀  
+#                      ██                                               
+#    
+#                                     Config by: https://github.com/mohabaks
+#
+
+
+# Colors
+BLACK="#232a36"
+
+# Check if the monitor is connected
+if `xrandr -q | grep -q "HDMI-1 connected\|HDMI-2 connected"`
+then
+
+        #
+        # Monitor & Destop Settings
+        # 
+
+        bspc monitor HDMI-1 -d 1 2 3 4 5 
+        #bspc monitor eDP-1 -d 3 4 5 6 7 8
+        bspc monitor HDMI-2 -d 6 7 8 9 10
+        bspc config -m HDMI-2 window_gap          10
+        bspc config -m HDMI-2 border_width        2
+        bspc config -m HDMI-1 window_gap          10
+        bspc config -m HDMI-1 border_width        2
+        bspc config -m eDP-1 window_gap           0
+        bspc config -m eDP-1 border_width         1
+
+
+        #
+        # Global Settings
+        #
+
+        bspc config -m HDMI-2 normal_border_color   "$BLACK"
+        bspc config -m HDMI-1 normal_border_color   "$BLACK"
+        bspc config -m eDP-1  normal_border_color   "$BLACK"
+        bspc config -m HDMI-2 active_border_color   "$BLACK"
+        bspc config -m HDMI-1 active_border_color   "$BLACK"
+        bspc config -m eDP-1  active_border_color   "$BLACK"
+        bspc config -m HDMI-2 focused_border_color  "$BLACK"
+        bspc config -m HDMI-1 focused_border_color  "$BLACK"
+        bspc config -m eDP-1  focused_border_color  "$BLACK"
+else
+        #
+        # Monitor & Destop Settings
+        # 
+
+        bspc monitor eDP-1 -d 1 2 3 4 5 6 7 8 9 10
+        bspc config window_gap            5
+        bspc config border_width          2
+
+        #
+        # Global Settings
+        #
+
+        bspc config normal_border_color   "$BLACK"
+        bspc config focused_border_color  "$BLACK"
+        bspc config urgent_border_color   "$BLACK"
+        bspc config presel_border_color   "$BLACK"
+	bspc config top_padding            30
+fi
+
+
+#
+# Global Settings
+#
+
+bspc config split_ratio           0.50
+bspc config borderless_monocle    false
+bspc config gapless_monocle       true
+
+
+#
+#  Rule Settings
+#
+
+# start apps in specific workspace
+bspc rule -a firefox desktop='^1' follow=on
+bspc rule -a Firefox-esr desktop='^1' follow=on
+bspc rule -a Chromium desktop='^1' follow=on
+bspc rule -a qutebrowser desktop='^1' follow=on
+bspc rule -a Zathura desktop='^3' state=tiled follow=on
+bspc rule -a Joplin desktop='^3' state=tiled follow=on
+bspc rule -a mpv desktop='^3' follow=on
+bspc rule -a Pcmanfm desktop='^3' follow=on
+bspc rule -a Virt-manager desktop='^6' follow=on
+bspc rule -a Vncviewer desktop='^6' follow=on
+bspc rule -a xfreerdp desktop='^6' follow=on
+bspc rule -a rdesktop desktop='^6' follow=on
+bspc rule -a Gimp desktop='^7' follow=on
+bspc rule -a Wireshark desktop='^7' follow=on
+bspc rule -a burp-StartBurp desktop='^8' follow=on
+bspc rule -a install4j-burp-StartBurp desktop='^8' follow=on
+
+# apps in float mode
+bspc rule -a Nitrogen state=floating focus=on
+bspc rule -a feh state=floating focus=on
+bspc rule -a Lxappearance state=floating focus=on
+
+#
+#   Start Misc Programs
+#
+
+# conky
+pkill -9 conky || conky -d -c $HOME/.conkyrc

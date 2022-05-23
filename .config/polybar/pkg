@@ -1,0 +1,12 @@
+#!/bin/bash
+# Description: Check pacman updates.
+
+. $HOME/.local/bin/color-parser
+
+pac=$(checkupdates | wc -l)
+
+if [[ -n "$pac" ]];then
+        echo "%{F$FG}$pac %{F-}"
+else
+        echo "%{F#BYELLOW} 0 %{F-}"
+fi

@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+killall -q polybar
+
+
+while pgrep -x polybar >/dev/null; do sleep 2; done
+
+# Launch top bar
+if `xrandr -q | grep -q "HDMI2 connected"`
+then
+	#polybar --config=$HOME/.config/polybar/configMonitor left 2> /dev/null &
+	#sleep 1
+	#polybar --config=$HOME/.config/polybar/configMonitor right 2> /dev/null &
+	polybar --config=$HOME/.config/polybar/config mybar 2> /dev/null &
+else
+	polybar --config=$HOME/.config/polybar/config mybar 2> /dev/null &
+fi

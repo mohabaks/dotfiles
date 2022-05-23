@@ -1,0 +1,4 @@
+@-moz-document url("about:home"),url("about:blank"),url("about:newtab"),url("about:privatebrowsing"){
+   body{ background: #1c212a !important }
+  /* body{ background-image:  url("moz1.png") !important }*/
+}

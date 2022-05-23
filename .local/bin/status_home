@@ -1,0 +1,5 @@
+#!/bin/bash
+
+home=$(df -h | awk '$NF=="/home"{printf "%s", $5}')
+
+echo "$home"

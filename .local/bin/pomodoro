@@ -1,0 +1,171 @@
+#! /bin/bash
+# Authour: mohabaks
+# Date: Tue 24 Jan 2017 19:58 EAT
+# Description: A simple script to notify the user time to stop studying after a 
+#              given specified period of time and take a short break.
+# Dependencies: requires dunst for image support 
+
+# Unset all varibles used in the script if they might have also be set by the
+# user
+unset break
+unset break_time
+unset image
+unset hours
+unset minutes
+unset start_msg
+unset stop_msg
+
+# Source the colors
+. $HOME/.local/bin/color-parser
+
+# Initialize some variables
+# Uncomment this line if you have dunst installed
+# Make sure to use a different path of your image
+# image="$HOME/Pictures/notify/todo/r00t.png"
+
+start_msg='
+<span foreground="'$RED'"  >              Do Not Disturb</span> 
+<span foreground="'$FG'">              **************</span>
+<span foreground="'$FG'">
+" A day without learning is a day wasted. "
+
+</span>
+'
+
+stop_msg='
+<span foreground="'$RED'">Break Time</span> 
+<span foreground="'$FG'">=>=>=>=>=></span>
+<span foreground="'$FG'">
+Hello friend .. stand up and take a little break ..
+</span>
+'
+
+break_msg="Break time is over ..."
+
+# Show help msg function
+show_help(){
+cat <<EOF
+Usage: ${0##*/} [OPTION]
+
+A script to notify the user the time to stop studying and take a break.
+
+-h, --help               Show this help and exit
+-b, --break              Specify the break time minutes
+-m, --minutes            Specify the minutes for study session
+-o, --hours              Specify the hours for study session
+
+Example:
+        ${0##*/} -m 10         study for 10 mintues
+        ${0##*/} -o 1          study for 1 hour
+        ${0##*/} -m 10 -b 10   study for 10 minutes and a break of 10 minutes
+        ${0##*/} -h 1 -b 10    study for 1 hour and a break of 10 minutes
+        ${0##*/}               study for 50 minutes this is the default value
+
+EOF
+}
+
+
+# Begin main
+
+# If no arguments are supplied use the default studying settings
+# 50 minutes of study and 10 minutes for break
+if [[ $# -eq 0 ]]; then
+        # Uncomment out bellow line if you don't have dunst installed
+        # notfy-send "$start_msg"
+        # Comment out  bellow line if you dont have dusnt installed
+        notify-send -i "$image" "$start_msg"
+        sleep 50m
+        
+        # Uncomment out bellow line if you don't have dunst installed
+        # notfy-send "$stop_msg"
+        # Comment out  bellow line if you dont have dusnt installed
+        notify-send -i "$image" "$stop_msg"
+        sleep 10m
+        notify-send "$break_msg"
+        exit 
+elif [[ $# -gt 4 ]]; then 
+        echo "ERROR: Please try ${0##*/} --help for more information ."
+
+else
+
+        while :; do
+                
+                       
+                # If there's atleast one argument do something
+                case $1 in 
+                        -h|-\?|--help)
+                                # Show the help menu
+                                show_help
+                                exit
+                                ;;
+                        -m|--minutes)
+                                # Set the minutes
+                                minutes=$2
+                                shift
+                                ;;
+                        -o|--hours)
+                                # Set the hours
+                                hours=$2
+                                shift
+                                ;;
+                        -b|--break)
+                                # Set the break
+                                break_time=$2
+                                shift
+                                ;;
+                                 *)
+                                 # Default case: break out of the loop 
+                                 break
+                 esac
+
+        shift
+        done
+fi
+
+# Check if the options are set and perform the task needed
+if [[ -n $break_time ]] && [[ -n $minutes ]]; then
+        # Start the time 
+        # If you dont have dunst install remove the -i "$image" option
+        notify-send -i "$image" "$start_msg"
+        sleep ${minutes}m
+        # Notify the user for time up.
+        notify-send -i "$image" "$stop_msg"
+        # Begin break time so that the user can relax 
+        sleep ${break_time}m
+        # Notify the user for the end of the break
+        notify-send "$break_msg"
+        # Terminate the script
+        exit 0
+elif [[ -n $break_time ]] && [[ -n $hours ]]; then
+        # Start the time 
+        notify-send -i "$image" "$start_msg"
+        sleep ${hours}h
+        # Notify the user for time up.
+        notify-send -i "$image" "$stop_msg"
+        # Begin break time so that the user can relax 
+        sleep ${break_time}m
+        # Notify the user for the end of the break
+        notify-send "$break_msg"
+        # Terminate the script
+        exit 0
+elif [[ -n $minutes ]] && [[ -n $hours ]]; then
+        echo "ERROR: use '--minutes' or '--hours' and  not both."
+        echo "Try: ${0##*/} --help for more information."
+        exit 1
+elif [[ -n $minutes ]]; then
+        # Start the time 
+        notify-send -i "$image" "$start_msg"
+        sleep ${minutes}m
+        # Notify the user for time up.
+        notify-send -i "$image" "$stop_msg"
+        # Terminate the script
+        exit 0
+elif [[ -n $hours ]]; then 
+         # Start the time 
+        notify-send -i "$image" "$start_msg"
+        sleep ${hours}h
+        # Notify the user for time up.
+        notify-send -i "$image" "$stop_msg"
+        # Terminate the script
+        exit 0
+fi

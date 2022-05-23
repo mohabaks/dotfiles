@@ -1,0 +1,11 @@
+#!/bin/sh
+export DISPLAY=:0
+export $(dbus-launch)
+updates_arch=0
+cmd=$(ping -c1 8.8.8.8)
+status=$(echo $?)
+if [[ $status -eq 0 ]]; then
+        updates_arch=$(checkupdates 2> /dev/null | wc -l )
+fi
+
+/usr/bin/notify-send "System Package Updates" " $updates_arch "

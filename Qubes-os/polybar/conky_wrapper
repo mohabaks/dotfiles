@@ -1,0 +1,19 @@
+# polybar wrapper 
+
+alignment top_middle
+background no
+minimum_size 1880 40
+border_width 0
+own_window yes
+own_window_type panel
+own_window_class conky
+own_window_argb_visual yes
+own_window_transparent yes
+update_interval 2000  
+short_units yes
+
+gap_x 0
+gap_y 40
+own_window_argb_value 0
+own_window_colour 000000
+TEXT

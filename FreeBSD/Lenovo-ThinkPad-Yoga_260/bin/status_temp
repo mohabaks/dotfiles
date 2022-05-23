@@ -1,0 +1,5 @@
+#!/usr/local/bin/bash
+
+temp=$(sysctl -n hw.acpi.thermal.tz0.temperature)
+
+echo "$temp"

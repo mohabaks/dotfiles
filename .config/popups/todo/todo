@@ -1,0 +1,34 @@
+#!/bin/bash
+#      Author: https://github.com/mohabaks
+# Description: A simple Todo List using notify-send
+#      
+
+# Source term colors to use
+. $HOME/.local/bin/color-parser 
+
+# Specify the todo file to read from
+# cli script to show/delete/add can be found
+# https://github.com/user/dotfiles/tree/master/local/.local/bin/todo
+todofile="$HOME/.todo"
+image="$HOME/Pictures/notify/todo/todo.png"
+title="     TODO LIST" # notify title
+
+# A function to read the todo file and nicely format the texts
+prettyNotify(){
+   summary=""         # initialize message summary
+   summary_counter=0  # initialize number of todo list
+   
+   if [[ -s "$todofile" ]];then
+           while IFS= read -r line
+           do
+                  (( summary_counter += 1 ))
+                  # Create a message summary
+                  summary="$summary\n<span foreground='$CYAN'>  ${summary_counter}. </span><span foreground='$WHITE'>$line</span>"
+           done < "$todofile" 
+   else
+           summary="<span foreground='$RED'>ERROR: </span> $<span foreground='$WHITE'>HOME/.todo file empty|notfound</span> "
+   fi
+}
+
+prettyNotify
+notify-send -i $image "$title" "$summary"

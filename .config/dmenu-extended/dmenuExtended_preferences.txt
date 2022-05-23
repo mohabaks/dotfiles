@@ -1,0 +1,59 @@
+{
+    "abbreviate_homedir": false,
+    "alias_applications": false,
+    "alias_display_format": "{name}",
+    "exclude_items": [],
+    "filebrowser": "xdg-open",
+    "fileopener": "xdg-open",
+    "filter_binaries": false,
+    "follow_symlinks": false,
+    "frequently_used": 0,
+    "global_ignore_folders": [],
+    "ignore_folders": [],
+    "include_applications": false,
+    "include_binaries": false,
+    "include_hidden_files": false,
+    "include_hidden_folders": false,
+    "include_items": [],
+    "indicator_alias": "",
+    "indicator_edit": "*",
+    "indicator_submenu": "->",
+    "menu": "dmenu",
+    "menu_arguments": [
+        "-i",
+        "-nf",
+        "#c3d4f8",
+        "-nb",
+        "#1c212a",
+        "-sf",
+        "#c3d4f8",
+        "-sb",
+        "#198388",
+        "-fn",
+        "GohuFont-8",
+        "-l",
+        "20"
+    ],
+    "password_helper": [
+        "zenity",
+        "--password",
+        "--title={prompt}"
+    ],
+    "path_aliasFile": "",
+    "path_shellCommand": "",
+    "prompt": "Open:",
+    "scan_hidden_folders": false,
+    "terminal": "urxvt",
+    "terminal_editor": "vim",
+    "valid_extensions": [
+        "pdf",
+        "epub",
+        "avi",
+        "mp4",
+        "m4a"
+    ],
+    "watch_folders": [
+        "~/Documents/Reads"
+    ],
+    "webbrowser": "xdg-open"
+}

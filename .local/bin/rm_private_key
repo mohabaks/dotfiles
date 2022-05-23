@@ -1,0 +1,16 @@
+#!/bin/sh
+# Description: A simple script to cleanup gnupg primary keys when using subkeys
+#              The script also assume you have backup your $HOME/.gnupg
+
+GNUPG_DIR="$HOME/.gnupg/private-keys-v1.d"
+KEYS=0
+
+# get list of private keys
+for key in $(gpg --list-keys --keyid-format short|grep pub|awk '{print $2}'|awk 'NF'|awk -F '/' '{print $2}');do
+        keygrip=$(gpg --with-keygrip --list-key "$key"|grep Keygrip -B0|head -n1|awk '{print $NF}')
+        if [ -f $GNUPG_DIR/${keygrip}.key ];then
+                echo -e "[+]\033[32m Removing Keygrip:\033[0m $keygrip"
+                rm $GNUPG_DIR/${keygrip}.key
+        fi
+done
+echo -e "[+]\033[32m DONE Removing Private Primary Keys:\033[0m"

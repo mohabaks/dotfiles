@@ -1,0 +1,2 @@
+#!/bin/bash
+rofi -theme-str 'element-icon { size: 3.3ch;}' -show drun

@@ -1,0 +1,43 @@
+#!/usr/bin/bash
+
+# Source lemonbar config
+. $HOME/.config/lemonbar/lemonbar_config
+
+# Override Panel Settings
+PW=282
+PH=60
+PY=70
+
+# Settings for n30f for fancy look
+n30f -d -x 3530 -y 50 $HOME/.config/popups/power/bg.png 
+
+
+echo " %{F$RED}%{F-} %{A:s:}Suspend%{A}  %{F$BLUE} %{F-}%{A:l:}Lock%{A}  %{F$GREEN} %{F-}%{A:e:}Exit%{A}" | lemonbar -g ${PW}x${PH}+${PX}+${PY} -f "$FONT1" -f "$FONT2" -B "$BG" -F "$FG" -dp | \
+    while :; do
+        read line
+        case $line in 
+            'e')
+                p=$(pgrep -n lemonbar)
+                n=$(pgrep -n n30f)
+                kill $n
+                kill $p 
+                exit 
+                ;;
+            'l')
+                p=$(pgrep -n lemonbar)
+                n=$(pgrep -n n30f)
+                kill $n
+                kill $p 
+                betterlockscreen -l -t "Type Password To Unlock .."
+                exit                
+                ;;
+            's')
+                p=$(pgrep -n lemonbar)
+                n=$(pgrep -n n30f)
+                kill $n
+                kill $p
+                systemctl suspend
+                exit
+                ;;
+        esac
+    done

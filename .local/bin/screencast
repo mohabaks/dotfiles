@@ -1,0 +1,233 @@
+#!/bin/bash
+#
+# Author:       Twily                                                                                            2016
+# Description:  Record anything on your desktop, -trim, crop, scale or speed up the video and convert to webm or gif.
+# Requires:     ffmpeg, xwininfo, slop, mpv, libnotify, keybind (C-A-x) in your WM to "pkill -f 'x11grab'"
+# Usage:        $ sh ./screencast2 -h|--help
+# Tip:          Use CRF 10 for WEBM and 0 for GIF
+#
+
+DIR='/home/mohabaks/'    # Directory to store files
+FILE='out'              # Output filename(.*)
+TEMP='edit'             # Edit filename(.*)
+
+RECORD='screen'         # 'screen' 'window' 'region'
+MARGIN=$(( 24 + 0 ))    # Margin in window mode (px) (+ 0 for border)
+TITLEBAR=0              # Titlebar height in window mode (px)
+SLOPWIDTH=2             # Slop border width (px)
+
+PRESET='ultrafast'      # Default 'ultrafast' (x264 --help for preset list)
+FPS=30                  # Frames per second [12-60]
+CRF=10                  # Constant rate factor [0-51] (Lower is better quality)
+QMAX=10                 # Maximum Quantization [1-31] (Lower is better quality)
+
+DELAY=2                 # Seconds before recoring
+
+DISPLAY=':0.0'          # Set monitor to record (:0.0 or :0.1)
+
+SOUND=false             # Record with sound (Requires ALSA Loopback device); see http://pastebin.com/qXWFS81k
+LOOPBACK='1,1'          # Loopback device
+
+HELP=false
+EDIT=false
+
+OPTS=`getopt -o hwrsf:c:q:d:e: --long help,window,region,sound,fps:,crf:,qmax:,delay:edit: -- "$@"`
+eval set -- "$OPTS"
+
+while :; do
+    case "$1" in
+        -h|--help)    HELP=true;              shift 1 ;;
+        -w|--window)  RECORD='window';        shift 1 ;;
+        -r|--region)  RECORD='region';        shift 1 ;;
+        -s|--sound)   SOUND=true;             shift 1 ;;
+        -f|--fps)     FPS="$2";               shift 2 ;;
+        -c|--crf)     CRF="$2";               shift 2 ;;
+        -q|--qmax)    QMAX="$2";              shift 2 ;;
+        -d|--delay)   DELAY="$2";             shift 2 ;;
+        -e|--edit)    FILE="$2" && EDIT=true; shift 2 ;;
+        --) shift; break ;;
+        *) echo "Internal error!"; exit 1
+    esac
+done
+
+if $HELP; then
+    echo -e "Screencast help: \n\n" \
+        "-w | --window          Select record mode 'window'\n" \
+        "-r | --region          Select record mode 'region'\n" \
+        "-s | --sound           Record with sound from loopback\n" \
+        "-f | --fps 30          Frames per second [12-60]\n" \
+        "-c | --crf 10          Constant rate factor [0-51] (Lower is better quality)\n" \
+        "-q | --qmax 10         Maximum Quantization [1-31] (Lower is better quality)\n" \
+        "-d | --delay 2         Seconds before recording\n" \
+        "-e | --edit out        Edit out(.mkv) in '$DIR' (No recording)\n"
+    exit 0
+fi
+
+getgeometry() {
+    unset x y w h
+    eval $($1 | 
+        sed -n -e "s/^ \+Absolute upper-left X: \+\([0-9]\+\).*/x=\1/p" \
+               -e "s/^ \+Absolute upper-left Y: \+\([0-9]\+\).*/y=\1/p" \
+               -e "s/^ \+Width: \+\([0-9]\+\).*/w=\1/p" \
+               -e "s/^ \+Height: \+\([0-9]\+\).*/h=\1/p" )
+}
+appendmargins() {
+	x=$(( x-$MARGIN ))
+	y=$(( y-$MARGIN-$TITLEBAR ))
+	w=$(( w+($MARGIN*2) ))
+	h=$(( h+($MARGIN*2)+$TITLEBAR ))
+}
+
+drawrectangle() {
+    unset x y w h
+	region=$(slop -t 0 -b $SLOPWIDTH -c 1,1,1,1 -f "%x %y %w %h" --nokeyboard) || exit 1
+	IFS=' ' read -r x y w h <<< "$region"
+}
+appendrectangle() {
+	x=$(( x-$SLOPWIDTH ))
+	y=$(( y-$SLOPWIDTH ))
+	w=$(( w+($SLOPWIDTH*2) ))
+	h=$(( h+($SLOPWIDTH*2) ))
+}
+
+recordmkv() {
+    #notify-send "Desktop is now being recorded.\nStop by pressing Ctrl+Alt+X."
+
+    if $SOUND; then
+        ffmpeg -f alsa -ac 2 -i hw:$LOOPBACK \
+            -f x11grab -s $w'x'$h -r $FPS -i $DISPLAY'+'$x','$y \
+            -c:v libx264 -preset $PRESET -crf $CRF -y "$DIR$FILE.mkv"
+    else
+        ffmpeg -f x11grab -s $w'x'$h -r $FPS -i $DISPLAY'+'$x','$y \
+            -c:v libx264 -preset $PRESET -crf $CRF -y "$DIR$FILE.mkv"
+    fi
+
+    notify-send "Screencast has stopped recording."
+    echo -e "\nRecording saved to '\033[1;32m$DIR$FILE.mkv\033[0m'.\n"
+}
+
+if ! $EDIT; then
+    case "$RECORD" in
+        'window')
+            getgeometry 'xwininfo'
+            appendmargins
+            ;;
+        'region')
+            drawrectangle
+            appendrectangle
+            ;;
+        *)
+            getgeometry 'xwininfo -root'
+            ;;
+    esac
+
+    echo -n "Recording begins in "
+    while [ "$DELAY" -gt 0 ]; do
+        echo -n $DELAY".."
+        DELAY=$(( DELAY-1 ))
+        sleep 1
+    done
+
+    recordmkv
+else
+    if [ -f "$DIR$FILE.mkv" ]; then
+        echo -e "\nLoaded file '\033[1;32m$DIR$FILE.mkv\033[0m'."
+    else
+        echo -e "\n\033[1;31mError: \033[0mFile '$DIR$FILE.mkv' does not exist..."
+        exit 0
+    fi
+fi
+
+convertwebm() {
+    read -r -p $'\nChange QMAX for Webm? ['$QMAX']: ' wQMAX
+    wQMAX=${wQMAX:-$QMAX}
+
+    if $SOUND; then
+        diff='0.6' # Cut off X seconds from the end of the webm (Workaround to recording w/ sound)
+        duration=$(ffprobe -loglevel quiet -of compact=p=0:nk=1 -show_entries format=duration -i "$DIR$FILE.mkv")
+        durationDiff=$(echo "$duration-$diff"|bc -l)
+
+        ffmpeg -i "$DIR$FILE.mkv" -t $durationDiff \
+            -c:v libvpx -qmin 1 -qmax $wQMAX -pre $PRESET \
+            -c:a libvorbis "$DIR$FILE.webm"
+    else
+        ffmpeg -i "$DIR$FILE.mkv" \
+            -c:v libvpx -qmin 1 -qmax $wQMAX -pre $PRESET \
+            -c:a libvorbis "$DIR$FILE.webm"
+    fi
+
+    echo -e "\nWebm conversion saved to '\033[1;32m$DIR$FILE.webm\033[0m'.\n"
+}
+
+convertgif() {
+    read -r -p $'\nChange FPS for Gif? ['$FPS']: ' gFPS
+    gFPS=${gFPS:-$FPS}
+
+    PALETTE="$DIR"'palette.png'
+
+    ffmpeg -i "$DIR$FILE.mkv" -vf palettegen=stats_mode=diff -y "$PALETTE"
+    ffmpeg -i "$DIR$FILE.mkv" -i "$PALETTE" -lavfi paletteuse=dither=none -r $gFPS "$DIR$FILE.gif"
+
+    rm "$PALETTE"
+
+    echo -e "\nGif conversion saved to '\033[1;32m$DIR$FILE.gif\033[0m'.\n"
+}
+
+editmkv() {
+    rm -f "$DIR$TEMP.mkv"
+
+    while :; do
+        read -n1 -r -p $'\nPress key to select \033[1;33m{edit}\033[0m action: \033[0;32m[o]riginal\033[0m \033[0;32m[p]review\033[0m \033[0;36m[t]rim\033[0m \033[0;36m[c]rop\033[0m \033[0;36m[s]cale\033[0m \033[0;36m[f]rames\033[0m \033[0;31mover[w]rite\033[0m \033[0;33m[b]ack\033[0m \n' key
+
+        case "$key" in
+            'o') mpv "$DIR$FILE.mkv" --loop=inf ;;
+            'p') mpv "$DIR$TEMP.mkv" --loop=inf ;;
+            't')
+                read -r -p $'\nEnter video start time (hr:min:sec.ms): \n' stime
+                read -r -p $'\nEnter video end time (hr:min:sec.ms): \n' etime
+                ffmpeg -i "$DIR$FILE.mkv" -ss "$stime" -to "$etime" "$DIR$TEMP.mkv"
+                ;;
+            'c')
+                read -r -p $'\nEnter geometry to crop (width:height:x:y): \n' vcrop
+                ffmpeg -i "$DIR$FILE.mkv" -filter:v "crop=$vcrop" "$DIR$TEMP.mkv"
+                ;;
+            's')
+                read -r -p $'\nEnter dimension to scale (width:height or iw/2:ih/2): \n' vscale
+                ffmpeg -i "$DIR$FILE.mkv" -vf scale="$vscale" "$DIR$TEMP.mkv"
+                ;;
+            'f')
+                rm -f "/tmp/output-"*.png
+                read -r -p $'\nSpeed up video by reducing frames to (<'$FPS$') fps: \n' vfps
+                ffmpeg -i "$DIR$FILE.mkv" -r $vfps -f image2 "/tmp/output-%06d.png"
+                ffmpeg -r $FPS -i "/tmp/output-%06d.png" -c:v libx264 -pre $PRESET -crf 0 "$DIR$TEMP.mkv"
+                ;;
+            'w')
+                echo -e "\nOverwriting original '\033[1;32m$DIR$FILE.mkv'."
+                mv "$DIR$TEMP.mkv" "$DIR$FILE.mkv"
+                break
+                ;;
+            'b') break ;;
+        esac
+    done
+}
+
+while :; do
+    read -n1 -r -p $'\nPress key to select \033[1;33m{main}\033[0m action: \033[0;32m[p]review\033[0m \033[0;34m[w]ebm\033[0m \033[0;35m[g]if\033[0m \033[0;36m[e]dit\033[0m \033[0;31me[x]it\033[0m \n' key
+    
+    case "$key" in
+        'p')
+            mpv "$DIR$FILE.mkv" --loop=inf
+            ;;
+        'w') convertwebm ;;
+        'g') convertgif  ;;
+        'e') editmkv     ;;
+        'x')
+            exit 0
+            ;;
+        *)
+            echo
+            ;;
+    esac
+done
+
+exit 0

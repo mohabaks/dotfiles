@@ -1,0 +1,49 @@
+# ▒███████▒ ▄▄▄     ▄▄▄█████▓ ██░ ██  █    ██  ██▀███   ▄▄▄       ██▀███   ▄████▄  
+# ▒ ▒ ▒ ▄▀░▒████▄   ▓  ██▒ ▓▒▓██░ ██▒ ██  ▓██▒▓██ ▒ ██▒▒████▄    ▓██ ▒ ██▒▒██▀ ▀█  
+# ░ ▒ ▄▀▒░ ▒██  ▀█▄ ▒ ▓██░ ▒░▒██▀▀██░▓██  ▒██░▓██ ░▄█ ▒▒██  ▀█▄  ▓██ ░▄█ ▒▒▓█    ▄ 
+# ▄▀▒   ░░██▄▄▄▄██░ ▓██▓ ░ ░▓█ ░██ ▓▓█  ░██░▒██▀▀█▄  ░██▄▄▄▄██ ▒██▀▀█▄  ▒▓▓▄ ▄██▒
+# ▒███████▒ ▓█   ▓██▒ ▒██▒ ░ ░▓█▒░██▓▒▒█████▓ ░██▓ ▒██▒ ▓█   ▓██▒░██▓ ▒██▒▒ ▓███▀ ░
+# ░▒▒ ▓░▒░▒ ▒▒   ▓▒█░ ▒ ░░    ▒ ░░▒░▒░▒▓▒ ▒ ▒ ░ ▒▓ ░▒▓░ ▒▒   ▓▒█░░ ▒▓ ░▒▓░░ ░▒ ▒  ░
+# ░░▒ ▒ ░ ▒  ▒   ▒▒ ░   ░     ▒ ░▒░ ░░░▒░ ░ ░   ░▒ ░ ▒░  ▒   ▒▒ ░  ░▒ ░ ▒░  ░  ▒   
+# ░ ░ ░ ░ ░  ░   ▒    ░       ░  ░░ ░ ░░░ ░ ░   ░░   ░   ░   ▒     ░░   ░ ░        
+# ░ ░          ░  ░         ░  ░  ░   ░        ░           ░  ░   ░     ░ ░      
+# ░                                                                       ░        
+#  
+
+# Set colors and font
+
+set font                        "Anonymous Pro 8"
+set default-bg                  "#0B0D17" #00
+set default-fg                  "#c5d1eb" #01
+
+set statusbar-fg                "#198388"    #04
+set statusbar-bg                "#0E1120" #01
+
+set inputbar-bg                 "#0E1120" #00 currently not used
+set inputbar-fg                 "#198388" #02
+
+set notification-error-bg       "#49aee6" #08
+set notification-error-fg       "#c5d1eb" #00
+
+set notification-warning-bg     "#5ebdab" #08
+set notification-warning-fg     "#c5d1eb" #00
+
+set highlight-color             "#198388" #0A
+set highlight-active-color      "#c5d1eb" #0D
+
+set completion-highlight-fg     "#c5d1eb"  #02
+set completion-highlight-bg     "#9755b3" #0C
+
+set completion-bg               "#0B0D17" #02
+set completion-fg               "#c5d1eb" #0C
+
+set notification-bg             "#fea44c" #0B
+set notification-fg             "#c5d1eb" #00
+
+set recolor-lightcolor          "#0B0D17" #00
+set recolor-darkcolor           "#c5d1eb" #06
+set recolor                     "true"
+
+# Copy to clipboard
+set selection-clipboard clipboard
+set sandbox none

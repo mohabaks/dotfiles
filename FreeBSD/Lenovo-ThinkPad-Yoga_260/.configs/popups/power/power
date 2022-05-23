@@ -1,0 +1,48 @@
+#!/usr/local/bin/bash
+
+# Source lemonbar config
+. $HOME/.config/lemonbar/lemonbar_config
+
+# Override Panel Settings for Polybar
+PW=284
+PH=75
+PY=650
+FG="#f5f6f7"
+lock_image="$HOME/Pictures/Lockscreen/wall02.png"
+
+#echo " %{F$RED}%{F-} %{A:s:}Suspend%{A} %{F$BLUE} %{F-}%{A:l:}Lock%{A} %{F$GREEN} %{F-}%{A:e:}Exit%{A}" | lemonbar -g ${PW}x${PH}+${PX}+${PY} -f "$FONT1" -f "$FONT2" -B "$FG" -F "$BG" -dp | \
+echo " %{F$CYAN}%{A:s:}%{A}%{F-} %{F$BLUE}%{A:l:}%{A}%{F-}%{F$MAGENTA}%{A:r:}%{A}%{F-}%{F$RED}%{A:p:}%{A}%{F-}%{F$GREEN}%{A:e:}%{A}" | lemonbar -g ${PW}x${PH}+${PX}+${PY} -f "$FONT1" -f "$FONT2" -B "$FG" -F "$BG" -dp | \
+    while :; do
+        read line
+        case $line in 
+            'e')
+                p=$(pgrep -n lemonbar)
+                kill $p 
+                exit 
+                ;;
+            'l')
+                p=$(pgrep -n lemonbar)
+                kill $p 
+                i3lock -i "$lock_image"
+                exit                
+                ;;
+            'r')
+                p=$(pgrep -n lemonbar)
+                kill $p 
+                doas /sbin/reboot
+                exit                
+                ;;
+            'p')
+                p=$(pgrep -n lemonbar)
+                kill $p 
+                doas /sbin/poweroff
+                exit                
+                ;;
+            's')
+                p=$(pgrep -n lemonbar)
+                kill $p
+                i3lock -i "$lock_image" && doas /usr/sbin/acpiconf -s3
+                exit
+                ;;
+        esac
+    done

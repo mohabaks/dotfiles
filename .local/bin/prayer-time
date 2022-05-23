@@ -1,0 +1,83 @@
+#! /usr/bin/env bash
+
+export DISPLAY=:0
+export PATH=$HOME/.local/bin:$PATH
+export $(dbus-launch)
+
+#Get current time
+current_time=`date "+ %H:%M"`
+
+# load display image
+image="$HOME/Pictures/notify/prayer/cover.png"
+
+# load colors
+. $HOME/.local/bin/color-parser
+
+# fajr msg
+fajr_title='Salah: Fajr'
+fajr_msg='
+"Verily, the prayer is enjoined on the believers at a fixed hours"
+
+<span foreground=\"'$MAGENTA'\">[Quran 4:103]</span>
+'
+# Dhuhr msg
+dhur_title="Salah: Dhuhr"
+dhur_msg='
+"Verily, the prayer is enjoined on the believers at a fixed hours"
+
+<span foreground=\"'$MAGENTA'\">[Quran 4:103]</span>
+'
+
+# Asr msg
+asr_title="Salah: Asr"
+asr_msg='
+"Verily, the prayer is enjoined on the believers at a fixed hours"
+
+<span foreground=\"'$MAGENTA'\">[Quran 4:103]</span>
+'
+
+# Maghrib msg
+magh_title="Salah: Maghrib"
+magh_msg='
+"Verily, the prayer is enjoined on the believers at a fixed hours"
+
+<span foreground=\"'$MAGENTA'\">[Quran 4:103]</span>
+'
+
+# Isha'a
+isha_title="Salah: Isha'a"
+isha_msg='
+"Verily, the prayer is enjoined on the believers at a fixed hours"
+
+<span foreground=\"'$MAGENTA'\">[Quran 4:103]</span>
+'
+
+# Fajr Prayer
+if [ $current_time = 05:00 ];then
+        notify-send -i "$image" "$fajr_title" "$fajr_msg"
+ 
+fi
+
+# Dhuhr Prayer
+if [  $current_time = 12:45 ];then
+        notify-send -i "$image" "$dhur_title" "$dhur_msg"
+ 
+fi
+
+# Asr  Prayer
+if [ $current_time = 15:45 ];then
+        notify-send -i "$image" "$asr_title" "$asr_msg"
+ 
+fi
+
+# Maghrib Prayer
+if [ $current_time = 18:30 ];then
+        notify-send -i "$image" "$magh_title" "$magh_msg"
+ 
+fi
+
+# Fajr Prayer
+if [ $current_time = 20:00 ];then
+        notify-send -i "$image" "$isha_title" "$isha_msg"
+ 
+fi

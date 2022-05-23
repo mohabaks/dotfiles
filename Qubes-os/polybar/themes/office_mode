@@ -1,0 +1,237 @@
+;             _       _                                   __ _       
+; _ __   ___ | |_   _| |__   __ _ _ __    ___ ___  _ __  / _(_) __ _ 
+;| '_ \ / _ \| | | | | '_ \ / _` | '__|  / __/ _ \| '_ \| |_| |/ _` |
+;| |_) | (_) | | |_| | |_) | (_| | |    | (_| (_) | | | |  _| | (_| |
+;| .__/ \___/|_|\__, |_.__/ \__,_|_|     \___\___/|_| |_|_| |_|\__, |
+;|_|            |___/                                          |___/ 
+
+
+;*********************************************************
+;
+;                          COLORS
+;
+;**********************************************************
+[colors]
+; Base colors from .Xresources
+bg-alt      =  #e0eaf9
+bg          =  #c7d0de
+fg          =  #1b1833
+fg-alt      =  ${xrdb:color8}
+red         =  ${xrdb:color1}
+red-alt     =  ${xrdb:color9}
+green       =  ${xrdb:color2}
+green-alt   =  ${xrdb:color10}
+yellow      =  ${xrdb:color3}
+yellow-alt  =  ${xrdb:color11}
+blue        =  ${xrdb:color4}
+blue-alt    =  ${xrdb:color12}
+magenta     =  ${xrdb:color5}
+magenta-alt =  ${xrdb:color13}
+cyan        =  ${xrdb:color6}
+cyan-alt    =  ${xrdb:color14}
+white       =  ${xrdb:color7}
+white-alt   =  ${xrdb:color15}
+
+;**********************************************************
+;
+;                       GLOBAL WM SETTINGS
+;
+;**********************************************************
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+;*********************************************************
+;
+;                       BAR SETTINGS
+;
+;********************************************************
+
+[bar/simple]
+monitor   = ${env:MONITOR:eDP1}
+bottom    = true
+width     = 1920
+height    = 24
+offset-x  = 0
+offset-y  = 0
+override-redirect = false
+
+background = ${colors.bg}
+foreground = ${colors.fg}
+
+border-bottom-size = 5
+border-bottom-color = ${colors.bg}
+border-top-size = 5
+border-top-color = ${colors.bg}
+border-right-size = 5
+border-right-color = ${colors.bg}
+border-left-size = 5
+border-left-color = ${colors.bg}
+
+spacing = 0
+padding-left = 0
+padding-right = 0
+module-margin-left = 0
+module-margin-right = 0
+
+font-0 = Iosevka Term:style=Regular:size=9;2
+font-1 = Font Awesome 5 Free:style=Solid:size=12;3
+font-2 = Material Icons:style=Regular:size=13;4
+
+tray-position = right
+tray-padding = 1
+tray-background = ${colors.bg-alt}
+
+modules-left = bspwm
+modules-center =  temp memory cpu
+modules-right =  wifi qubes date
+
+;**********************************************************
+;
+;                   MODULES SETTINGS
+;
+;**********************************************************
+
+[module/bspwm]
+type = internal/bspwm
+
+strip-wsnumbers = true
+
+label-focused = "%name%"
+label-focused-foreground = ${colors.blue-alt}
+label-focused-background = ${colors.bg-alt}
+label-focused-padding = 1
+
+label-occupied = "%name%"
+label-occupied-padding = 1
+label-occupied-foreground = ${colors.fg-alt}
+label-occupied-background = ${colors.bg-alt}
+
+label-urgent = "%name%"
+label-urgent-foreground = ${colors.red}
+label-urgent-background = ${colors.bg-alt}
+label-urgent-padding = 1
+
+label-empty = "%name%"
+label-empty-foreground = ${colors.fg}
+label-empty-background = ${colors.bg-alt}
+label-empty-padding = 1
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " %{T2}%{T-} "
+format-prefix-foreground = ${colors.magenta}
+label = "%percentage%% "
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-background = ${colors.bg}
+format-prefix = " %{T2}%{T-} "
+format-prefix-foreground = ${colors.blue}
+label = "%percentage_used%% "
+
+[module/bat]
+type = internal/battery
+battery = BAT0
+adapter = ADP1
+full-at = 100
+
+label-discharging = "%percentage%% " 
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-background = ${colors.bg}
+format-charging-background = ${colors.bg}
+
+label-full = " Battery Full "
+format-full-prefix = %{T2}%{T-}
+format-full-prefix-foreground = ${colors.white-alt}
+
+;format-charging-prefix = 
+;format-charging-prefix-foreground = ${colors.red}
+
+ramp-capacity-0 = %{T2}%{T-}
+ramp-capacity-1 = %{T2}%{T-}
+ramp-capacity-2 = %{T2}%{T-}
+ramp-capacity-foreground = ${colors.cyan}
+
+label-charging = "Charging %percentage%% "
+label-charging-foreground = ${colors.fg}
+
+animation-charging-0 = %{T2}%{T-}
+animation-charging-1 = %{T2}%{T-}
+animation-charging-2 = %{T2}%{T-}
+animation-charging-foreground = ${colors.red}
+animation-charging-framerate = 750
+
+[module/temp]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <ramp> <label>
+format-warn = <ramp> <label-warn>
+
+label = "%temperature-c% "
+label-warn = "%temperature-c% "
+label-warn-foreground = ${colors.red}
+
+ramp-0 = " %{T2}%{T-}"
+ramp-1 = " %{T2}%{T-}"
+ramp-2 = " %{T2}%{T-}"
+ramp-foreground = ${colors.green}
+
+[module/date]
+type = internal/date
+interval = 5
+date = "%a %d %b %Y "
+
+time-alt =  "%H:%M "
+time = "%H:%M "
+
+;label = %{F#0aefff}%{F-} %date%%time%%{F#0aefff}%{F-}
+label = %date%%time%
+
+format-prefix = " %{T2}%{T-} "
+format-prefix-foreground = ${colors.green}
+format-foreground = ${colors.fg}
+format-background = ${colors.bg}
+
+[module/wifi]
+type = custom/script
+interval = 120
+format = <label>
+format-background = ${colors.bg}
+format-prefix = "%{T3}%{T-} "
+format-prefix-foreground = ${colors.cyan}
+exec = ~/.config/polybar/status_net
+
+[module/uptime]
+type = custom/script
+interval = 120
+format = <label>
+format-background = ${colors.bg}
+format-prefix = "%{T2}%{T-} "
+format-prefix-foreground = ${colors.yellow}
+exec = ~/.config/polybar/uptime
+
+[module/root]
+type = custom/script
+interval = 1200
+format = <label>
+format-background = ${colors.bg}
+format-prefix = " %{T2}%{T-} "
+format-prefix-foreground = ${colors.blue}
+exec = ~/.config/polybar/status_disk
+
+[module/qubes]
+type = custom/script
+interval = 60
+format = <label>
+format-prefix = " %{T2}%{T-} "
+format-prefix-foreground = ${colors.blue}
+format-background = ${colors.bg}
+exec = ~/.config/polybar/status_qubes
+
+; vim:ft=dosini

@@ -1,0 +1,29 @@
+#!/usr/local/bin/bash
+# Author: https://github.com/mohabaks
+# Description: Simple script to launch my external DELL Monitors
+#              connected to my laptop LenovoThinkpad Yoga 260
+
+# Check if any of the monitor is connected
+if `xrandr -q | grep -q "HDMI-2 connected"`
+then
+        [[ -f $HOME/.Xresources-DualMonitors ]] && xrdb -merge $HOME/.Xresources-DualMonitors
+        $HOME/.screenlayout/dual-normal-monitors.sh
+
+        
+        # Set wallpaper
+        nitrogen --restore --head=1 2> /dev/null & 
+        nitrogen --restore --head=2 2> /dev/null & 
+        nitrogen --restore --head=3 2> /dev/null & 
+
+        # start compton
+        # compton --config $HOME/.compton.conf -b
+
+else
+        # No monitor(s) present just do normal settings
+        [[ -f $HOME/.Xresources ]] && xrdb -merge $HOME/.Xresources
+        #$HOME/.screenlayout/default.sh       
+
+        # set wallpaper
+        #feh --bg-scale $HOME/Pictures/Walls/wallhaven-3k98gv.jpg
+        nitrogen --restore --head=1 2> /dev/null & 
+fi

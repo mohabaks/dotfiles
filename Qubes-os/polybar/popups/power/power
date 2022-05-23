@@ -1,0 +1,66 @@
+#!/bin/bash
+
+# Colours
+. $HOME/.local/bin/color-parser
+
+BG="#f5f6f7"
+FG="#000"
+
+# Panel
+PW=380
+PH=60
+PY=70
+PX=3450  # HDMI2
+
+
+# Fonts
+FONT1="Iosevka:size:8"
+FONT2="Font Awesome 5 Free:size=12"
+
+# Settings for n30f for fancy look
+n30f -d -x 3450 -y 45 $HOME/.config/polybar/popups/power/bg.png
+
+
+echo " %{F$BLUE} %{F-}%{A:s:}Sleep%{A}%{F$GREEN}  %{F-}%{A:r:}Reboot%{A}%{F$RED}  %{F-}%{A:p:}Shutdown%{A}%{F$YELLOW}  %{F-}%{A:l:}Lock%{A}%{F$CYAN}  %{F-}%{A:e:}Exit%{A}" | lemonbar -g ${PW}x${PH}+${PX}+${PY} -f "$FONT1" -f "$FONT2" -B "$BG" -F "$FG" -dp | \
+    while :; do
+        read line
+        case $line in 
+            'e')
+                p=$(pgrep -n lemonbar)
+                n=$(pgrep -n n30f)
+                kill $n
+                kill $p 
+                exit 
+                ;;
+            'r')
+                p=$(pgrep -n lemonbar)
+                n=$(pgrep -n n30f)
+                kill $n
+                kill $p 
+                reboot
+                ;;
+            'p')
+                p=$(pgrep -n lemonbar)
+                n=$(pgrep -n n30f)
+                kill $n
+                kill $p 
+                shutdown
+                ;;
+            'l')
+                p=$(pgrep -n lemonbar)
+                n=$(pgrep -n n30f)
+                kill $n
+                kill $p 
+		i3lock -i $HOME/Pictures/Walls/wallhaven-odkkd5.png -t
+                exit                
+                ;;
+            's')
+                p=$(pgrep -n lemonbar)
+                n=$(pgrep -n n30f)
+                kill $n
+                kill $p
+                systemctl suspend
+                exit
+                ;;
+        esac
+    done

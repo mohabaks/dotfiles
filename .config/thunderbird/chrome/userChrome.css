@@ -1,0 +1,30 @@
+* {
+  font-family: Iosevka Slab !important;
+}
+/*
+ *  Change Sidebar color
+ */
+#folderTree * {
+  color: #cfdceb !important;
+  background-color: #121d2c !important;
+}
+
+/*
+ *  Tabs
+ */
+.tabmail-tab:not([selected]) *{
+  color: #cfdceb !important;
+  background-color: #121d2c !important;
+}
+
+#navigation-toolbox > #tabs-toolbar:not(:-moz-window-inactive){
+  background-color: #121d2c !important;
+}
+
+/* 
+ * Addressbook
+ */
+#ab-toolbox * {
+  color: #cfdceb !important;
+  background-color: #121d2c !important;
+}

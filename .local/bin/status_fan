@@ -1,0 +1,5 @@
+#!/bin/bash
+
+speed=$(sensors |grep fan1|awk -F " " '{print $2}')
+
+echo "$speed RPMs"

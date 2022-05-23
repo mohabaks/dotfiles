@@ -1,0 +1,21 @@
+#!/bin/bash
+# Author: https://github.com/mohabaks
+# Description: Simple script to launch my external DELL Monitors
+#              connected to my laptop LenovoThinkpad Yoga 260
+
+# Check if any of the monitor is connected
+if `xrandr -q | grep -q "HDMI2 connected"`
+then
+	# Set screen
+        $HOME/.screenlayout/multiscreen.sh       
+        
+        # Set wallpaper
+        nitrogen --restore --head=1 2> /dev/null & 
+        nitrogen --restore --head=2 2> /dev/null & 
+        nitrogen --restore --head=3 2> /dev/null & 
+else
+	# Set screen
+	$HOME/.screenlayout/default.sh
+	# Set wallpaper
+	feh --bg-scale $HOME/Pictures/Walls/nord-01.png
+fi

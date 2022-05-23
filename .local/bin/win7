@@ -1,0 +1,21 @@
+#! /usr/bin/bash
+# Description: Simple script to launch windows 7 rdesktop
+#
+source $HOME/.vms_env
+
+HOST=10.111.26.253
+IMAGE="$HOME/.icons/Flat-Remix-Blue-Dark/apps/scalable/virt-manager.svg"
+VM="Windows 7"
+
+kali_status=$(lxc info kali| grep RUNNING)
+win7_status=$(doas virsh list --all|grep win7|grep running)
+
+if [[ $kali_status && $win7_status ]];then
+        dunstify -i "$IMAGE" "VMs Status: $VM" "$(printf "\n%s" "Started Windows 7 rdesktop")"
+        lxc exec kali -- sudo --user kali --login rdesktop \
+                -u "$USER" \
+                -p "$PASS"\
+                "$HOST"
+else
+        dunstify -i "$IMAGE" "VMs Status: $VM" "$(printf "\n%s" "Windows 7 not running")"
+fi

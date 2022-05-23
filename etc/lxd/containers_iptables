@@ -1,0 +1,80 @@
+#!/bin/sh
+# Author: https://github.com/mohabaks
+# Description: Simple script to setup iptables rules for containers firewall
+#
+
+
+#
+#  DEFAULT SETTING
+#
+
+# Default varibales
+IPTABLES=/sbin/iptables
+HOME_NET=192.168.100.0/24  # Home default LAN
+MAN_NET=10.223.202.0/24    # MAN network
+WAN_INT=eth0               # WAN Interface
+MAN_INT=eth1               # MAN Interface
+PWN_INT=eth2               # PWN Interface (Untrusted)
+TOR_INT=eth3               # TOR Interface (Torrify clients)
+
+# Remove any existing rules from all chains
+echo "[+] Flushing existing iptables rules ..."
+$IPTABLES -F
+$IPTABLES -F -t nat
+$IPTABLES -X
+
+# Set the default policy to drop
+echo "[+] Setting default policy to drop ..."
+$IPTABLES --policy INPUT DROP
+$IPTABLES --policy OUTPUT DROP
+$IPTABLES --policy FORWARD DROP
+
+
+#
+#  INPUT CHAIN
+#
+
+echo "[+] Configuring INPUT CHAIN rules ..."
+# ACCEPT unlimited traffic on the loopback interface
+$IPTABLES -A INPUT -i lo -j ACCEPT
+
+# DROP access to the following addresses
+$IPTABLES -A INPUT -m state --state INVALID -j DROP
+$IPTABLES -A INPUT -i $PWN_INT -d $MAN_NET -j DROP
+$IPTABLES -A INPUT -i $TOR_INT -d $MAN_NET -j DROP
+
+# ACCEPT anything else
+$IPTABLES -A INPUT -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT
+
+
+#
+# OUTPUT CHAIN
+#
+
+echo "[+] Configuring OUTPUT CHAIN rules ..."
+# DROP access
+$IPTABLES -A OUTPUT -m state --state INVALID -j DROP
+
+# Accept anything else
+$IPTABLES -A OUTPUT -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT
+
+
+#
+# NAT
+#
+
+echo "[+] Configuring NAT rules ..."
+$IPTABLES -t nat -A POSTROUTING -o $WAN_INT -j MASQUERADE
+
+
+#
+# FORWARD CHAIN
+#
+
+echo "[+] Configuring FORWARD CHAIN rules ..."
+# DROP access for the following networks
+$IPTABLES -A FORWARD -i $PWN_INT -d $HOME_NET -j DROP
+$IPTABLES -A FORWARD -i $TOR_INT -d $HOME_NET -j DROP
+
+# ACCEPT routing for everything else
+$IPTABLES -A FORWARD -j ACCEPT

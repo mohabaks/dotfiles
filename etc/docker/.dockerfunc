@@ -1,0 +1,426 @@
+#!/usr/bin/bash
+# Author:        https://github.com/mohabaks
+# Description:   Bash wrappers for docker commands.
+
+DNS_0="1.1.1.1"
+DNS_1="1.0.0.1"
+LINK_0="pwn"
+LINK_1="man"
+
+#-----------------------------------------------------------------------------
+#
+#                             Helper Functions
+#
+#-----------------------------------------------------------------------------
+
+docker_container_state(){
+        docker inspect --format "{{.State.Running}}" $1 2>/dev/null
+}
+
+docker_app_template(){
+        if [[ $# -eq 0 ]];then
+                image="registry.blacknetwork.local/gui-apps-template:latest"
+        else
+                image=$1 # specify a different image to use
+        fi
+        docker run -it --rm \
+                -v /etc/localtime:/etc/localtime:ro \
+                -v /tmp/.X11-unix:/tmp/.X11-unix \
+                -e DISPLAY=$DISPLAY \
+                -h "dockertemplate" \
+                --name "app-template" \
+                $image
+}
+
+
+#-----------------------------------------------------------------------------
+#
+#                             Persistent Containers
+#
+#-----------------------------------------------------------------------------
+
+kali(){
+        local NAME="kali"
+        local DOCKER_REPO="localhost/mohabaks/kali-rolling:latest"
+        local COMMAND="/usr/bin/bash"
+        local state=$(container_state "$NAME")
+        if [[ "$state" != "true" ]] && [[ "$state" != "false" ]];then
+                echo "[*] Container $NAME not found, creating it for you"
+		docker run -it -d \
+			-v /tmp/.X11-unix:/tmp/.X11-unix \
+                        -v /etc/localtime:/etc/localtime:ro \
+			-v $HOME/Docker/Containers/Kali:/home/kali/Workspace \
+			-v $HOME/.config/openvpn:/home/kali/.config/openvpn \
+                        -v $HOME/Downloads:/home/kali/Downloads \
+                        -v $HOME/.tools:/opt/tools \
+                        -v /dev/shm:/dev/shm:z \
+                        -v /var/run/dbus:/var/run/dbus \
+			-e DISPLAY=$DISPLAY \
+                        --cpus 2\
+			--memory 4gb \
+                        --network "$LINK_0" \
+                        --cap-drop=ALL \
+                        --cap-add=AUDIT_WRITE \
+                        --cap-add=NET_RAW \
+                        --cap-add=SETGID \
+                        --cap-add=SETUID \
+                        --cap-add=FOWNER \
+                        --cap-add=CHOWN \
+                        --cap-add=DAC_OVERRIDE \
+                        --cap-add=NET_ADMIN \
+			--device /dev/net/tun \
+                        --device /dev/snd \
+                        --device /dev/dri \
+                        --device /dev/ppp \
+			--user kali \
+                        --hostname "$NAME" \
+			--name "$NAME" \
+			"$DOCKER_REPO" "$COMMAND" 2>&1 >/dev/null
+        	docker exec -it -e DISPLAY=$DISPLAY "$NAME" /usr/bin/zsh
+        elif [[ "$state" == "false" ]];then
+                echo "[*] Starting container $NAME "
+                docker restart "$NAME" 2>&1 >/dev/null
+        	docker exec -it -e DISPLAY=$DISPLAY "$NAME" /usr/bin/zsh
+        elif [[ "$state" == "true" ]];then
+                echo "[*] Container $NAME is already up, spawning a shell"
+        	docker exec -it -e DISPLAY=$DISPLAY "$NAME" /usr/bin/zsh
+        fi
+}
+
+# apps
+
+burpsuite(){
+	local NAME="kali"
+	local COMMAND="BurpSuiteCommunity"
+	local state=$(container_state "$NAME")
+        if [[ "$state" == "true" ]];then
+                docker exec -d \
+                        -e DISPLAY=$DISPLAY \
+                        -e QT_DEVICE_PIXEL_RATIO \
+                        -e _JAVA_AWT_WM_NONREPARENTING=1 \
+                        -e _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp' \
+                        -e GDK_SCALE \
+                        -e GDK_DPI_SCALE \
+                        "$NAME" "$COMMAND" 2>&1 >/dev/null 
+        else
+                echo -e "[$RED✗$RESET] Container $NAME not running"
+        fi
+}
+
+wireshark(){
+        local NAME="kali"
+        local COMMAND="wireshark"
+        state=$(container_state "$NAME")
+        if [[ "$state" == "true" ]];then
+                docker exec -d \
+                        -e DISPLAY=$DISPLAY \
+                        -e GDK_SCALE \
+                        -e GDK_DPI_SCALE \
+                        "$NAME" "$COMMAND" 2>&1 >/dev/null 
+        else
+                echo -e "[$RED✗$RESET] Container $NAME not running"
+        fi
+}
+
+maltego(){
+        local NAME="kali"
+        local COMMAND="maltego"
+	local state=$(container_state "$NAME")
+        if [[ "$state" == "true" ]];then
+                docker exec -d \
+                        -e DISPLAY=$DISPLAY \
+                        -e QT_DEVICE_PIXEL_RATIO \
+                        -e _JAVA_AWT_WM_NONREPARENTING=1 \
+                        -e _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp' \
+                        -e GDK_SCALE \
+                        -e GDK_DPI_SCALE \
+                        "$NAME" "$COMMAND" 2>&1 >/dev/null 
+        else
+                echo -e "[$RED✗$RESET] Container $NAME not running"
+        fi
+}
+
+
+#-----------------------------------------------------------------------------
+#
+#                             Disposable Apps
+#
+#-----------------------------------------------------------------------------
+
+chromium(){
+        local NAME="chromium"
+        local COMMAND="chromium"
+        local DOCKER_REPO="localhost/mohabaks/apps:latest"
+        local state=$(docker_container_state "$NAME")
+
+        if [[ "$state" = "true" ]];then
+                notify-send " " "chromium already running"
+        else
+                docker run -d --rm \
+                        -v /tmp/.X11-unix:/tmp/.X11-unix \
+                        -v /etc/localtime:/etc/localtime:ro \
+                        -v /dev/shm:/dev/shm \
+                        -v /var/run/dbus:/var/run/dbus \
+                        -v $HOME/Downloads:/home/user/Downloads \
+                        -v ${XDG_RUNTIME_DIR}/pulse/native:${XDG_RUNTIME_DIR}/pulse/native \
+                        -e DISPLAY=$DISPLAY \
+                        -e PULSE_SERVER=unix:${XDG_RUNTIME_DIR}/pulse/native \
+                        -e GDK_DPI_SCALE \
+                        -e GDK_SCALE \
+                        -h "docker-$NAME" \
+                        --cap-drop=ALL \
+                        --security-opt seccomp:/etc/docker/seccomp/chrome.json \
+                        --shm-size=1024m \
+                        --memory 1gb \
+                        --device /dev/snd \
+                        --dns "$DNS" \
+                        --device /dev/dri \
+                        --group-add $(getent group audio | cut -d: -f3) \
+                        --user user \
+                        --network "$LINK_0" \
+                        --name "$NAME" \
+                        "$DOCKER_REPO" "$COMMAND" 2>&1 >/dev/null
+        fi
+}
+
+firefox(){
+        local NAME="firefox_${RANDOM}"
+        local COMMAND="firefox"
+        local DOCKER_REPO="localhost/mohabaks/apps:latest"
+        local state=$(docker_container_state "$NAME")
+
+        if [[ "$state" = "true" ]];then
+                docker exec -i "$NAME" "$COMMAND" "$@"
+        else
+                docker run -i -d --rm \
+                        -v /tmp/.X11-unix:/tmp/.X11-unix \
+                        -v /etc/localtime:/etc/localtime:ro \
+                        -v /dev/shm:/dev/shm \
+                        -v /var/run/dbus:/var/run/dbus \
+                        -v $HOME/Documents/Shared:/user/Documents \
+                        -v $HOME/Downloads:/home/user/Downloads \
+                        -v $HOME/.mozilla:/home/user/.mozilla \
+                        -e DISPLAY=$DISPLAY \
+                        -e GDK_DPI_SCALE \
+                        -e GDK_SCALE \
+                        -h "docker-$NAME" \
+                        --cap-drop=ALL \
+                        --shm-size=1024m \
+                        --cpuset-cpus 0 \
+                        --memory 2gb \
+                        --dns "$DNS" \
+                        --device /dev/snd \
+                        --device /dev/dri \
+                        --group-add $(getent group audio | cut -d: -f3) \
+                        --name "$NAME" \
+                        --user user \
+                        --network "$LINK_0" \
+                        "$DOCKER_REPO" "$COMMAND" "$@" 2>&1 >/dev/null
+        fi
+}
+
+gimp(){
+        local NAME="gimp"
+        local COMMAND="gimp"
+        local DOCKER_REPO="localhost/mohabaks/apps:latest"
+        docker run -d --rm \
+                -v /tmp/.X11-unix:/tmp/.X11-unix \
+                -v $HOME/Downloads:/home/user/Downloads \
+                -v $HOME/Pictures:/home/user/Pictures \
+                -v /dev/shm:/dev/shm:z \
+                -v /var/run/dbus:/var/run/dbus \
+                -e DISPLAY=$DISPLAY \
+                -e GDK_DPI_SCALE \
+                -e GDK_SCALE \
+                -e QT_DEVICE_PIXEL_RATIO \
+                -e PATH=/home/user/.local/bin:$PATH \
+                -h "docker-$NAME" \
+                --cap-drop=ALL \
+                --memory 512mb \
+                --name "$NAME" \
+                --user user \
+                "$DOCKER_REPO" "$COMMAND" "$@" 2>&1 >/dev/null
+}
+
+libreoffice(){
+        local NAME="libreoffice"
+        local COMMAND="libreoffice"
+        local DOCKER_REPO="localhost/mohabaks/apps:latest"
+        docker run -d --rm \
+                -v /tmp/.X11-unix:/tmp/.X11-unix \
+                -v $HOME/Documents/Shared:/home/user/Documents \
+                -v $HOME/Downloads:/home/user/Downloads \
+                -e DISPLAY=$DISPLAY \
+                -e GDK_DPI_SCALE \
+                -e GDK_SCALE \
+                -h "docker-$NAME" \
+                --cap-drop=ALL \
+                --name "$NAME" \
+                --memory 512mb \
+                --user user \
+                --network none \
+                "$DOCKER_REPO" "$COMMAND" 2>&1 >/dev/null
+}
+
+lightcord(){
+        local NAME="lightcord"
+        local COMMAND="lightcord"
+        local DOCKER_REPO="localhost/mohabaks/apps:latest"
+        docker run -d --rm \
+                -v /tmp/.X11-unix:/tmp/.X11-unix \
+                -v $HOME/.config/lightcord:/home/user/.config/lightcord \
+                -v $HOME/.config/Lightcord:/home/user/.config/Lightcord \
+                -v $HOME/.config/Lightcord_BD:/home/user/.config/Lightcord_BD \
+                -v $HOME/Downloads:/home/user/Downloads \
+                -v /dev/shm:/dev/shm:z \
+                -v /var/run/dbus:/var/run/dbus \
+                -e DISPLAY=$DISPLAY \
+                -e GDK_DPI_SCALE \
+                -e GDK_SCALE \
+                -e QT_DEVICE_PIXEL_RATIO \
+                -h "docker-$NAME" \
+                --cap-add SYS_ADMIN \
+                --device /dev/snd \
+                --device /dev/dri \
+		--memory 1gb \
+                --network "$LINK_0" \
+                --name "$NAME" \
+                --user user \
+                "$DOCKER_REPO" "$COMMAND" 2>&1 >/dev/null
+}
+
+slack(){
+        local NAME="slack-desktop"
+        local COMMAND="slack"
+        local DOCKER_REPO="localhost/mohabaks/apps:latest"
+        docker run -d --rm \
+                -v /tmp/.X11-unix:/tmp/.X11-unix \
+                -v $HOME/.config/Slack:/home/user/.config/Slack \
+                -v $HOME/Downloads:/home/user/Downloads \
+                -v /dev/shm:/dev/shm:z \
+                -v /var/run/dbus:/var/run/dbus \
+                -e DISPLAY=$DISPLAY \
+                -e GDK_DPI_SCALE \
+                -e GDK_SCALE \
+                -e QT_DEVICE_PIXEL_RATIO \
+                -h "docker-$NAME" \
+                --cap-add SYS_ADMIN \
+                --device /dev/snd \
+                --device /dev/dri \
+		--memory 1gb \
+                --network "$LINK_0" \
+                --name "$NAME" \
+                --user user \
+                "$DOCKER_REPO" "$COMMAND" 2>&1 >/dev/null
+}
+
+mpv(){
+        local NAME="mpv"
+        local COMMAND="mpv"
+        local DOCKER_REPO="localhost/mohabaks/apps:latest"
+        docker run -d --rm \
+                -v /tmp/.X11-unix:/tmp/.X11-unix \
+                -v $HOME/Downloads:/home/user/Downloads \
+                -v /dev/shm:/dev/shm:z \
+                -v /var/run/dbus:/var/run/dbus \
+                -e DISPLAY=$DISPLAY \
+                -e GDK_DPI_SCALE \
+                -e GDK_SCALE \
+                -e QT_DEVICE_PIXEL_RATIO \
+                -e PATH=/home/user/.local/bin:$PATH \
+                -h "docker-$NAME" \
+                --device /dev/snd \
+                --device /dev/dri \
+                --network "$LINK_0" \
+                --name "$NAME" \
+                --user user \
+                --group-add $(getent group audio | cut -d: -f3) \
+                "$DOCKER_REPO" "$COMMAND" "$@" 2>&1 >/dev/null
+}
+
+qbittorrent(){
+        local NAME="qbittorrent"
+        local COMMAND="qbittorrent"
+        local DOCKER_REPO="localhost/mohabaks/apps:latest"
+        docker run -d --rm \
+                -v /tmp/.X11-unix:/tmp/.X11-unix \
+                -v $HOME/Downloads:/home/user/Downloads \
+                -v $HOME/.config/qBittorrent:/home/user/.config/qBittorrent \
+                -v /dev/shm:/dev/shm:z \
+                -v /var/run/dbus:/var/run/dbus \
+                -e DISPLAY=$DISPLAY \
+                -e GDK_DPI_SCALE \
+                -e GDK_SCALE \
+                -e QT_DEVICE_PIXEL_RATIO \
+                -h "docker-$NAME" \
+                --network "$LINK_0" \
+                --name "$NAME" \
+                --user user \
+                "$DOCKER_REPO" "$COMMAND" "$@" 2>&1 >/dev/null
+}
+
+telegram(){
+        local NAME="telegram-desktop"
+        local COMMAND="telegram-desktop"
+        local DOCKER_REPO="localhost/mohabaks/apps:latest"
+        docker run -d --rm \
+                -v /tmp/.X11-unix:/tmp/.X11-unix \
+                -v $HOME/Downloads:/home/user/Downloads \
+                -v $HOME/.local/share/TelegramDesktop/:/home/user/.local/share/TelegramDesktop/ \
+                -v /dev/shm:/dev/shm:z \
+                -v /var/run/dbus:/var/run/dbus \
+                -e DISPLAY=$DISPLAY \
+                -e GDK_DPI_SCALE \
+                -e GDK_SCALE \
+                -e QT_DEVICE_PIXEL_RATIO \
+                -h "docker-$NAME" \
+                --device /dev/snd \
+                --device /dev/dri \
+                --memory 512mb \
+                --network "$LINK_0" \
+                --name "$NAME" \
+                --user user \
+                --group-add $(getent group audio | cut -d: -f3) \
+                "$DOCKER_REPO" "$COMMAND" 2>&1 >/dev/null
+}
+
+texmaker(){
+        local NAME="texmaker"
+        local COMMAND="texmaker"
+        local DOCKER_REPO="localhost/mohabaks/apps:latest"
+        docker run -d --rm \
+                -v /tmp/.X11-unix:/tmp/.X11-unix \
+                -v $HOME/Documents/Shared:/home/user/Documents \
+                -v $HOME/Documents/LaTeX:/home/user/Documents/LaTeX \
+                -v $HOME/Downloads:/home/user/Downloads \
+                -e DISPLAY=$DISPLAY \
+                -e GDK_DPI_SCALE \
+                -e GDK_SCALE \
+                -h "docker-$NAME" \
+                --cap-drop=ALL \
+                --name "$NAME" \
+                --memory 512mb \
+                --user user \
+                --network none \
+                "$DOCKER_REPO" "$COMMAND" 2>&1 >/dev/null
+}
+
+torbrowser(){
+        local NAME="torbrowser"
+        local COMMAND="tor-browser"
+        local DOCKER_REPO="localhost/mohabaks/apps:latest"
+        docker run -d --rm \
+                -v /tmp/.X11-unix:/tmp/.X11-unix \
+                -v $HOME/Documents/Shared:/home/user/Documents \
+                -v $HOME/Downloads:/home/user/Downloads \
+                -e DISPLAY=$DISPLAY \
+                -e GDK_DPI_SCALE \
+                -e GDK_SCALE \
+                --cap-drop=ALL \
+                -h "docker-$NAME" \
+                --name "$NAME" \
+                --user user \
+                --memory 1gb \
+                --network "$LINK_0" \
+                "$DOCKER_REPO" "$COMMAND" 2>&1 >/dev/null
+}

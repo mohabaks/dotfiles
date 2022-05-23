@@ -1,0 +1,3 @@
+#!/usr/local/bin/bash
+bat=$(sysctl -n hw.acpi.battery.life)
+echo "${bat}% "

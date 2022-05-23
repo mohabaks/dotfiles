@@ -1,0 +1,32 @@
+#!/bin/bash
+#      Author: https://github.com/mohabaks
+# Description: Minimal Status Bar Using notify-send
+#      
+
+# Source term colors to use
+. $HOME/.local/bin/color-parser 
+
+# Get the ESSID
+essid=$(/sbin/iwgetid wlo1 --raw)
+
+# Get Mail Info
+mail=$($HOME/.local/bin/gmail.py)
+
+# Get VPN status
+if [[ $(pgrep openvpn) ]];then
+        vpn="vpnOn"
+else
+        vpn="vpnOff"
+fi
+
+# Get BAT0 status
+bat=$(cat /sys/class/power_supply/BAT0/capacity)
+
+# Get Date
+day=$(date "+%a %d %b %Y")
+notify-send "
+             <span foreground='$CYAN'>$day</span>
+<span foreground='$FG' font='Anonymous Pro for Powerline 14px'>
+ <span foreground='$GREEN' font='Material Icons 14px'></span> $essid <span foreground='$RED' font='Material Icons 14px'></span> $mail <span foreground='$MAGENTA' font='Material Icons 14px'></span> $vpn <span foreground='$BLUE' font='Material Icons 14px'></span> $bat %
+</span>
+"

@@ -1,0 +1,45 @@
+config:
+  environment.DISPLAY: :0
+  limits.cpu: "2"
+  limits.memory: 8GiB
+description: Kali Linux Profile
+devices:
+  downloads:
+    path: /home/kali/Downloads
+    source: /home/mohabaks/Downloads
+    type: disk
+  eth0:
+    name: eth0
+    nictype: bridged
+    parent: lxdbr1
+    type: nic
+  openvpn:
+    path: /home/kali/.config/openvpn
+    source: /home/mohabaks/.config/openvpn
+    type: disk
+  root:
+    path: /
+    pool: default
+    type: disk
+  tmux:
+    path: /home/kali/.tmux.conf
+    source: /home/mohabaks/.tmux.conf
+    type: disk
+  tools:
+    path: /opt/tools
+    source: /opt/pentools/
+    type: disk
+  vim:
+    path: /home/kali/.vim
+    source: /home/mohabaks/.vim
+    type: disk
+  vimrc:
+    path: /home/kali/.vimrc
+    source: /home/mohabaks/.vimrc
+    type: disk
+  workspace:
+    path: /home/kali/Workspace
+    source: /home/mohabaks/Workspace
+    type: disk
+name: kali
+used_by: []

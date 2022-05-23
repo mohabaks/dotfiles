@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Set monitor if connected
+#$HOME/.local/bin/externalMonitor
+
+# Start Qubes Guid
+$HOME/.local/bin/qubes-xdg-autostart
+
+
+# Set cursor theme
+xsetroot -cursor_name left_ptr
+
+# Mute speaker
+amixer sset Speaker mute
+
+# Start keybindings
+sxhkd &

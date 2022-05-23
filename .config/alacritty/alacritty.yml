@@ -1,0 +1,1017 @@
+# Configuration for Alacritty, the GPU enhanced terminal emulator.
+
+# Set system env
+env:
+  TERM: xterm-256color
+
+window:
+  dimensions:
+    columns: 0
+    lines: 0
+  position:
+    x: 0
+    y: 0
+  padding:
+    x: 5
+    y: 5
+
+  # Spread additional padding evenly around the terminal content.
+  #dynamic_padding: false
+
+  # Window decorations
+  #
+  # Values for `decorations`:
+  #     - full: Borders and title bar
+  #     - none: Neither borders nor title bar
+  #
+  # Values for `decorations` (macOS only):
+  #     - transparent: Title bar, transparent background and title bar buttons
+  #     - buttonless: Title bar, transparent background, but no title bar buttons
+  #decorations: full
+
+  # Startup Mode (changes require restart)
+  #
+  # Values for `startup_mode`:
+  #   - Windowed
+  #   - Maximized
+  #   - Fullscreen
+  #
+  # Values for `startup_mode` (macOS only):
+  #   - SimpleFullscreen
+  #startup_mode: Windowed
+
+  # Window title
+  #title: Alacritty
+
+  # Window class (Linux/BSD only):
+  #class:
+    # Application instance name
+    #instance: Alacritty
+    # General application class
+    #general: Alacritty
+
+  # GTK theme variant (Linux/BSD only)
+  #
+  # Override the variant of the GTK theme. Commonly supported values are `dark` and `light`.
+  # Set this to `None` to use the default theme variant.
+  #gtk_theme_variant: None
+
+#scrolling:
+  # Maximum number of lines in the scrollback buffer.
+  # Specifying '0' will disable scrolling.
+  #history: 10000
+
+  # Scrolling distance multiplier.
+  #multiplier: 3
+
+# Font configuration
+font:
+  normal:
+    family: Iosevka Slab
+    style: Medium
+  bold:
+    family: Iosevka Slab
+    style: Medium
+  italic:
+    family: Iosevka Slab
+    style: Medium
+  bold_italic:
+    family: Iosevka Slab
+    style: Medium
+  size: 9.0
+
+# 
+#
+#   Colorschemes
+#
+#
+schemes:
+  htb: &htb
+    # Default colors
+    primary:
+      background: '0x111927'
+      foreground: '0xc5d1eb'
+
+    # Normal colors
+    normal:
+      black:   '0x161f30'
+      red:     '0xf12446'
+      green:   '0x9fef00'
+      yellow:  '0xffaf00'
+      blue:    '0x017ff2'
+      magenta: '0x986ce8'
+      cyan:    '0x12a0a1'
+      white:   '0xc5d1eb'
+
+    # Bright colors
+    bright:
+      black:   '0x556072'
+      red:     '0xf12446'
+      green:   '0x9fef00'
+      yellow:  '0xffaf00'
+      blue:    '0x017ff2'
+      magenta: '0x986ce8'
+      cyan:    '0x12a0a1'
+      white:   '0xc5d1eb'
+  
+  gruvbox: &gruv
+    # Default colors
+    primary:
+      # hard contrast: background = '#1d2021'
+      background: '#282828'
+      # soft contrast: background = '#32302f'
+      foreground: '#ebdbb2'
+
+    # Normal colors
+    normal:
+      black:   '#282828'
+      red:     '#cc241d'
+      green:   '#98971a'
+      yellow:  '#d79921'
+      blue:    '#458588'
+      magenta: '#b16286'
+      cyan:    '#689d6a'
+      white:   '#a89984'
+
+    # Bright colors
+    bright:
+      black:   '#928374'
+      red:     '#fb4934'
+      green:   '#b8bb26'
+      yellow:  '#fabd2f'
+      blue:    '#83a598'
+      magenta: '#d3869b'
+      cyan:    '#8ec07c'
+      white:   '#ebdbb2'
+
+  brew: &brew
+    # Default colors
+    primary:
+      background: '0x0c0d0e'
+      foreground: '0xb7b8b9'
+
+    # Normal colors
+    normal:
+      black:   '0x151618'
+      red:     '0xe31a1c'
+      green:   '0x31a354'
+      yellow:  '0xdca060'
+      blue:    '0x3182bd'
+      magenta: '0x756bb1'
+      cyan:    '0x80b1d3'
+      white:   '0xb7b8b9'
+
+    # Bright colors
+    bright:
+      black:   '0x555555'
+      red:     '0xe31a1c'
+      green:   '0x31a354'
+      yellow:  '0xdca060'
+      blue:    '0x3182bd'
+      magenta: '0x756bb1'
+      cyan:    '0x80b1d3'
+      white:   '0xfcfdfe'
+
+  codeschool: &school
+    # Default colors
+    primary:
+      background: '0x232c31'
+      foreground: '0x9ea7a6'
+
+    # Normal colors
+    normal:
+      black:   '0x2c373d'
+      red:     '0x2a5491'
+      green:   '0x237986'
+      yellow:  '0xa03b1e'
+      blue:    '0x484d79'
+      magenta: '0xc59820'
+      cyan:    '0xb02f30'
+      white:   '0x9ea7a6'
+
+    # Bright colors
+    bright:
+      black:   '0x505c56'
+      red:     '0x2a5491'
+      green:   '0x237986'
+      yellow:  '0xa03b1e'
+      blue:    '0x484d79'
+      magenta: '0xc59820'
+      cyan:    '0xb02f30'
+      white:   '0xb5d8f6'
+
+  default: &default
+    # Default colors
+    primary:
+      background: '0x151515'
+      foreground: '0xd0d0d0'
+
+    # Normal colors
+    normal:
+      black:   '0x151515'
+      red:     '0xac4142'
+      green:   '0x90a959'
+      yellow:  '0xf4bf75'
+      blue:    '0x6a9fb5'
+      magenta: '0xaa759f'
+      cyan:    '0x75b5aa'
+      white:   '0xd0d0d0'
+
+    # Bright colors
+    bright:
+      black:   '0x505050'
+      red:     '0xac4142'
+      green:   '0x90a959'
+      yellow:  '0xf4bf75'
+      blue:    '0x6a9fb5'
+      magenta: '0xaa759f'
+      cyan:    '0x75b5aa'
+      white:   '0xf5f5f5'
+
+  grayscale: &grayscale
+    # Default colors
+    primary:
+      background: '0x101010'
+      foreground: '0xb9b9b9'
+
+    # Normal colors
+    normal:
+      black:   '0x101010'
+      red:     '0x7c7c7c'
+      green:   '0x8e8e8e'
+      yellow:  '0xa0a0a0'
+      blue:    '0x686868'
+      magenta: '0x747474'
+      cyan:    '0x868686'
+      white:   '0xb9b9b9'
+
+    # Bright colors
+    bright:
+      black:   '0x525252'
+      red:     '0x7c7c7c'
+      green:   '0x8e8e8e'
+      yellow:  '0xa0a0a0'
+      blue:    '0x686868'
+      magenta: '0x747474'
+      cyan:    '0x868686'
+      white:   '0xf7f7f7'
+
+  isotope: &isotope
+    # Default colors
+    primary:
+      background: '0x000000'
+      foreground: '0xd0d0d0'
+
+    # Normal colors
+    normal:
+      black:   '0x000000'
+      red:     '0xff0000'
+      green:   '0x33ff00'
+      yellow:  '0xff0099'
+      blue:    '0x0066ff'
+      magenta: '0xcc00ff'
+      cyan:    '0x00ffff'
+      white:   '0xd0d0d0'
+
+    # Bright colors
+    bright:
+      black:   '0x808080'
+      red:     '0xff0000'
+      green:   '0x33ff00'
+      yellow:  '0xff0099'
+      blue:    '0x0066ff'
+      magenta: '0xcc00ff'
+      cyan:    '0x00ffff'
+      white:   '0xffffff'
+
+  monokai: &monokai
+    # Default colors
+    primary:
+      background: '0x272822'
+      foreground: '0xf8f8f2'
+
+    # Normal colors
+    normal:
+      black:   '0x272822'
+      red:     '0xf92672'
+      green:   '0xa6e22e'
+      yellow:  '0xf4bf75'
+      blue:    '0x66d9ef'
+      magenta: '0xae81ff'
+      cyan:    '0xa1efe4'
+      white:   '0xf8f8f2'
+
+    # Bright colors
+    bright:
+      black:   '0x75715e'
+      red:     '0xf92672'
+      green:   '0xa6e22e'
+      yellow:  '0xf4bf75'
+      blue:    '0x66d9ef'
+      magenta: '0xae81ff'
+      cyan:    '0xa1efe4'
+      white:   '0xf9f8f5'
+
+  ocean: &ocean
+    # Default colors
+    primary:
+      background: '0x2b303b'
+      foreground: '0xc0c5ce'
+
+    # Normal colors
+    normal:
+      black:   '0x2b303b'
+      red:     '0xbf616a'
+      green:   '0xa3be8c'
+      yellow:  '0xebcb8b'
+      blue:    '0x8fa1b3'
+      magenta: '0xb48ead'
+      cyan:    '0x96b5b4'
+      white:   '0xc0c5ce'
+
+    # Bright colors
+    bright:
+      black:   '0x65737e'
+      red:     '0xbf616a'
+      green:   '0xa3be8c'
+      yellow:  '0xebcb8b'
+      blue:    '0x8fa1b3'
+      magenta: '0xb48ead'
+      cyan:    '0x96b5b4'
+      white:   '0xeff1f5'
+
+  paraiso: &paraiso
+    # Default colors
+    primary:
+      background: '0x2f1e2e'
+      foreground: '0xa39e9b'
+
+    # Normal colors
+    normal:
+      black:   '0x2f1e2e'
+      red:     '0xef6155'
+      green:   '0x48b685'
+      yellow:  '0xfec418'
+      blue:    '0x06b6ef'
+      magenta: '0x815ba4'
+      cyan:    '0x5bc4bf'
+      white:   '0xa39e9b'
+
+    # Bright colors
+    bright:
+      black:   '0x776e71'
+      red:     '0xef6155'
+      green:   '0x48b685'
+      yellow:  '0xfec418'
+      blue:    '0x06b6ef'
+      magenta: '0x815ba4'
+      cyan:    '0x5bc4bf'
+      white:   '0xe7e9db'
+
+  railscasts: &railscasts
+    # Default colors
+    primary:
+      background: '0x2b2b2b'
+      foreground: '0xe6e1dc'
+
+    # Normal colors
+    normal:
+      black:   '0x2b2b2b'
+      red:     '0xda4939'
+      green:   '0xa5c261'
+      yellow:  '0xffc66d'
+      blue:    '0x6d9cbe'
+      magenta: '0xb6b3eb'
+      cyan:    '0x519f50'
+      white:   '0xe6e1dc'
+
+    # Bright colors
+    bright:
+      black:   '0x5a647e'
+      red:     '0xda4939'
+      green:   '0xa5c261'
+      yellow:  '0xffc66d'
+      blue:    '0x6d9cbe'
+      magenta: '0xb6b3eb'
+      cyan:    '0x519f50'
+      white:   '0xf9f7f3'
+
+  shapeshifter: &shapeshifter
+    # Default colors
+    primary:
+      background: '0x000000'
+      foreground: '0xababab'
+
+    # Normal colors
+    normal:
+      black:   '0x000000'
+      red:     '0xe92f2f'
+      green:   '0x0ed839'
+      yellow:  '0xdddd13'
+      blue:    '0x3b48e3'
+      magenta: '0xf996e2'
+      cyan:    '0x23edda'
+      white:   '0xababab'
+
+    # Bright colors
+    bright:
+      black:   '0x343434'
+      red:     '0xe92f2f'
+      green:   '0x0ed839'
+      yellow:  '0xdddd13'
+      blue:    '0x3b48e3'
+      magenta: '0xf996e2'
+      cyan:    '0x23edda'
+      white:   '0xf9f9f9'
+
+  solarized: &solarized
+    # Default colors
+    primary:
+      background: '0x002b36'
+      foreground: '0x93a1a1'
+
+    # Normal colors
+    normal:
+      black:   '0x002b36'
+      red:     '0xdc322f'
+      green:   '0x859900'
+      yellow:  '0xb58900'
+      blue:    '0x268bd2'
+      magenta: '0x6c71c4'
+      cyan:    '0x2aa198'
+      white:   '0x93a1a1'
+
+    # Bright colors
+    bright:
+      black:   '0x657b83'
+      red:     '0xdc322f'
+      green:   '0x859900'
+      yellow:  '0xb58900'
+      blue:    '0x268bd2'
+      magenta: '0x6c71c4'
+      cyan:    '0x2aa198'
+      white:   '0xfdf6e3'
+
+  tomorrow: &tomorrow
+    # Default colors
+    primary:
+      background: '0x1d1f21'
+      foreground: '0xc5c8c6'
+
+    # Normal colors
+    normal:
+      black:   '0x1d1f21'
+      red:     '0xcc6666'
+      green:   '0xb5bd68'
+      yellow:  '0xf0c674'
+      blue:    '0x81a2be'
+      magenta: '0xb294bb'
+      cyan:    '0x8abeb7'
+      white:   '0xc5c8c6'
+
+    # Bright colors
+    bright:
+      black:   '0x969896'
+      red:     '0xcc6666'
+      green:   '0xb5bd68'
+      yellow:  '0xf0c674'
+      blue:    '0x81a2be'
+      magenta: '0xb294bb'
+      cyan:    '0x8abeb7'
+      white:   '0xffffff'
+
+  twilight: &twilight
+    # Default colors
+    primary:
+      background: '0x1e1e1e'
+      foreground: '0xa7a7a7'
+
+    # Normal colors
+    normal:
+      black:   '0x1e1e1e'
+      red:     '0xcf6a4c'
+      green:   '0x8f9d6a'
+      yellow:  '0xf9ee98'
+      blue:    '0x7587a6'
+      magenta: '0x9b859d'
+      cyan:    '0xafc4db'
+      white:   '0xa7a7a7'
+
+    # Bright colors
+    bright:
+      black:   '0x5f5a60'
+      red:     '0xcf6a4c'
+      green:   '0x8f9d6a'
+      yellow:  '0xf9ee98'
+      blue:    '0x7587a6'
+      magenta: '0x9b859d'
+      cyan:    '0xafc4db'
+      white:   '0xffffff'
+
+  dawn: &dawn
+    # Default colors
+    primary:
+      background: '0x181b20'
+      foreground: '0x9b9081'
+
+    # Normal colors
+    normal:
+      black:   '0x353535'
+      red:     '0x744b40'
+      green:   '0x6d6137'
+      yellow:  '0x765636'
+      blue:    '0x61564b'
+      magenta: '0x6b4a49'
+      cyan:    '0x435861'
+      white:   '0xb3b3b3'
+
+    # Bright colors
+    bright:
+      black:   '0x5f5f5f'
+      red:     '0x785850'
+      green:   '0x6f6749'
+      yellow:  '0x776049'
+      blue:    '0x696057'
+      magenta: '0x6f5a59'
+      cyan:    '0x525f66'
+      white:   '0xcdcdcd'
+
+  hybrid: &hybrid
+    # Default colors
+    primary:
+      background: '0x1d1f21'
+      foreground: '0xc5c8c6'
+
+    # Normal colors
+    normal:
+      black:   '0x282a2e'
+      red:     '0xa54242'
+      green:   '0x8c9440'
+      yellow:  '0xde935f'
+      blue:    '0x5f819d'
+      magenta: '0x85678f'
+      cyan:    '0x5e8d87'
+      white:   '0x707880'
+
+    # Bright colors
+    bright:
+      black:   '0x373b41'
+      red:     '0xcc6666'
+      green:   '0xb5bd68'
+      yellow:  '0xf0c674'
+      blue:    '0x81a2be'
+      magenta: '0xb294bb'
+      cyan:    '0x8abeb7'
+      white:   '0xc5c8c6'
+
+  invisibone: &invisibone
+    # Default colors
+    primary:
+      background: '0x232323'
+      foreground: '0xa0a0a0'
+
+    # Normal colors
+    normal:
+      black:   '0x303030'
+      red:     '0xd370a3'
+      green:   '0x6d9e3f'
+      yellow:  '0xb58858'
+      blue:    '0x6095c5'
+      magenta: '0xac7bde'
+      cyan:    '0x3ba275'
+      white:   '0xcfcfcf'
+
+    # Bright colors
+    bright:
+      black:   '0x686868'
+      red:     '0xffa7da'
+      green:   '0xa3d572'
+      yellow:  '0xefbd8b'
+      blue:    '0x98cbfe'
+      magenta: '0xe5b0ff'
+      cyan:    '0x75daa9'
+      white:   '0xffffff'
+
+  kasugano: &kasugano
+    # Default colors
+    primary:
+      background: '0x1b1b1b'
+      foreground: '0xffffff'
+
+    # Normal colors
+    normal:
+      black:   '0x252525'
+      red:     '0x6673bf'
+      green:   '0x3ea290'
+      yellow:  '0x8292b2'
+      blue:    '0x31658c'
+      magenta: '0x596196'
+      cyan:    '0x0fe7ed'
+      white:   '0xc8cacc'
+
+    # Bright colors
+    bright:
+      black:   '0x4d4d4d'
+      red:     '0x899aff'
+      green:   '0x52ad91'
+      yellow:  '0x95a7cc'
+      blue:    '0x477ab3'
+      magenta: '0x7882bf'
+      cyan:    '0x1bbcce'
+      white:   '0xedeff2'
+
+  navy: &navy
+    # Default colors
+    primary:
+      background: '0x021b21'
+      foreground: '0xe8dfd6'
+
+    # Normal colors
+    normal:
+      black:   '0x032c36'
+      red:     '0xc2454e'
+      green:   '0x7cbf9e'
+      yellow:  '0x8a7a63'
+      blue:    '0x2e3340'
+      magenta: '0xff5879'
+      cyan:    '0x44b5b1'
+      white:   '0xf2f1b9'
+
+    # Bright colors
+    bright:
+      black:   '0x065f73'
+      red:     '0xef5847'
+      green:   '0xa2d9b1'
+      yellow:  '0xbeb090'
+      blue:    '0x61778d'
+      magenta: '0xff99a1'
+      cyan:    '0x9ed9d8'
+      white:   '0xf6f6c9'
+
+  s3r0: &s3r0
+    # Default colors
+    primary:
+      background: '0x1f1f1f'
+      foreground: '0xc0b18b'
+
+    # Normal colors
+    normal:
+      black:   '0x242424'
+      red:     '0xe87a3b'
+      green:   '0x647035'
+      yellow:  '0x8f6840'
+      blue:    '0x4d4955'
+      magenta: '0x614445'
+      cyan:    '0x444b4b'
+      white:   '0xc0b18b'
+
+    # Bright colors
+    bright:
+      black:   '0x4a4d44'
+      red:     '0xe87a3b'
+      green:   '0x647035'
+      yellow:  '0x8f6840'
+      blue:    '0x4d4955'
+      magenta: '0x614445'
+      cyan:    '0x444b4b'
+      white:   '0xc0b18b'
+
+  nightly: &nightly
+    # Default colors
+    primary:
+      background: '0x1b1b1b'
+      foreground: '0xffffff'
+
+    # Normal colors
+    normal:
+      black:   '0x252525'
+      red:     '0xff27bb'
+      green:   '0x00d1b7'
+      yellow:  '0x8f88ff'
+      blue:    '0x40afff'
+      magenta: '0xc34efe'
+      cyan:    '0x0aefff'
+      white:   '0xffffff'
+
+    # Bright colors
+    bright:
+      black:   '0x4d4d4d'
+      red:     '0xff27bb'
+      green:   '0x40ddd5'
+      yellow:  '0x8f88ff'
+      blue:    '0x40afff'
+      magenta: '0xc34efe'
+      cyan:    '0x01fcff'
+      white:   '0xffffff'
+
+colors: *nightly
+#background_opacity: 1.0
+
+selection:
+  #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+  save_to_clipboard: true
+
+cursor:
+  # Cursor style
+  #
+  # Values for `style`:
+  #   - ▇ Block
+  #   - _ Underline
+  #   - | Beam
+  style: Block
+
+# Live config reload (changes require restart)
+live_config_reload: true
+
+# Shell
+shell:
+  program: /bin/bash
+#  args:
+#    - --login
+
+mouse:
+  url:
+    launcher:
+      program: firefox
+    #  args: []
+
+# Mouse bindings
+#
+# Mouse bindings are specified as a list of objects, much like the key
+# bindings further below.
+#
+# To trigger mouse bindings when an application running within Alacritty captures the mouse, the
+# `Shift` modifier is automatically added as a requirement.
+#
+# Each mouse binding will specify a:
+#
+# - `mouse`:
+#
+#   - Middle
+#   - Left
+#   - Right
+#   - Numeric identifier such as `5`
+#
+# - `action` (see key bindings)
+#
+# And optionally:
+#
+# - `mods` (see key bindings)
+#mouse_bindings:
+#  - { mouse: Middle, action: PasteSelection }
+
+# Key bindings
+#
+# Key bindings are specified as a list of objects. For example, this is the
+# default paste binding:
+#
+# `- { key: V, mods: Control|Shift, action: Paste }`
+#
+# Each key binding will specify a:
+#
+# - `key`: Identifier of the key pressed
+#
+#    - A-Z
+#    - F1-F24
+#    - Key0-Key9
+#
+#    A full list with available key codes can be found here:
+#    https://docs.rs/glutin/*/glutin/event/enum.VirtualKeyCode.html#variants
+#
+#    Instead of using the name of the keys, the `key` field also supports using
+#    the scancode of the desired key. Scancodes have to be specified as a
+#    decimal number. This command will allow you to display the hex scancodes
+#    for certain keys:
+#
+#       `showkey --scancodes`.
+#
+# Then exactly one of:
+#
+# - `chars`: Send a byte sequence to the running application
+#
+#    The `chars` field writes the specified string to the terminal. This makes
+#    it possible to pass escape sequences. To find escape codes for bindings
+#    like `PageUp` (`"\x1b[5~"`), you can run the command `showkey -a` outside
+#    of tmux. Note that applications use terminfo to map escape sequences back
+#    to keys. It is therefore required to update the terminfo when changing an
+#    escape sequence.
+#
+# - `action`: Execute a predefined action
+#
+#   - ToggleViMode
+#   - SearchForward
+#   - SearchBackward
+#   - Copy
+#   - Paste
+#   - PasteSelection
+#   - IncreaseFontSize
+#   - DecreaseFontSize
+#   - ResetFontSize
+#   - ScrollPageUp
+#   - ScrollPageDown
+#   - ScrollHalfPageUp
+#   - ScrollHalfPageDown
+#   - ScrollLineUp
+#   - ScrollLineDown
+#   - ScrollToTop
+#   - ScrollToBottom
+#   - ClearHistory
+#   - Hide
+#   - Minimize
+#   - Quit
+#   - ToggleFullscreen
+#   - SpawnNewInstance
+#   - ClearLogNotice
+#   - ClearSelection
+#   - ReceiveChar
+#   - None
+#
+#   (`mode: Vi` only):
+#   - Open
+#   - Up
+#   - Down
+#   - Left
+#   - Right
+#   - First
+#   - Last
+#   - FirstOccupied
+#   - High
+#   - Middle
+#   - Low
+#   - SemanticLeft
+#   - SemanticRight
+#   - SemanticLeftEnd
+#   - SemanticRightEnd
+#   - WordRight
+#   - WordLeft
+#   - WordRightEnd
+#   - WordLeftEnd
+#   - Bracket
+#   - ToggleNormalSelection
+#   - ToggleLineSelection
+#   - ToggleBlockSelection
+#   - ToggleSemanticSelection
+#   - SearchNext
+#   - SearchPrevious
+#   - SearchStart
+#   - SearchEnd
+#
+#   (macOS only):
+#   - ToggleSimpleFullscreen: Enters fullscreen without occupying another space
+#
+#   (Linux/BSD only):
+#   - CopySelection: Copies into selection buffer
+#
+# - `command`: Fork and execute a specified command plus arguments
+#
+#    The `command` field must be a map containing a `program` string and an
+#    `args` array of command line parameter strings. For example:
+#       `{ program: "alacritty", args: ["-e", "vttest"] }`
+#
+# And optionally:
+#
+# - `mods`: Key modifiers to filter binding actions
+#
+#    - Command
+#    - Control
+#    - Option
+#    - Super
+#    - Shift
+#    - Alt
+#
+#    Multiple `mods` can be combined using `|` like this:
+#       `mods: Control|Shift`.
+#    Whitespace and capitalization are relevant and must match the example.
+#
+# - `mode`: Indicate a binding for only specific terminal reported modes
+#
+#    This is mainly used to send applications the correct escape sequences
+#    when in different modes.
+#
+#    - AppCursor
+#    - AppKeypad
+#    - Alt
+#
+#    A `~` operator can be used before a mode to apply the binding whenever
+#    the mode is *not* active, e.g. `~Alt`.
+#
+# Bindings are always filled by default, but will be replaced when a new
+# binding with the same triggers is defined. To unset a default binding, it can
+# be mapped to the `ReceiveChar` action. Alternatively, you can use `None` for
+# a no-op if you do not wish to receive input characters for that binding.
+#
+# If the same trigger is assigned to multiple actions, all of them are executed
+# in the order they were defined in.
+#key_bindings:
+  #- { key: Paste,                                action: Paste          }
+  #- { key: Copy,                                 action: Copy           }
+  #- { key: L,         mods: Control,             action: ClearLogNotice }
+  #- { key: L,         mods: Control, mode: ~Vi,  chars: "\x0c"          }
+  #- { key: PageUp,    mods: Shift,   mode: ~Alt, action: ScrollPageUp,  }
+  #- { key: PageDown,  mods: Shift,   mode: ~Alt, action: ScrollPageDown }
+  #- { key: Home,      mods: Shift,   mode: ~Alt, action: ScrollToTop,   }
+  #- { key: End,       mods: Shift,   mode: ~Alt, action: ScrollToBottom }
+
+  # Vi Mode
+  #- { key: Space,  mods: Shift|Control, mode: Vi, action: ScrollToBottom          }
+  #- { key: Space,  mods: Shift|Control,           action: ToggleViMode            }
+  #- { key: Escape,                      mode: Vi, action: ClearSelection          }
+  #- { key: I,                           mode: Vi, action: ScrollToBottom          }
+  #- { key: I,                           mode: Vi, action: ToggleViMode            }
+  #- { key: Y,      mods: Control,       mode: Vi, action: ScrollLineUp            }
+  #- { key: E,      mods: Control,       mode: Vi, action: ScrollLineDown          }
+  #- { key: G,                           mode: Vi, action: ScrollToTop             }
+  #- { key: G,      mods: Shift,         mode: Vi, action: ScrollToBottom          }
+  #- { key: B,      mods: Control,       mode: Vi, action: ScrollPageUp            }
+  #- { key: F,      mods: Control,       mode: Vi, action: ScrollPageDown          }
+  #- { key: U,      mods: Control,       mode: Vi, action: ScrollHalfPageUp        }
+  #- { key: D,      mods: Control,       mode: Vi, action: ScrollHalfPageDown      }
+  #- { key: Y,                           mode: Vi, action: Copy                    }
+  #- { key: Y,                           mode: Vi, action: ClearSelection          }
+  #- { key: Copy,                        mode: Vi, action: ClearSelection          }
+  #- { key: V,                           mode: Vi, action: ToggleNormalSelection   }
+  #- { key: V,      mods: Shift,         mode: Vi, action: ToggleLineSelection     }
+  #- { key: V,      mods: Control,       mode: Vi, action: ToggleBlockSelection    }
+  #- { key: V,      mods: Alt,           mode: Vi, action: ToggleSemanticSelection }
+  #- { key: Return,                      mode: Vi, action: Open                    }
+  #- { key: K,                           mode: Vi, action: Up                      }
+  #- { key: J,                           mode: Vi, action: Down                    }
+  #- { key: H,                           mode: Vi, action: Left                    }
+  #- { key: L,                           mode: Vi, action: Right                   }
+  #- { key: Up,                          mode: Vi, action: Up                      }
+  #- { key: Down,                        mode: Vi, action: Down                    }
+  #- { key: Left,                        mode: Vi, action: Left                    }
+  #- { key: Right,                       mode: Vi, action: Right                   }
+  #- { key: Key0,                        mode: Vi, action: First                   }
+  #- { key: Key4,   mods: Shift,         mode: Vi, action: Last                    }
+  #- { key: Key6,   mods: Shift,         mode: Vi, action: FirstOccupied           }
+  #- { key: H,      mods: Shift,         mode: Vi, action: High                    }
+  #- { key: M,      mods: Shift,         mode: Vi, action: Middle                  }
+  #- { key: L,      mods: Shift,         mode: Vi, action: Low                     }
+  #- { key: B,                           mode: Vi, action: SemanticLeft            }
+  #- { key: W,                           mode: Vi, action: SemanticRight           }
+  #- { key: E,                           mode: Vi, action: SemanticRightEnd        }
+  #- { key: B,      mods: Shift,         mode: Vi, action: WordLeft                }
+  #- { key: W,      mods: Shift,         mode: Vi, action: WordRight               }
+  #- { key: E,      mods: Shift,         mode: Vi, action: WordRightEnd            }
+  #- { key: Key5,   mods: Shift,         mode: Vi, action: Bracket                 }
+  #- { key: Slash,                       mode: Vi, action: SearchForward           }
+  #- { key: Slash,  mods: Shift,         mode: Vi, action: SearchBackward          }
+  #- { key: N,                           mode: Vi, action: SearchNext              }
+  #- { key: N,      mods: Shift,         mode: Vi, action: SearchPrevious          }
+
+  # (Windows, Linux, and BSD only)
+  #- { key: V,        mods: Control|Shift,           action: Paste            }
+  #- { key: C,        mods: Control|Shift,           action: Copy             }
+  #- { key: F,        mods: Control|Shift,           action: SearchForward    }
+  #- { key: B,        mods: Control|Shift,           action: SearchBackward   }
+  #- { key: C,        mods: Control|Shift, mode: Vi, action: ClearSelection   }
+  #- { key: Insert,   mods: Shift,                   action: PasteSelection   }
+  #- { key: Key0,     mods: Control,                 action: ResetFontSize    }
+  #- { key: Equals,   mods: Control,                 action: IncreaseFontSize }
+  #- { key: Add,      mods: Control,                 action: IncreaseFontSize }
+  #- { key: Subtract, mods: Control,                 action: DecreaseFontSize }
+  #- { key: Minus,    mods: Control,                 action: DecreaseFontSize }
+
+  # (Windows only)
+  #- { key: Return,   mods: Alt,           action: ToggleFullscreen }
+
+  # (macOS only)
+  #- { key: K,      mods: Command, mode: ~Vi, chars: "\x0c"            }
+  #- { key: Key0,   mods: Command,            action: ResetFontSize    }
+  #- { key: Equals, mods: Command,            action: IncreaseFontSize }
+  #- { key: Add,    mods: Command,            action: IncreaseFontSize }
+  #- { key: Minus,  mods: Command,            action: DecreaseFontSize }
+  #- { key: K,      mods: Command,            action: ClearHistory     }
+  #- { key: V,      mods: Command,            action: Paste            }
+  #- { key: C,      mods: Command,            action: Copy             }
+  #- { key: C,      mods: Command, mode: Vi,  action: ClearSelection   }
+  #- { key: H,      mods: Command,            action: Hide             }
+  #- { key: M,      mods: Command,            action: Minimize         }
+  #- { key: Q,      mods: Command,            action: Quit             }
+  #- { key: W,      mods: Command,            action: Quit             }
+  #- { key: N,      mods: Command,            action: SpawnNewInstance }
+  #- { key: F,      mods: Command|Control,    action: ToggleFullscreen }
+  #- { key: F,      mods: Command,            action: SearchForward    }
+  #- { key: B,      mods: Command,            action: SearchBackward   }
+
+#debug:
+  # Display the time it takes to redraw each frame.
+  #render_timer: false
+
+  # Keep the log file after quitting Alacritty.
+  #persistent_logging: false
+
+  # Log level
+  #
+  # Values for `log_level`:
+  #   - None
+  #   - Error
+  #   - Warn
+  #   - Info
+  #   - Debug
+  #   - Trace
+  #log_level: Warn
+
+  # Print all received window events.
+  #print_events: false

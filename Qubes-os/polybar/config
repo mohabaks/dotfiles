@@ -1,0 +1,197 @@
+;*********************************************************
+;
+;                          COLORS
+;
+;**********************************************************
+[colors]
+; Base colors from .Xresources
+bg          =  ${xrdb:background}
+bg-alt      =  ${xrdb:color0}
+fg          =  ${xrdb:foreground}
+fg-alt      =  ${xrdb:color8}
+red         =  ${xrdb:color1}
+red-alt     =  ${xrdb:color9}
+green       =  ${xrdb:color2}
+green-alt   =  ${xrdb:color10}
+yellow      =  ${xrdb:color3}
+yellow-alt  =  ${xrdb:color11}
+blue        =  ${xrdb:color4}
+blue-alt    =  ${xrdb:color12}
+magenta     =  ${xrdb:color5}
+magenta-alt =  ${xrdb:color13}
+cyan        =  ${xrdb:color6}
+cyan-alt    =  ${xrdb:color14}
+white       =  ${xrdb:color7}
+white-alt   =  ${xrdb:color15}
+
+
+;**********************************************************
+;
+;                       GLOBAL WM SETTINGS
+;
+;**********************************************************
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+;*********************************************************
+;
+;                       BAR SETTINGS
+;
+;********************************************************
+[bar/mybar]
+monitor   = ${env:MONITOR:eDP1}
+bottom    = true
+width     = 100%
+height    = 25
+offset-x  = 0
+offset-y  = 0
+override-redirect = true
+
+background = ${colors.bg}
+foreground = ${colors.fg}
+
+border-bottom-size = 0
+border-bottom-color = ${colors.bg}
+border-top-size = 1
+border-top-color = ${colors.bg-alt}
+
+spacing = 0
+padding-left = 1
+padding-right = 1
+module-margin-left = 0
+module-margin-right = 0
+
+font-0 = Fixed:pixelsize=8;3
+font-1 = Siji:pixelsize=8;3
+
+tray-position = right
+tray-padding = 1
+tray-pseudo-transparency = true
+tray-background = ${colors.bg}
+
+modules-left = bspwm
+modules-center = temperature cpu memory
+modules-right = qubes date
+
+;**********************************************************
+;
+;                   MODULES SETTINGS
+;
+;**********************************************************
+
+[module/bspwm]
+type = internal/bspwm
+
+strip-wsnumbers = true
+pin-workspaces = true
+
+label-focused = " "
+label-focused-foreground = ${colors.red}
+;label-focused-background = ${colors.magenta}
+label-focused-padding = 0
+
+label-occupied = " "
+label-occupied-padding = 0
+label-occupied-foreground = ${colors.fg}
+;label-occupied-background = ${colors.bg-alt}
+
+label-urgent = " "
+label-urgent-foreground = ${colors.cyan}
+;label-urgent-background = ${colors.cyan}
+label-urgent-padding = 0
+
+label-empty = " "
+label-empty-foreground = ${colors.fg-alt}
+;label-empty-background = ${colors.bg-alt}
+label-empty-padding = 0
+
+[module/i3]
+type = internal/i3
+
+strip-wsnumbers = true
+pin-workspaces = true
+
+label-focused = " "
+label-focused-foreground = ${colors.red}
+;label-focused-background = ${colors.magenta}
+label-focused-padding = 0
+
+label-unfocused = " "
+label-unfocused-padding = 0
+label-unfocused-foreground = ${colors.fg}
+;label-unfocused-background = ${colors.bg-alt}
+
+label-urgent = " "
+label-urgent-foreground = ${colors.cyan}
+;label-urgent-background = ${colors.cyan}
+label-urgent-padding = 0
+
+label-visible = " "
+label-visible-foreground = ${colors.fg-alt}
+;label-visible-background = ${colors.bg-alt}
+label-visible-padding = 0
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.cyan}
+label = "%percentage% "
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.magenta}
+label = "%percentage_used% "
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <ramp> <label>
+format-warn = <ramp> <label-warn>
+
+label = "%temperature-c% "
+label-warn = "%temperature-c% "
+label-warn-foreground = ${colors.red}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.green}
+
+[module/date]
+type = internal/date
+interval = 5
+
+date =
+date-alt = " %a %d %b %Y"
+
+time = " %H:%M "
+time-alt = " %H:%M "
+
+label = %date%%time%
+
+format-prefix = 
+;format-foreground = ${colors.magenta}
+format-prefix-foreground = ${colors.yellow}
+
+[module/mail]
+type = custom/script
+interval = 120
+format = " <label> "
+format-prefix = " "
+format-prefix-foreground = ${colors.red}
+exec = ~/.config/polybar/.m
+
+[module/qubes]
+type = custom/script
+interval = 60
+format = " <label> "
+format-prefix = " "
+format-prefix-foreground = ${colors.blue-alt}
+exec = ~/.config/polybar/status_qubes
+; vim:ft=dosini

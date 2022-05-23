@@ -1,0 +1,19 @@
+#! /bin/bash
+# Description: Get the total number of podman containers running.
+TERMINAL=urxvtc
+
+case $BUTTON  in
+        1) setsid -f "$TERMINAL" -e docker stats;;
+esac
+
+containers() {
+     num=$(docker ps|tail -n +2|wc -l)
+     echo "$num"
+}
+#containers() {
+#     lxc=$(lxc list|grep RUNNING|wc -l)
+#     docker=$(docker ps|tail -n +2|wc -l)
+#     echo $(( lxc + docker ))
+#}
+
+containers

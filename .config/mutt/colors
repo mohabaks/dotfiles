@@ -1,0 +1,138 @@
+# vim: filetype=muttrc 
+
+
+# Default color definitions
+color  hdrdefault     white            green
+color  signature      brightmagenta    default
+color  indicator      black            blue
+color  attachment     yellow           default
+color  error          red              default
+color  message        white            default
+color  search         yellow           default
+color  status         white            color234
+color  tree           brightblue       default
+color  normal         white            default
+color  tilde          magenta          color234
+color  underline      magenta          default
+color  markers        green            default
+
+# color all ML mails
+color index          cyan               default "~u"
+
+# uncolor certain messages
+#uncolor index "~E"
+#uncolor index "~P"
+#uncolor index "~C @.com"
+#uncolor index "~N ~u"
+#uncolor index "~N !~u" 
+#uncolor index "~T"
+#uncolor index "~D"
+
+# and recolor them appropriately
+#color index         brightred     default "~E"
+#color index         brightyellow  default "~P"
+#color index         green         default "~C @.com"
+#color index         red           default "~N ~u"  # new ML mail
+#color index         brightred     default "~N !~u" # new non-ML mail
+#color index         brightgreen   default "~T"
+#color index         white         red     "~D"
+#color index         default         default   "~N !~T !~F !~p !~P"
+
+color index         blue	    	default		"~A"             # all messages
+color index         green		    default		"~E"             # expired messages
+color index         brightblack		default		"~N"             # new messages
+color index         cyan		    default		"~O"             # old messages
+color index         yellow		    default		"~Q"             # messages that have been replied to
+color index         white		    default		"~R"             # read messages
+color index         brightblack		    default		"~U"             # unread messages
+color index         red		        default		"~U~$"           # unread, unreferenced messages
+color index         magenta		    default		"~v"             # messages part of a collapsed thread
+color index         color130		default		"~P"             # messages from me
+color index         red		        default		"~p!~F"          # messages to me
+color index         brightblack		default		"~N~p!~F"        # new messages to me
+color index         green		    default		"~U~p!~F"        # unread messages to me
+color index         brightblack		default		"~R~p!~F"        # messages to me
+color index         brightblack		default		"~F"             # flagged messages
+color index         brightblack		default		"~F~p"           # flagged messages to me
+color index         brightblack		default		"~N~F"           # new flagged messages
+color index         brightblack		default		"~N~F~p"         # new flagged messages to me
+color index         brightblack		default		"~U~F~p"         # new flagged messages to me
+color index         color235		red		    "~D"             # deleted messages
+color index         color245		default		"~v~(!~N)"       # collapsed thread with no unread
+color index         color136		default		"~v~(~N)"        # collapsed thread with some unread
+color index         color64		    default		"~N~v~(~N)"      # collapsed thread with unread parent
+
+# set up the headers
+color header        brightmagenta   default "^from:"
+color header        green           default "^to:"
+color header        yellow          default "^cc:"
+color header        blue            default "^date:"
+color header        cyan            default "^subject:"
+color header        yellow          default "^newsgroups:"
+color header        yellow          default "^reply-to:"
+color header        red             default "^x-spam-rule:"
+color header        green           default "^x-mailer:"
+color header        brightblack     default "^message-id:"
+color header        yellow          default "^Organization:"
+color header        yellow          default "^Organisation:"
+color header        yellow          default "^User-Agent:"
+color header        yellow          default "^message-id: .*pine"
+color header        yellow          default "^X-Fnord:"
+color header        yellow          default "^X-WebTV-Stationery:"
+
+color header        red             default "^x-spam-rule:"
+color header        green           default "^x-mailer:"
+color header        yellow          default "^message-id:"
+color header        yellow          default "^Organization:"
+color header        yellow          default "^Organisation:"
+color header        yellow          default "^User-Agent:"
+color header        yellow          default "^message-id: .*pine"
+color header        yellow          default "^X-Fnord:"
+color header        yellow          default "^X-WebTV-Stationery:"
+color header        yellow          default "^X-Message-Flag:"
+color header        yellow          default "^X-Spam-Status:"
+color header        yellow          default "^X-SpamProbe:"
+color header        red             default "^X-SpamProbe: SPAM"
+
+# message bodies
+color attachment brightdefault   default
+color search     red           brightdefault
+color signature  cyan          default
+color tilde      brightdefault   default
+color hdrdefault yellow        default
+color bold       brightyellow  default
+
+# urls
+color body       brightblue    default "(^|<| )mailto:[^ ]+@[^ ]( |>|$)"
+color body       brightdefault    default "(^|<| )(http|https|ftp|file|telnet|news|finger)://[^ ]+( |>|$)"
+# urls regex
+color body       brightblue   default "([a-z][a-z0-9+-]*://(((([a-z0-9_.!~*'();:&=+$,-]|%[0-9a-f][0-9a-f])*@)?((([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?|[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)(:[0-9]+)?)|([a-z0-9_.!~*'()$,;:@&=+-]|%[0-9a-f][0-9a-f])+)(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?(#([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?|(www|ftp)\\.(([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?(:[0-9]+)?(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?(#([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?)[^].,:;!)? \t\r\n<>\"]"
+# email regex
+color body       brightblue   default "((@(([0-9a-z-]+\\.)*[0-9a-z-]+\\.?|#[0-9]+|\\[[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\]),)*@(([0-9a-z-]+\\.)*[0-9a-z-]+\\.?|#[0-9]+|\\[[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\]):)?[0-9a-z_.+%$-]+@(([0-9a-z-]+\\.)*[0-9a-z-]+\\.?|#[0-9]+|\\[[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]\\])"
+color body       brightdefault   default "(my regex 1)"
+color body       brightcyan   default "(my regex 2)"
+color body       brightred    default "(my regex 3|my regex 4|my regex 5)"
+
+# smileys, the right way and the backward-ass euro way
+color body       brightmagenta default "(^| )+(|[<>|])[8;:](|[^ ])[)(/|DOPS]( |$)+"
+color body       brightmagenta default "(^| )+[)(/|DOPS](|[^ ])[8;:](|[<>|])( |$)+"
+
+# *bold*, _underline_, and /italic/
+color body       brightcyan    default "(^| )\\*[^ ]+\\*( |$)"
+color body       brightcyan    default "(^| )_[^ ]+_( |$)"
+color body       brightcyan    default "(^| )/[^ ]+/( |$)"
+
+# quote blocks
+color quoted     magenta       default
+color quoted1    cyan          default
+color quoted2    green         default
+color quoted3    yellow        default
+color quoted4    brightmagenta default
+color quoted5    brightgreen   default
+color quoted6    brightyellow  default
+color quoted7    brightcyan    default
+
+# PGP messages
+color body      brightgreen    default "^gpg signature OK.*"
+color body      yellow         default "^gpg "
+color body      brightred      default "^gpg signature NOT OK. *"

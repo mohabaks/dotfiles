@@ -1,0 +1,13 @@
+config:
+  dns.domain: 192.168.100.3
+  ipv4.address: none
+  ipv4.dhcp: "false"
+  ipv4.firewall: "false"
+  ipv4.nat: "false"
+  ipv6.address: none
+  ipv6.dhcp: "false"
+  ipv6.firewall: "false"
+description: LAN network
+name: lxdbr0
+type: bridge
+used_by: []

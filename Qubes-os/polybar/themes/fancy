@@ -1,0 +1,275 @@
+;             _       _                                   __ _       
+; _ __   ___ | |_   _| |__   __ _ _ __    ___ ___  _ __  / _(_) __ _ 
+;| '_ \ / _ \| | | | | '_ \ / _` | '__|  / __/ _ \| '_ \| |_| |/ _` |
+;| |_) | (_) | | |_| | |_) | (_| | |    | (_| (_) | | | |  _| | (_| |
+;| .__/ \___/|_|\__, |_.__/ \__,_|_|     \___\___/|_| |_|_| |_|\__, |
+;|_|            |___/                                          |___/ 
+
+
+;*********************************************************
+;
+;                          COLORS
+;
+;**********************************************************
+[colors]
+; Base colors from .Xresources
+bg          =  ${xrdb:background}
+;bg-alt      =  ${xrdb:color0}
+bg-alt      =  #1f2b38
+fg          =  ${xrdb:foreground}
+fg-alt      =  ${xrdb:color8}
+red         =  ${xrdb:color1}
+red-alt     =  ${xrdb:color9}
+green       =  ${xrdb:color2}
+green-alt   =  ${xrdb:color10}
+yellow      =  ${xrdb:color3}
+yellow-alt  =  ${xrdb:color11}
+blue        =  ${xrdb:color4}
+blue-alt    =  ${xrdb:color12}
+magenta     =  ${xrdb:color5}
+magenta-alt =  ${xrdb:color13}
+cyan        =  ${xrdb:color6}
+cyan-alt    =  ${xrdb:color14}
+white       =  ${xrdb:color7}
+white-alt   =  ${xrdb:color15}
+
+;**********************************************************
+;
+;                       GLOBAL WM SETTINGS
+;
+;**********************************************************
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+;*********************************************************
+;
+;                       BAR SETTINGS
+;
+;********************************************************
+
+[bar/right]
+monitor   = ${env:MONITOR:HDMI2}
+bottom    = false
+width     = 99%
+height    = 20
+offset-x  = 10
+offset-y  = 6
+override-redirect = true
+
+background = ${colors.bg}
+foreground = ${colors.fg}
+
+border-bottom-size = 8
+border-bottom-color = ${colors.bg}
+border-top-size = 8
+border-top-color = ${colors.bg}
+border-right-size = 5
+border-right-color = ${colors.bg}
+border-left-size = 8
+border-left-color = ${colors.bg}
+
+spacing = 0
+padding-left = 0
+padding-right = 0
+module-margin-left = 0
+module-margin-right = 0
+
+font-0 = Iosevka Slab:style=Bold:size=11;3
+font-1 = Font Awesome 5 Free:style=Solid:pixelsize=11;3
+font-2 = Font Awesome 5 Brands:style=Solid:size=11;3
+font-3 = Material Icons:style=Solid:size=11;3
+
+tray-position = none
+tray-padding = 0
+tray-transparent = true
+tray-background = ${colors.bg}
+
+modules-left = bspwm
+modules-center = temp memory cpu
+modules-right = wifi bat
+
+[bar/left]
+monitor   = ${env:MONITOR:HDMI1}
+bottom    = false
+width     = 99%
+height    = 20
+offset-x  = 10
+offset-y  = 6
+override-redirect = true
+
+background = ${colors.bg}
+foreground = ${colors.fg}
+
+border-bottom-size = 8
+border-bottom-color = ${colors.bg}
+border-top-size = 8
+border-top-color = ${colors.bg}
+border-right-size = 5
+border-right-color = ${colors.bg}
+border-left-size = 8
+border-left-color = ${colors.bg}
+
+spacing = 0
+padding-left = 0
+padding-right = 0
+module-margin-left = 0
+module-margin-right = 0
+
+font-0 = Iosevka Slab:style=Bold:size=11;3
+font-1 = Font Awesome 5 Free:style:size=11;3
+font-2 = Font Awesome 5 Brands:style=Solid:size=11;3
+font-3 = Material Icons:style=Solid:size=11;3
+
+tray-position = none
+tray-padding = 1
+tray-transparent = true
+tray-background = #10171e
+
+modules-left = bspwm
+modules-center = date 
+modules-right =  disk qubes
+
+;**********************************************************
+;
+;                   MODULES SETTINGS
+;
+;**********************************************************
+
+[module/bspwm]
+type = internal/bspwm
+
+strip-wsnumbers = true
+
+label-focused = "%name%"
+label-focused-foreground = ${colors.white-alt}
+label-focused-background = ${colors.red}
+label-focused-padding = 1
+
+label-occupied ="%name%"
+label-occupied-padding = 1
+label-occupied-foreground = ${colors.bg}
+label-occupied-background = ${colors.fg}
+
+label-urgent = "%name%"
+label-urgent-foreground = ${colors.white-alt}
+label-urgent-background = ${colors.cyan}
+label-urgent-padding = 1
+
+label-empty = "%name%"
+label-empty-foreground = ${colors.bg}
+label-empty-background = ${colors.fg}
+label-empty-padding = 1
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.magenta-alt}
+label = "%percentage%% "
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.cyan}
+label = "%percentage_used%% "
+
+[module/bat]
+type = internal/battery
+battery = BAT0
+adapter = ADP1
+full-at = 100
+
+label-discharging = "%percentage%% "
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+
+label-full = " full "
+format-full-prefix = 
+format-full-prefix-foreground = ${colors.white-alt}
+
+;format-charging-prefix = 
+;format-charging-prefix-foreground = ${colors.red}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-foreground = ${colors.blue}
+
+label-charging = "Charging %percentage%% "
+label-charging-foreground = ${colors.fg}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-foreground = ${colors.cyan}
+animation-charging-framerate = 750
+
+[module/temp]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <ramp> <label>
+format-warn = <ramp> <label-warn>
+
+label = "%temperature-c% "
+label-warn = "%temperature-c% "
+label-warn-foreground = ${colors.red}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.green}
+
+[module/mail]
+type = custom/script
+interval = 1200
+format = " <label> "
+format-prefix = " "
+format-prefix-foreground = ${colors.red}
+exec = ~/.config/polybar/mail
+exec-if = "ping -q -w 2 -c 1 8.8.8.8 > /dev/null"
+
+[module/date]
+type = internal/date
+interval = 5
+date-alt = "%a %d %b %Y"
+;date = " %a %d %b %Y"
+date = ""
+
+time-alt = " %H:%M "
+time = "%H:%M "
+
+;label = %{F#0ba3a4}%{F-}%date%%time%%{F#0ba3a4}%{F-}
+label = %date%%time%
+
+;format-prefix = " "
+format-foreground = ${colors.fg}
+;format-prefix-foreground = ${colors.yellow}
+
+[module/qubes]
+type = custom/script
+interval = 120
+format = "<label> "
+format-prefix = " "
+format-prefix-foreground = ${colors.blue}
+exec = ~/.config/polybar/status_qubes
+
+[module/wifi]
+type = custom/script
+interval = 120
+format = "<label> "
+format-prefix = " "
+format-prefix-foreground = ${colors.yellow}
+exec = ~/.config/polybar/status_net
+
+[module/disk]
+type = custom/script
+interval = 1200
+format = "<label> "
+format-prefix = " "
+format-prefix-foreground = ${colors.yellow}
+exec = ~/.config/polybar/status_disk
+; vim:ft=dosini

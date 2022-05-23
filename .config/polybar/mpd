@@ -1,0 +1,36 @@
+#!/bin/bash
+#
+# Author: Mohamed Bakari
+# Description: Simple mpd status script to show current song title and album
+# Dependencies: This requires mpd, ncmpcpp and mpc installed
+
+. $HOME/.config/lemonbar/lemonbar_config
+
+# Check if mpd daemon is running
+mpd_status=$(pgrep -c mpd)
+if [[  "$mpd_status" == 1 ]];then
+        echo "MPD..Offline"
+else    
+        # Check ncmpcpp status
+        ncmpcpp_status=$(mpc status | wc -l)
+        if [[ "$ncmpcpp_status" == 1 ]];then
+                echo "%{F$BLUE}Stopped%{F-}"
+        else
+                title=$(ncmpcpp --current-song={%t} 2> /dev/null)  # Set title
+                album=$(ncmpcpp --current-song={%b} 2> /dev/null)  # Set album
+                album=$(echo $album | cut -b 1-15)
+                title_len=${#title}  # Get the length of the title
+                paused=$(mpc status | grep paused)
+                if [[ -z "$paused" ]];then
+
+                        if [[ $title_len > 30 ]];then  # If the title is more than 30 characters
+                                title=$(echo $title | cut -b 1-30) # trim of some of them
+                                echo "%{F$FG}$title%{F-} %{F$RED}-%{F-} %{F$FG}$album%{F-}"
+                        else
+                                echo "%{F$FG}$title%{F-} %{F$RED}-%{F-} %{F$FG}$album%{F-}"
+                        fi
+                else
+                        echo "%{F$BLUE}$title%{F-} %{F$RED}-%{F-} %{F$BLUE}$album[Paused]%{F-}"
+                fi
+        fi
+fi

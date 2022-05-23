@@ -1,0 +1,29 @@
+#!/bin/bash
+# Description: Display cover for the current playing song using notify-send
+# Modified: Sun Apr 7 09:15:12 EAT 2019
+
+# source colors
+. $HOME/.local/bin/color-parser
+
+# create notify title
+title="Now Playing"
+
+# get current album
+album=$(ncmpcpp --current-song={%b} 2> /dev/null)
+
+# If album not null display cover
+if [[ -n "$album" ]];then
+        if [[ "$album" = "Land Of Ribat" ]];then
+                image="$HOME/Pictures/notify/other/cover.jpg"
+                notify-send -i $image "$title" "<span foreground='$GREEN'>$(mpc current --format %artist%)</span> - <span foreground='$WHITE'>$(mpc current --format %title%)</span> "
+        elif [[ "$album" = "Quran — Shatri" ]] || [[ "$album" = "Quran" ]] || [[ "$album" = "Mishary Alafasi Musshaf" ]];then
+                image="$HOME/Pictures/notify/quran/cover.jpg"
+                notify-send -i $image "$title" "<span foreground='$GREEN'>$(mpc current --format %artist%)</span> - <span foreground='$WHITE'>$(mpc current --format %title%)</span> "
+        else
+                image="$HOME/Pictures/notify/other/cover.jpg"
+                notify-send -i $image "$title" "<span foreground='$GREEN'>$(mpc current --format %artist%)</span> - <span foreground='$WHITE'>$(mpc current --format %title%)</span> "
+        fi
+else
+        image="$HOME/Pictures/notify/other/cover.jpg"
+        notify-send -i $image "$title" "<span foreground='$GREEN'>$(mpc current --format %artist%)</span> - <span foreground='$WHITE'>$(mpc current --format %title%)</span> "
+fi

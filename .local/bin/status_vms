@@ -1,0 +1,16 @@
+#!/bin/bash
+# Description: Get the total number of CTs/Vms running on LXD.
+
+case $BUTTON  in
+        1) virt-manager;;
+esac
+
+#containers() {
+#     num=$(lxc list|grep RUNNING|wc -l)
+#     echo "$num"
+#}
+vms() {
+     num=$(doas virsh list|grep running|wc -l)
+     echo "$num"
+}
+vms

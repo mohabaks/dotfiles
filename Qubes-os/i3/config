@@ -1,0 +1,255 @@
+# set mod
+set $mod Mod4
+
+# set qubes label color
+client.background	dom0		#121212
+client.focused		dom0	#10171e #10171e #ffffff #10171e
+client.focused_inactive	dom0	#10171e #1b2632 #ffffff #10171e
+client.unfocused	dom0	#10171e #1b2632 #999999 #10171e
+client.urgent		dom0	#666666 #a6907d #ce0000 #666666
+
+client.background	red		#121212
+client.focused		red	#cd222f #cd222f #ffffff #cd222f
+client.focused_inactive	red	#cd222f #df3a47 #ffffff #cd222f
+client.unfocused	red	#cd222f #df3a47 #999999 #cd222f
+client.urgent		red	#cd222f #f19b90 #ce0000 #cd222f
+
+client.background	orange		#121212
+client.focused		orange	#fb7304 #fb7304 #ffffff #fb7304
+client.focused_inactive	orange	#fb7304 #c95c03 #ffffff #fb7304
+client.unfocused	orange	#fb7304 #c95c03 #999999 #fb7304
+client.urgent		orange	#fb7304 #daa67e #ce0000 #fb7304
+
+client.background	yellow		#121212
+client.focused		yellow	#ffcc00 #ffcc00 #ffffff #ffcc00
+client.focused_inactive	yellow	#ffcc00 #cca300 #ffffff #ffcc00
+client.unfocused	yellow	#ffcc00 #cca300 #999999 #ffcc00
+client.urgent		yellow	#ffcc00 #cacb7c #ce0000 #ffcc00
+
+client.background	green		#121212
+client.focused		green	#33cc33 #33cc33 #ffffff #33cc33
+client.focused_inactive	green	#33cc33 #1f7a1f #ffffff #33cc33
+client.unfocused	green	#33cc33 #1f7a1f #999999 #33cc33
+client.urgent		green	#33cc33 #7dd5aa #ce0000 #33cc33
+
+client.background	gray		#121212
+client.focused		gray 	#556072 #556072 #ffffff #556072
+client.focused_inactive	gray	#556072 #414a58 #ffffff #556072
+client.unfocused	gray	#556072 #414a58 #999999 #556072
+client.urgent		gray	#556072 #c3c8cd #ce0000 #556072
+
+client.background	blue		#121212
+client.focused		blue 	#3384d6 #3384d6 #ffffff #3384d6
+client.focused_inactive	blue	#3384d6 #1f5082 #ffffff #3384d6
+client.unfocused	blue	#3384d6 #1f5082 #999999 #3384d6
+client.urgent		blue	#3384d6 #95bee8 #ce0000 #3384d6
+
+client.background	purple		#121212
+client.focused		purple	#8f5cbe #8f5cbe #ffffff #8f5cbe
+client.focused_inactive	purple	#8f5cbe #5c3e78 #ffffff #8f5cbe
+client.unfocused	purple	#8f5cbe #5c3e78 #999999 #8f5cbe
+client.urgent		purple	#8f5cbe #c6abdd #ce0000 #8f5cbe
+
+client.background	black		#121212
+client.focused		black	#595959 #595959 #ffffff #595959
+client.focused_inactive	black	#595959 #3a3a3a #ffffff #595959
+client.unfocused	black	#595959 #3a3a3a #999999 #595959
+client.urgent		black	#595959 #a3a3a3 #ce0000 #595959
+
+# set gaps
+gaps top   40
+gaps left  5
+gaps right 5
+gaps inner 10
+
+# use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal in the domain of the currently active window
+bindsym $mod+Return exec --no-startup-id urxvt
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start rofi (a program launcher)
+bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+p exec --no-startup-id rofi -show run
+
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left  focus left
+bindsym $mod+Down  focus down
+bindsym $mod+Up    focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+bindsym $mod+b focus child
+
+# workspace labels
+set $w1 1: 
+set $w2 2: 
+set $w3 3: 
+set $w4 4:
+set $w5 5: 
+set $w6 6: 
+set $w7 7: 
+set $w8 8:
+set $w9 9:
+set $w10 10:
+
+# set monitors
+set $MON1 HDMI1
+set $MON2 HDMI2
+
+# assign workspace to screens
+workspace 1  output $MON1
+workspace 2  output $MON1
+workspace 3  output $MON1
+workspace 4  output $MON1
+workspace 5  output $MON1
+workspace 6  output $MON2
+workspace 7  output $MON2
+workspace 8  output $MON2
+workspace 9  output $MON2
+workspace 10 output $MON2
+
+# switch to workspace
+bindsym $mod+1   workspace $w1
+bindsym $mod+2   workspace $w2
+bindsym $mod+3   workspace $w3
+bindsym $mod+4   workspace $w4
+bindsym $mod+5   workspace $w5
+bindsym $mod+6   workspace $w6
+bindsym $mod+7   workspace $w7
+bindsym $mod+8   workspace $w8
+bindsym $mod+9   workspace $w9
+bindsym $mod+0   workspace $w10
+bindsym $mod+Tab workspace back_and_forth
+
+# switch to output
+bindsym $mod+Ctrl+Left focus output  $MON1
+bindsym $mod+Ctrl+Right focus output $MON2
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $w1
+bindsym $mod+Shift+2 move container to workspace $w2
+bindsym $mod+Shift+3 move container to workspace $w3
+bindsym $mod+Shift+4 move container to workspace $w4
+bindsym $mod+Shift+5 move container to workspace $w5
+bindsym $mod+Shift+6 move container to workspace $w6
+bindsym $mod+Shift+7 move container to workspace $w7
+bindsym $mod+Shift+8 move container to workspace $w8
+bindsym $mod+Shift+9 move container to workspace $w9
+bindsym $mod+Shift+0 move container to workspace $w10
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+minus scratchpad show
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+Escape exec i3-msg exit
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# Screenshot with scrot
+bindsym Print exec --no-startup-id scrot -e 'mv $f ~/Pictures/screenshots' && notify-send "Screenshot Taken"
+
+# enable floating
+for_window [class="Lxappearance"] floating enable
+for_window [class="Nitrogen"] floating enable
+
+# start polybar
+#exec --no-startup-id $HOME/.local/bin/barstart
+
+# make sure all xdg autostart entries are started, this is (among other things)
+# necessary to make sure transient vm's come up
+exec --no-startup-id $HOME/.local/bin/qubes-xdg-autostart
+
+# disable titlebars
+for_window [class="^.*"] border pixel 10
+
+# start compton
+#exec --no-startup-id compton -b --config $HOME/.compton.conf
+
+# load xresource
+#exec --no-startup-id xrdb $HOME/.Xresources
+
+# start external monitors
+exec --no-startup-id $HOME/.local/bin/externalMonitor
+
+# start apps on a specific workspace
+assign[class="personal:Firefox-esr"]      $w1
+assign[class="untrusted:Firefox"]         $w1
+assign[class="CTFs:Firefox"]              $w1
+assign[class="CTFs:Virt-manager"]         $w2
+assign[class="Qubes-qube-manager"]        $w2
+

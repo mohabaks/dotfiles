@@ -1,0 +1,19 @@
+#!/usr/local/bin/bash
+# Description: A simple script that uses dunst and notify-send to notify the
+#              mohabaks when the battery is criticaly low or full. I find this
+#              useful when since Igot rid of my status bar
+
+export DISPLAY=:0
+export PATH=/home/mohabaks/.local/bin:$PATH
+
+battery_low="/usr/local/share/icons/Numix/48/devices/battery-low.svg"
+battery_full="/usr/local/share/icons/Numix/48/devices/battery-full-charging.svg"
+batteryState=$(acpiconf -i 0|grep State|awk '{print $2}')
+batteryPower=$(acpiconf -i 0|grep "Remaining capacity"|awk -F " " '{print $NF}'|tr -d "%")
+
+if [[ "${batteryState}" == "discharging" && ${batteryPower} -le 10 ]]; then
+      notify-send -i "$battery_low" -u critical -t 60000  "BATTERY LOW: Plugin Your Charger"
+
+elif [[ "${batteryState}" == "charging" && ${batteryPower} -eq 98 ]]; then
+        notify-send -i "$battery_full" -u normal " BATTERY FULL: Remove Your Charger"
+fi

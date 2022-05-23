@@ -1,0 +1,37 @@
+#!/bin/bash
+# Author: https://github.com/mohabaks
+# Description: Simple script to launch my external DELL Monitors
+#              connected to my laptop LenovoThinkpad Yoga 260
+
+# Check if any of the monitor is connected
+if `xrandr -q | grep -q "HDMI2 connected"`
+then
+        # Set Xresources
+        [[ -f $HOME/.XresourcesMonitor ]] && xrdb -merge $HOME/.XresourcesMonitor
+        
+        # Set the X display
+        xrandr --output eDP1 --off --output HDMI2 --mode 1920x1080 \
+               --rotate normal --dpi 180 --output HDMI1 --mode 1920x1080 \
+               --rotate normal --dpi 180  --primary --left-of HDMI2
+               
+        sleep 1 
+        
+        # Set wallpaper
+        nitrogen --restore --head=1 2> /dev/null & 
+        nitrogen --restore --head=2 2> /dev/null & 
+        
+        # Start dunst
+        dunst -config $HOME/.config/dunst/dunstrcMonitor &
+
+else
+        # No monitor(s) present just do normal settings
+        
+        # Set Xresources
+        [[ -f $HOME/.Xresources ]] && xrdb -merge $HOME/.Xresources
+
+        # set wallpaper
+        feh --bg-tile $HOME/Pictures/Walls/dark-grey-terrazzo.png
+        
+        # Start dunst
+        dunst --config $HOME/.config/dunst/dunstrc &
+fi

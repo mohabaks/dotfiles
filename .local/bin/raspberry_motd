@@ -1,0 +1,33 @@
+#!/bin/bash
+# Decription: Simple script to create a raspberry pi banner for motd in arch
+#             linux arm.
+#             
+
+MOTD="/etc/motd"
+
+# Color variables
+R="\e[0;31m"
+G="\e[0;32m"
+T="\e[0;36m"
+W="\e[0;37m"
+C="\e[0;m"
+
+# Clear the screen prior to showing the motd
+clear > $MOTD
+
+echo -e "
+
+$G	   .~~.   .~~.
+	  '. \ ' ' / .'$R
+	   .~ .~~~..~.
+	  : .~.'~'.~. :
+	 ~ (   ) (   ) ~
+	( : '~'.~.'~' : )
+	 ~ .~ (   ) ~. ~
+	  (  : '~' :  )     $W Raspberry Pi B+$R
+	   '~ .~~~. ~'  $T Powered by Archlinux|ARM $R
+	       '~'
+
+$C " >> $MOTD
+
+echo "Your message of the day has been rewritten."

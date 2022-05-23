@@ -1,0 +1,8 @@
+#!/bin/bash
+TERMINAL=urxvtc
+
+case $BUTTON  in
+        1) setsid -f "$TERMINAL" -e htop ;;
+esac
+
+awk '/^Mem/ {printf("%u%%", 100*$3/$2);}' <(free -m)

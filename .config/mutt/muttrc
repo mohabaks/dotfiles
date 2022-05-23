@@ -1,0 +1,33 @@
+#=======================================================================#
+#                         █      █                 
+#                         █      █                 
+#         ██▓█▓  █   █  █████  █████   █▒██▒  ▓██▒ 
+#         █▒█▒█  █   █    █      █     ██  █ ▓█  ▓ 
+#         █ █ █  █   █    █      █     █     █░    
+#         █ █ █  █   █    █      █     █     █     
+#         █ █ █  █   █    █      █     █     █░    
+#         █ █ █  █▒ ▓█    █░     █░    █     ▓█  ▓ 
+#         █ █ █  ▒██▒█    ▒██    ▒██   █      ▓██▒ 
+#=======================================================================#
+
+
+#*********************** GENERAL CONFIGURATIONS ************************#
+
+## IMAP
+set header_cache   = "~/.cache/mutt"
+set imap_check_subscribed
+set mail_check     =  120
+set imap_keepalive =  300
+set mail_check = 60
+set sidebar_visible = yes
+unset imap_passive 
+
+## ACCOUNT1
+source "~/.config/mutt/accounts/personal"
+folder-hook $folder 'source ~/.config/mutt/accounts/personal'
+
+## ACCOUNT2
+#source "~/.mutt/student"
+
+## COLORS
+source "~/.mutt/colors"                                         

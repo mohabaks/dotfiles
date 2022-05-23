@@ -1,0 +1,23 @@
+#!/bin/bash
+#
+# mohabaks, 21 Oct 2016 22:36
+# https://github.com/mohabaks
+# Lemonbar Configs
+#
+
+#************** Colors ******************
+
+. $HOME/.local/bin/color-parser
+
+#************** Panel ****************** 
+
+PW=0
+PH=24
+PX=3538
+PY=0
+
+
+#*************** Fonts *****************
+
+FONT1="Iosevka Slab:size=11"
+FONT2="Material Icons:size=13"

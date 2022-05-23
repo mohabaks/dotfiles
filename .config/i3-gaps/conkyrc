@@ -1,0 +1,92 @@
+# conky to work with i3bar
+# icons:     
+
+out_to_x no
+out_to_console yes
+own_window no
+short_units yes
+update_interval 1
+background no
+total_run_times 0
+short_units yes
+use_spacer left
+override_utf8_locale no
+cpu_avg_samples 2
+
+TEXT
+,[
+
+
+# Mail
+# {"full_text":"Mail","color":"\#0caaab","separator":false,"separator_block_width":6},\
+# {"full_text":"${execi 300 python ~/.local/bin/gmail.py}","color":"\#a8a8a8","background":"\#000000","separator":false,"separator_block_width":6},\
+
+
+# Download
+{"full_text":"Down","color":"\#18B218","separator":false,"separator_block_width":6},\
+{"full_text":"${if_match ${downspeedf wlo1}<100}${downspeed wlo1}","color":"\#a8a8a8","background":"\#000000","separator":false,"separator_block_width":6},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${downspeedf wlo1}<300}${downspeed wlo1}","color":"\#505050","background":"\#000000","separator":false,"separator_block_width":6},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${downspeedf wlo1}<700}${downspeed wlo1}","color":"\#B52253","background":"\#000000","separator":false,"separator_block_width":6},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${downspeedf wlo1}<1000}${downspeed wlo1}","color":"\#a8a8a8","background":"\#000000","separator":false,"separator_block_width":6},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${downspeedf wlo1}>=1000}${downspeed wlo1}","color":"\#B52253","background":"\#000000","separator":false,"separator_block_width":6},\
+{"full_text":"${endif}${endif}${endif}${endif}${endif}"},\
+
+# Upload
+{"full_text":"Up","color":"\#B26818","separator":false,"separator_block_width":6},\
+{"full_text":"${if_match ${upspeedf wlo1}<15}${upspeed wlo1}","background":"\#000000","color":"\#a8a8a8","separator":false,"separator_block_width":6},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${upspeedf wlo1}<35}${upspeed wlo1}","background":"\#000000","color":"\#B52253","separator":false,"separator_block_width":6},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${upspeedf wlo1}>=35}${upspeed wlo1}","background":"\#000000","color":"\#B52253","separator":false,"separator_block_width":6},\
+{"full_text":"${endif}${endif}${endif}"},\
+
+# Load
+# 1 is for past 1 minute, 2 for past 5 minutes and 3 for past 15 minutes
+{"full_text":"Load","color":"\#1818B2","separator":false,"separator_block_width":6},\
+{"full_text":"${loadavg 2}","color":"\#a8a8a8","background":"\#000000","separator":false,"separator_block_width":6},\
+
+# Swap
+{"full_text":"Swap","color":"\#B218B2","separator":false,"separator_block_width":6},\
+{"full_text":"${swap}","color":"\#a8a8a8","background":"\#000000","separator":false,"separator_block_width":6},\
+
+# Uptime
+{"full_text":"Uptime","color":"\#c22732","separator":false,"separator_block_width":6},\
+{"full_text":"${uptime}","color":"\#a8a8a8","background":"\#000000","separator":false,"separator_block_width":6},\
+
+# Cpu
+{"full_text":"Cpu","color":"\#0df2a4","separator":false,"separator_block_width":6},\
+{"full_text":"${if_match ${cpu cpu0}<25}${cpu cpu0}","color":"\#a8a8a8","background":"\#000000","separator":false,"separator_block_width":0},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${cpu cpu0}<50}${cpu cpu0}","color":"\#505050","background":"\#000000","separator":false,"separator_block_width":0},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${cpu cpu0}<75}${cpu cpu0}","color":"\#B52253","background":"\#000000","separator":false,"separator_block_width":0},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${cpu cpu0}<=100}${cpu cpu0}","color":"\#B52253","background":"\#000000","separator":false,"separator_block_width":0},\
+{"full_text":"${endif}${endif}${endif}${endif}"},\
+{"full_text":"%","color":"\#000000 ","background":"\#000000","separator":false,"separator_block_width":6},\
+
+# Ram
+{"full_text":"Ram","color":"\#0caaab","separator":false,"separator_block_width":6},\
+{"full_text":"${mem}","color":"\#a8a8a8","background":"\#000000","separator":false,"separator_block_width":6},\
+
+# Vpn
+{"full_text":"Vpn","color":"\#18B2B2","separator":false,"separator_block_width":6},\
+{"full_text":"${execi 300 /home/mohabaks/.local/bin/vpn}","color":"\#a8a8a8","background":"\#000000","separator":false,"separator_block_width":6},\
+
+# Private Ip
+#{"full_text":"Ip","color":"\#5454FF","separator":false,"separator_block_width":6},\
+#{"full_text":"${addr wlo1}","color":"\#a8a8a8","background":"\#000000","separator":false,"separator_block_width":6},\
+
+#Battery 
+{"full_text":"Bat","color":"\#B21818","separator":false,"separator_block_width":6},\
+{"full_text":"${battery_percent BAT0}%","color":"\#a8a8a8","background":"\#000000","separator":false,"separator_block_width":6},\
+
+# Date
+{"full_text":"Date","color":"\#18B2B2","separator":false,"separator_block_width":6},\
+{"full_text":"${time %a %d %b %R}","color":"\#a8a8a8","background":"\#000000","separator":false,"separator_block_width":6}\
+
+]

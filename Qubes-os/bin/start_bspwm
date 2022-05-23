@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Lock screen when idle with betterlockscreeen
+#xss-lock -- betterlockscreen -l &
+
+# Set monitors
+$HOME/.local/bin/externalMonitor
+
+# Set cursor
+xsetroot -cursor_name left_ptr
+
+# Load keybinds
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+exec bspwm

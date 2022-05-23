@@ -1,0 +1,27 @@
+config: {}
+description: System Network Profile
+devices:
+  eth0:
+    nictype: bridged
+    parent: lxdbr0
+    type: nic
+  eth1:
+    nictype: bridged
+    parent: lxdbr1
+    type: nic
+  eth2:
+    nictype: bridged
+    parent: lxdbr2
+    type: nic
+  root:
+    path: /
+    pool: default
+    size: 4GiB
+    type: disk
+  wlan0:
+    name: wlan0
+    nictype: physical
+    parent: wlan0
+    type: nic
+name: sys-net
+used_by: []

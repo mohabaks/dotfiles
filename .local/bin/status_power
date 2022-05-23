@@ -1,0 +1,5 @@
+#!/bin/bash
+case $BUTTON  in
+        1) $HOME/.config/popups/power/power ;;
+esac
+echo "power "
