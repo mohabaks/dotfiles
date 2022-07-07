@@ -35,6 +35,16 @@ files that I use.
 |Knowledge base\|Note-Taking|[obsidian], [joplin]|
 |Misc|[colors],[Qubes-os],[FreeBSD],[scripts],[popups],[sxhkd]|
 
+
+Screenshot
+----------
+
+`current`
+
+![darkred](https://serving.photos.photobox.com/434827128f62a53738fdfdfbaa111c568da474438c32c914172b4fb7bf5c9f3a2b939c14.jpg)
+
+You can also find out other previous rice based on this repo [here](https://www.reddit.com/user/mohabaks/posts/)
+
 [dunst]: https://github.com/mohabaks/dotfiles/tree/master/.config/dunst
 [docker]: https://github.com/mohabaks/dotfiles/tree/master/etc/docker
 [lxd]: https://github.com/mohabaks/dotfiles/tree/master/etc/lxc
