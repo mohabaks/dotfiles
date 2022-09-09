@@ -45,6 +45,8 @@ Screenshots
 
 You can also find out other previous rice based on this repo [here](https://www.reddit.com/user/mohabaks/posts/)
 
+![workflow](https://github.com/mohabaks/dotfiles/blob/master/workflow.mov)
+
 [dunst]: https://github.com/mohabaks/dotfiles/tree/master/.config/dunst
 [docker]: https://github.com/mohabaks/dotfiles/tree/master/etc/docker
 [lxd]: https://github.com/mohabaks/dotfiles/tree/master/etc/lxc
