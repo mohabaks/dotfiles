@@ -5,7 +5,7 @@ description: Untrusted Container Profile
 devices:
   downloads:
     path: /home/user/Downloads
-    source: /home/mohabaks/Downloads
+    source: $HOME/Downloads
     type: disk
   eth0:
     name: eth0

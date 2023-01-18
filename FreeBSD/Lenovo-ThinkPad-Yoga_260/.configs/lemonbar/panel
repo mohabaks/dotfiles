@@ -17,13 +17,13 @@ mkfifo "$PANEL_FIFO"
 bspc subscribe report > "$PANEL_FIFO" &
 
 # load colors specific for the bar
-. /home/mohabaks/.config/lemonbar/panel_colors
+. $HOME/.config/lemonbar/panel_colors
 
 # load system information
-/home/mohabaks/.config/lemonbar/sys_info > "$PANEL_FIFO" &
+$HOME/.config/lemonbar/sys_info > "$PANEL_FIFO" &
 
 # create a bar
-/home/mohabaks/.config/lemonbar/panel_bar < "$PANEL_FIFO" | lemonbar -b -n "$PANEL_WM_NAME" \
+$HOME/.config/lemonbar/panel_bar < "$PANEL_FIFO" | lemonbar -b -n "$PANEL_WM_NAME" \
 	-g ${PANEL_WIDTH}x${PANEL_HEIGHT}+$PANEL_X+$PANEL_Y \
 	-f "$PANEL_ICON_FONT" \
 	-f "$PANEL_ICON_FONT1" \

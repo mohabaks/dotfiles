@@ -129,7 +129,7 @@ super + {Left,Down,Up,Right}
 
 # screenshot with scrot
 Print
-        scrot -e 'mv $f ~/Pictures/screenshots' && notify-send -i "/home/mohabaks/.icons/Numix/64/devices/camera-photo.svg" "$(printf "\t%-20s %-5s" "Screenshot Taken")"
+        scrot -e 'mv $f ~/Pictures/screenshots' && notify-send -i "$HOME/.icons/Numix/64/devices/camera-photo.svg" "$(printf "\t%-20s %-5s" "Screenshot Taken")"
 
 # power options
 alt + shift + p

@@ -5,15 +5,15 @@ description: Personal Container Profile
 devices:
   config:
     path: /home/user/.config
-    source: /home/mohabaks/.config
+    source: $HOME/.config
     type: disk
   documents:
     path: /home/user/Documents
-    source: /home/mohabaks/Documents
+    source: $HOME/Documents
     type: disk
   downloads:
     path: /home/user/Downloads
-    source: /home/mohabaks/Downloads
+    source: $HOME/Downloads
     type: disk
   eth0:
     name: eth0
@@ -26,11 +26,11 @@ devices:
     type: disk
   icons:
     path: /home/user/.icons
-    source: /home/mohabaks/.icons
+    source: $HOME/.icons
     type: disk
   mozilla:
     path: /home/user/.mozilla
-    source: /home/mohabaks/.mozilla
+    source: $HOME/.mozilla
     type: disk
   root:
     path: /
@@ -39,15 +39,15 @@ devices:
     type: disk
   telegram:
     path: /home/user/.local/share/TelegramDesktop
-    source: /home/mohabaks/.local/share/TelegramDesktop
+    source: $HOME/.local/share/TelegramDesktop
     type: disk
   themes:
     path: /home/user/.themes
-    source: /home/mohabaks/.themes
+    source: $HOME/.themes
     type: disk
   weechat:
     path: /home/user/.weechat
-    source: /home/mohabaks/.weechat
+    source: $HOME/.weechat
     type: disk
 name: personal
 used_by: []

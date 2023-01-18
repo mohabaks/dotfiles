@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-IMAGE=/home/mohabaks/.icons/Flat-Remix-Blue-Dark/devices/scalable/camera.svg
+IMAGE=$HOME/.icons/Flat-Remix-Blue-Dark/devices/scalable/camera.svg
 
 scrot -p -e 'mv $f ~/Pictures/screenshots'
 dunstify -i "$IMAGE" " " \

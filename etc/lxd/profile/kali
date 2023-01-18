@@ -6,7 +6,7 @@ description: Kali Linux Profile
 devices:
   downloads:
     path: /home/kali/Downloads
-    source: /home/mohabaks/Downloads
+    source: $HOME/Downloads
     type: disk
   eth0:
     name: eth0
@@ -15,7 +15,7 @@ devices:
     type: nic
   openvpn:
     path: /home/kali/.config/openvpn
-    source: /home/mohabaks/.config/openvpn
+    source: $HOME/.config/openvpn
     type: disk
   root:
     path: /
@@ -23,7 +23,7 @@ devices:
     type: disk
   tmux:
     path: /home/kali/.tmux.conf
-    source: /home/mohabaks/.tmux.conf
+    source: $HOME/.tmux.conf
     type: disk
   tools:
     path: /opt/tools
@@ -31,15 +31,15 @@ devices:
     type: disk
   vim:
     path: /home/kali/.vim
-    source: /home/mohabaks/.vim
+    source: $HOME/.vim
     type: disk
   vimrc:
     path: /home/kali/.vimrc
-    source: /home/mohabaks/.vimrc
+    source: $HOME/.vimrc
     type: disk
   workspace:
     path: /home/kali/Workspace
-    source: /home/mohabaks/Workspace
+    source: $HOME/Workspace
     type: disk
 name: kali
 used_by: []

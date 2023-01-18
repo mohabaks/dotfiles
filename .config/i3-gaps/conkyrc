@@ -75,7 +75,7 @@ TEXT
 
 # Vpn
 {"full_text":"Vpn","color":"\#18B2B2","separator":false,"separator_block_width":6},\
-{"full_text":"${execi 300 /home/mohabaks/.local/bin/vpn}","color":"\#a8a8a8","background":"\#000000","separator":false,"separator_block_width":6},\
+{"full_text":"${execi 300 $HOME/.local/bin/vpn}","color":"\#a8a8a8","background":"\#000000","separator":false,"separator_block_width":6},\
 
 # Private Ip
 #{"full_text":"Ip","color":"\#5454FF","separator":false,"separator_block_width":6},\

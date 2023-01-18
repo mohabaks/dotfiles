@@ -1,6 +1,6 @@
 /* CSS variables */
 :root {
-    --wallpaper: url("/home/mohabaks/Pictures/Walls/wallhaven-41060.jpg");
+    --wallpaper: url("$HOME/Pictures/Walls/wallhaven-41060.jpg");
 
     /* Special */
     --background: #000000;
