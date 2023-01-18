@@ -7,7 +7,7 @@
 # Tip:          Use CRF 10 for WEBM and 0 for GIF
 #
 
-DIR='/home/mohabaks/'    # Directory to store files
+DIR='$HOME/'    # Directory to store files
 FILE='out'              # Output filename(.*)
 TEMP='edit'             # Edit filename(.*)
 

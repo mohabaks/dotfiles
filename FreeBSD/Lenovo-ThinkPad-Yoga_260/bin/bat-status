@@ -4,7 +4,7 @@
 #              useful when since Igot rid of my status bar
 
 export DISPLAY=:0
-export PATH=/home/mohabaks/.local/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 
 battery_low="/usr/local/share/icons/Numix/48/devices/battery-low.svg"
 battery_full="/usr/local/share/icons/Numix/48/devices/battery-full-charging.svg"

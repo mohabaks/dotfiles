@@ -98,4 +98,4 @@ URxvt.iso14755_52:         false
 Xcursor.theme:             Oreo Teal Cursors
 
 !! Color theme
-#include "/home/mohabaks/.colors/default"
+#include "$HOME/.colors/default"

@@ -138,7 +138,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_Escape,      quit,           {0} },
         { MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {1} },
-        { MODKEY,			XK_Print,  spawn,	   SHCMD("/home/mohabaks/.local/bin/screenshot") },
+        { MODKEY,			XK_Print,  spawn,	   SHCMD("$HOME/.local/bin/screenshot") },
 
         { 0, XF86XK_MonBrightnessUp,	spawn,		SHCMD("changeBrightness up") },
         { 0, XF86XK_MonBrightnessDown,	spawn,		SHCMD("changeBrightness down") },

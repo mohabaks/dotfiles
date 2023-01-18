@@ -4,7 +4,7 @@
 #              useful when since Igot rid of my status bar
 
 export DISPLAY=:0
-export PATH=/home/mohabaks/.local/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 export $(dbus-launch)
 
 icon_full="/usr/share/icons/Numix/96/devices/battery.svg"
