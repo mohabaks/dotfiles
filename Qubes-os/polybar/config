@@ -40,7 +40,7 @@ margin-bottom = 0
 ;
 ;********************************************************
 [bar/mybar]
-monitor   = ${env:MONITOR:eDP1}
+monitor   = ${env:MONITOR:eDP-1}
 bottom    = true
 width     = 100%
 height    = 25
