@@ -365,3 +365,19 @@ resource "lxd_container" "whonix-gateway" {
   type = "virtual-machine"
   profiles = ["default", "whonix-gateway"]
 }
+
+resource "lxd_container" "kasai" {
+  name = "kasai"
+  image = "kali"
+  type = "virtual-machine"
+  profiles = ["default", "pwn", "dropbox", "ricer"]
+
+  config = {
+    "security.secureboot" = "false"
+  }
+
+  limits = {
+    cpu = "4"
+    memory = "8GiB"
+  }
+}
