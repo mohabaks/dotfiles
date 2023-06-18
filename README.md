@@ -33,6 +33,7 @@ files that I use.
 |E-Mail Client|[mutt],[thunderbird]|
 |Containers|[docker],[lxd]|
 |Knowledge base\|Note-Taking|[obsidian], [joplin]|
+|Automation|[terraform]|
 |Misc|[colors],[Qubes-os],[FreeBSD],[scripts],[popups],[sxhkd]|
 
 
@@ -91,4 +92,5 @@ You can also find out other previous rice based on this repo [here](https://www.
 [obsidian]: https://github.com/mohabaks/dotfiles/tree/master/.config/obsidian/themes
 [joplin]: https://github.com/mohabaks/dotfiles/tree/master/.config/joplin-desktop/
 [popups]: https://github.com/mohabaks/dotfiles/tree/master/.config/popups
+[terraform]: https://github.com/mohabaks/dotfiles/tree/master/terraform
 [sxhkd]: https://github.com/mohabaks/dotfiles/tree/master/.config/sxhkd
