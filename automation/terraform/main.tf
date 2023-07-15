@@ -1,17 +1,32 @@
+#------------------------------------------------------------------------------
+#                               Providers
+#------------------------------------------------------------------------------
+
 terraform{
   required_providers{
     lxd = {
       source = "terraform-lxd/lxd"
     }
+   docker = {
+     source = "kreuzwerker/docker"
+   }
   }
 }
 
 provider "lxd"{
 }
 
-#---------
-# Networks
-#---------
+provider "docker"{
+}
+
+
+#------------------------------------------------------------------------------
+#                               LXD Resources 
+#------------------------------------------------------------------------------
+
+#
+# Network
+#
 
 resource "lxd_network" "lxdbr0" {
   name = "lxdbr0"
@@ -27,7 +42,7 @@ resource "lxd_network" "lxdbr0" {
     "ipv6.nat" = "false"
   }
 
-  description = "VLANs Network"
+  description = "LAN Network"
 }
 
 resource "lxd_network" "lxdbr1" {
@@ -44,12 +59,64 @@ resource "lxd_network" "lxdbr1" {
     "ipv6.nat" = "false"
   }
 
-  description = "Management Network"
+  description = "MAN Network"
 }
 
-#---------
+resource "lxd_network" "lxdbr2" {
+  name = "lxdbr2"
+
+  config = {
+    "ipv4.address" = "none"
+    "ipv4.dhcp" =  "false"
+    "ipv4.firewall" =  "false"
+    "ipv4.nat" = "false"
+    "ipv6.address" = "none"
+    "ipv6.dhcp" =  "false"
+    "ipv6.firewall" =  "false"
+    "ipv6.nat" = "false"
+  }
+
+  description = "PWN Network"
+}
+
+resource "lxd_network" "lxdbr3" {
+  name = "lxdbr3"
+
+  config = {
+    "ipv4.address" = "none"
+    "ipv4.dhcp" =  "false"
+    "ipv4.firewall" =  "false"
+    "ipv4.nat" = "false"
+    "ipv6.address" = "none"
+    "ipv6.dhcp" =  "false"
+    "ipv6.firewall" =  "false"
+    "ipv6.nat" = "false"
+  }
+
+  description = "WGI Network"
+}
+
+resource "lxd_network" "lxdbr4" {
+  name = "lxdbr4"
+
+  config = {
+    "ipv4.address" = "none"
+    "ipv4.dhcp" =  "false"
+    "ipv4.firewall" =  "false"
+    "ipv4.nat" = "false"
+    "ipv6.address" = "none"
+    "ipv6.dhcp" =  "false"
+    "ipv6.firewall" =  "false"
+    "ipv6.nat" = "false"
+  }
+
+  description = "WGE Network"
+}
+
+
+#
 # Profiles
-#---------
+#
 
 resource "lxd_profile" "sys-net" {
   name = "sys-net"
@@ -70,7 +137,6 @@ resource "lxd_profile" "sys-net" {
       name = "eth0"
       parent = "lxdbr0"
       nictype = "bridged"
-      "vlan.tagged" = "20,50,100,152"
     }
   }
 
@@ -81,6 +147,39 @@ resource "lxd_profile" "sys-net" {
     properties = {
       name = "eth1"
       parent = "lxdbr1"
+      nictype = "bridged"
+    }
+  }
+
+  device {
+    name = "eth2"
+    type = "nic"
+
+    properties = {
+      name = "eth2"
+      parent = "lxdbr2"
+      nictype = "bridged"
+    }
+  }
+
+  device {
+    name = "eth3"
+    type = "nic"
+
+    properties = {
+      name = "eth3"
+      parent = "lxdbr3"
+      nictype = "bridged"
+    }
+  }
+
+  device {
+    name = "eth4"
+    type = "nic"
+
+    properties = {
+      name = "eth4"
+      parent = "lxdbr4"
       nictype = "bridged"
     }
   }
@@ -156,23 +255,6 @@ resource "lxd_profile" "dropbox" {
   }
 }
 
-resource "lxd_profile" "pwn" {
-  name = "pwn"
-
-  description = "PWN Network"
-
-  device {
-    name = "eth0"
-    type = "nic"
-
-    properties = {
-      name = "eth0"
-      nictype = "bridged"
-      parent = "lxdbr0"
-      vlan = "50"
-    }
-  }
-}
 
 resource "lxd_profile" "ricer" {
   name = "ricer"
@@ -230,10 +312,27 @@ resource "lxd_profile" "ricer" {
   }
 }
 
-resource "lxd_profile" "untrusted" {
-  name = "untrusted"
+resource "lxd_profile" "pwn" {
+  name = "pwn"
+
+  description = "PWN Network"
+
+  device {
+    name = "eth0"
+    type = "nic"
+
+    properties = {
+      name = "eth0"
+      nictype = "bridged"
+      parent = "lxdbr2"
+    }
+  }
+}
+
+resource "lxd_profile" "lan" {
+  name = "lan"
   
-  description = "Untrusted Network"
+  description = "LAN Network"
 
   device {
     name = "eth0"
@@ -243,7 +342,6 @@ resource "lxd_profile" "untrusted" {
       name = "eth0"
       nictype = "bridged"
       parent = "lxdbr0"
-      vlan = "20"
     }
   }
 
@@ -254,8 +352,7 @@ resource "lxd_profile" "untrusted" {
     properties = {
       name = "eth1"
       nictype = "bridged"
-      parent = "lxdbr0"
-      vlan = "152"
+      parent = "lxdbr3"
     }
   }
 }
@@ -272,8 +369,7 @@ resource "lxd_profile" "whonix-gateway" {
     properties = {
       name = "eth0"
       nictype = "bridged"
-      parent = "lxdbr0"
-      vlan = "100"
+      parent = "lxdbr4"
     }
   }
 
@@ -284,8 +380,7 @@ resource "lxd_profile" "whonix-gateway" {
     properties = {
       name = "eth1"
       nictype = "bridged"
-      parent = "lxdbr0"
-      vlan = "152"
+      parent = "lxdbr3"
     }
   }
 }
@@ -320,9 +415,9 @@ resource "lxd_profile" "x11" {
   }
 }
 
-#-----------
+#
 # Containers
-#-----------
+#
 
 resource "lxd_container" "sys-net" {
   name = "sys-net"
@@ -335,7 +430,7 @@ resource "lxd_container" "chosa" {
   name = "chosa"
   image = "images:archlinux"
   type = "container"
-  profiles = ["default", "ricer", "dropbox", "x11", "untrusted", "audio"]
+  profiles = ["default", "ricer", "dropbox", "x11", "lan", "audio"]
 
   limits = {
     cpu = "2"
@@ -347,7 +442,7 @@ resource "lxd_container" "sosha" {
   name = "sosha"
   image = "images:ubuntu/jammy"
   type = "container"
-  profiles = ["default", "untrusted", "x11", "audio", "ricer", "dropbox"]
+  profiles = ["default", "lan", "x11", "audio", "ricer", "dropbox"]
 
   limits = {
     cpu = "1"
@@ -355,9 +450,9 @@ resource "lxd_container" "sosha" {
   }
 }
 
-#-----------------
+#
 # Virtaul Machines
-#-----------------
+#
 
 resource "lxd_container" "whonix-gateway" {
   name = "whonix-gateway"
@@ -366,18 +461,80 @@ resource "lxd_container" "whonix-gateway" {
   profiles = ["default", "whonix-gateway"]
 }
 
-resource "lxd_container" "kasai" {
-  name = "kasai"
-  image = "kali"
-  type = "virtual-machine"
-  profiles = ["default", "pwn", "dropbox", "ricer"]
 
-  config = {
-    "security.secureboot" = "false"
-  }
+#------------------------------------------------------------------------------
+#                               Docker Resources 
+#------------------------------------------------------------------------------
 
-  limits = {
-    cpu = "4"
-    memory = "8GiB"
-  }
+#
+# Networks
+#
+
+resource "docker_network" "LAN" {
+    name         = "LAN"
+    attachable   = false
+    driver       = "ipvlan"
+    ingress      = false
+    internal     = false
+    ipam_driver  = "default"
+    ipam_options = {}
+    ipv6         = false
+
+    options      = {
+        "ipvlan_mode" = "l2"
+        "parent"      = "lxdbr0"
+    }
+
+    ipam_config {
+        aux_address = {}
+        gateway     = "10.238.20.1"
+        ip_range    = "10.238.20.50/28"
+        subnet      = "10.238.20.0/24"
+    }
+}
+
+resource "docker_network" "PWN" {
+    name         = "PWN"
+    attachable   = false
+    driver       = "ipvlan"
+    ingress      = false
+    internal     = false
+    ipam_driver  = "default"
+    ipam_options = {}
+    ipv6         = false
+
+    options      = {
+        "ipvlan_mode" = "l2"
+        "parent"      = "lxdbr2"
+    }
+
+    ipam_config {
+        aux_address = {}
+        gateway     = "10.238.50.1"
+        ip_range    = "10.238.50.50/28"
+        subnet      = "10.238.50.0/24"
+    }
+}
+
+resource "docker_network" "WGI" {
+    name         = "WGI"
+    attachable   = false
+    driver       = "ipvlan"
+    ingress      = false
+    internal     = false
+    ipam_driver  = "default"
+    ipam_options = {}
+    ipv6         = false
+
+    options      = {
+        "ipvlan_mode" = "l2"
+        "parent"      = "lxdbr3"
+    }
+
+    ipam_config {
+        aux_address = {}
+        gateway     = "10.152.152.10"
+        ip_range    = "10.152.152.20/28"
+        subnet      = "10.152.152.0/18"
+    }
 }

@@ -10,10 +10,14 @@
 
 ```
 
-About This Repo
----------------
-This repository contains a collection of scripts/applications configuration
-files that I use.
+# About
+
+This repository contains various scripts, configuration files, and settings that 
+I use to customize my workstation and development environment.
+
+## Contents
+
+This repository includes the following:
 
 |Application|Configs|
 |-----------|-----------|
@@ -37,14 +41,34 @@ files that I use.
 |Misc|[colors],[Qubes-os],[FreeBSD],[scripts],[popups],[sxhkd]|
 
 
-Screenshots
------------
+## Usage
 
-![darkred](https://serving.photos.photobox.com/434827128f62a53738fdfdfbaa111c568da474438c32c914172b4fb7bf5c9f3a2b939c14.jpg)
+To use these dotfiles on your system, follow these steps:
+
+1. Clone the repository: `git clone https://github.com/mohabaks/dotfiles.git`
+2. Navigate to the cloned directory: `cd dotfiles`
+3. Explore the repository and identify the dotfiles you are interested in.
+4. Manually copy the desired dotfiles to their respective locations in your system.
+
+> Please note that my dotfiles have evolved and changed over time to suit different 
+  operating systems and tools. It is essential to review and understand each dotfile's 
+  purpose and potential compatibility with your specific environment before copying 
+  it to your system.
+
+
+## Contributing
+
+Although I don't provide an installation script or encourage direct contributions 
+to this repository, you are welcome to fork this repository and adapt the dotfiles
+to your own needs. Customize and modify the dotfiles as per your requirements and preferences.
+
+
+## Screenshots/Previews
+
+You can find screenshots or previews of my previous rice based on this repo [here](https://www.reddit.com/user/mohabaks/submitted/). Feel free to take a look and get an idea of how the dotfiles can enhance your own workflow.
 
 ![darkgreen](https://imgur.com/AFZ7BJp.png)
 
-You can also find out other previous rice based on this repo [here](https://www.reddit.com/user/mohabaks/posts/)
 
 [dunst]: https://github.com/mohabaks/dotfiles/tree/master/.config/dunst
 [docker]: https://github.com/mohabaks/dotfiles/tree/master/etc/docker
@@ -92,5 +116,5 @@ You can also find out other previous rice based on this repo [here](https://www.
 [obsidian]: https://github.com/mohabaks/dotfiles/tree/master/.config/obsidian/themes
 [joplin]: https://github.com/mohabaks/dotfiles/tree/master/.config/joplin-desktop/
 [popups]: https://github.com/mohabaks/dotfiles/tree/master/.config/popups
-[terraform]: https://github.com/mohabaks/dotfiles/tree/master/terraform
+[terraform]: https://github.com/mohabaks/dotfiles/tree/master/automation/terraform
 [sxhkd]: https://github.com/mohabaks/dotfiles/tree/master/.config/sxhkd
