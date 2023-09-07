@@ -1,4 +1,12 @@
 #------------------------------------------------------------------------------
+#                               Variables
+#------------------------------------------------------------------------------
+
+variable "USER" {
+  type = string
+}
+
+#------------------------------------------------------------------------------
 #                               Providers
 #------------------------------------------------------------------------------
 
@@ -53,40 +61,6 @@ resource "lxd_network" "lxdbr1" {
     "ipv4.dhcp" =  "false"
     "ipv4.firewall" =  "false"
     "ipv4.nat" = "false"
-    "ipv6.address" =  "none"
-    "ipv6.dhcp" =  "false"
-    "ipv6.firewall" =  "false"
-    "ipv6.nat" = "false"
-  }
-
-  description = "MAN Network"
-}
-
-resource "lxd_network" "lxdbr2" {
-  name = "lxdbr2"
-
-  config = {
-    "ipv4.address" = "none"
-    "ipv4.dhcp" =  "false"
-    "ipv4.firewall" =  "false"
-    "ipv4.nat" = "false"
-    "ipv6.address" = "none"
-    "ipv6.dhcp" =  "false"
-    "ipv6.firewall" =  "false"
-    "ipv6.nat" = "false"
-  }
-
-  description = "PWN Network"
-}
-
-resource "lxd_network" "lxdbr3" {
-  name = "lxdbr3"
-
-  config = {
-    "ipv4.address" = "none"
-    "ipv4.dhcp" =  "false"
-    "ipv4.firewall" =  "false"
-    "ipv4.nat" = "false"
     "ipv6.address" = "none"
     "ipv6.dhcp" =  "false"
     "ipv6.firewall" =  "false"
@@ -96,8 +70,8 @@ resource "lxd_network" "lxdbr3" {
   description = "WGI Network"
 }
 
-resource "lxd_network" "lxdbr4" {
-  name = "lxdbr4"
+resource "lxd_network" "lxdbr2" {
+  name = "lxdbr2"
 
   config = {
     "ipv4.address" = "none"
@@ -158,28 +132,6 @@ resource "lxd_profile" "sys-net" {
     properties = {
       name = "eth2"
       parent = "lxdbr2"
-      nictype = "bridged"
-    }
-  }
-
-  device {
-    name = "eth3"
-    type = "nic"
-
-    properties = {
-      name = "eth3"
-      parent = "lxdbr3"
-      nictype = "bridged"
-    }
-  }
-
-  device {
-    name = "eth4"
-    type = "nic"
-
-    properties = {
-      name = "eth4"
-      parent = "lxdbr4"
       nictype = "bridged"
     }
   }
@@ -249,10 +201,10 @@ resource "lxd_profile" "dropbox" {
 
     properties = {
       path = "/home/user/Downloads"
-      source = "/home/bytebandit/Downloads"
+      source = "/home/var.USER/Downloads"
       shift = "true"
     }
-  }
+}
 }
 
 
@@ -267,7 +219,7 @@ resource "lxd_profile" "ricer" {
 
     properties = {
        path = "/home/user/.fonts"
-       source = "/home/bytebandit/.fonts"
+       source = "/home/var.USER/.fonts"
     }
   }
 
@@ -277,7 +229,7 @@ resource "lxd_profile" "ricer" {
 
     properties = {
        path = "/home/user/.config/gtk-3.0"
-       source = "/home/bytebandit/.config/gtk-3.0"
+       source = "/home/var.USER/.config/gtk-3.0"
     }
   }
 
@@ -287,7 +239,7 @@ resource "lxd_profile" "ricer" {
 
     properties = {
        path = "/home/user/.gtkrc-2.0"
-       source = "/home/bytebandit/.gtkrc-2.0"
+       source = "/home/var.USER/.gtkrc-2.0"
     }
   }
 
@@ -297,7 +249,7 @@ resource "lxd_profile" "ricer" {
 
     properties = {
        path = "/home/user/.icons"
-       source = "/home/bytebandit/.icons"
+       source = "/home/var.USER/.icons"
     }
   }
 
@@ -308,23 +260,6 @@ resource "lxd_profile" "ricer" {
     properties = {
        path = "/home/user/.themes"
        source = "/usr/share/themes"
-    }
-  }
-}
-
-resource "lxd_profile" "pwn" {
-  name = "pwn"
-
-  description = "PWN Network"
-
-  device {
-    name = "eth0"
-    type = "nic"
-
-    properties = {
-      name = "eth0"
-      nictype = "bridged"
-      parent = "lxdbr2"
     }
   }
 }
@@ -344,17 +279,6 @@ resource "lxd_profile" "lan" {
       parent = "lxdbr0"
     }
   }
-
-  device {
-    name = "eth1"
-    type = "nic"
-
-    properties = {
-      name = "eth1"
-      nictype = "bridged"
-      parent = "lxdbr3"
-    }
-  }
 }
 
 resource "lxd_profile" "whonix-gateway" {
@@ -369,7 +293,7 @@ resource "lxd_profile" "whonix-gateway" {
     properties = {
       name = "eth0"
       nictype = "bridged"
-      parent = "lxdbr4"
+      parent = "lxdbr2"
     }
   }
 
@@ -380,7 +304,7 @@ resource "lxd_profile" "whonix-gateway" {
     properties = {
       name = "eth1"
       nictype = "bridged"
-      parent = "lxdbr3"
+      parent = "lxdbr1"
     }
   }
 }
@@ -426,30 +350,6 @@ resource "lxd_container" "sys-net" {
   profiles = ["default", "sys-net"]
 }
 
-resource "lxd_container" "chosa" {
-  name = "chosa"
-  image = "images:archlinux"
-  type = "container"
-  profiles = ["default", "ricer", "dropbox", "x11", "lan", "audio"]
-
-  limits = {
-    cpu = "2"
-    memory = "4GiB"
-  }
-}
-
-resource "lxd_container" "sosha" {
-  name = "sosha"
-  image = "images:ubuntu/jammy"
-  type = "container"
-  profiles = ["default", "lan", "x11", "audio", "ricer", "dropbox"]
-
-  limits = {
-    cpu = "1"
-    memory = "2GiB"
-  }
-}
-
 #
 # Virtaul Machines
 #
@@ -493,29 +393,6 @@ resource "docker_network" "LAN" {
     }
 }
 
-resource "docker_network" "PWN" {
-    name         = "PWN"
-    attachable   = false
-    driver       = "ipvlan"
-    ingress      = false
-    internal     = false
-    ipam_driver  = "default"
-    ipam_options = {}
-    ipv6         = false
-
-    options      = {
-        "ipvlan_mode" = "l2"
-        "parent"      = "lxdbr2"
-    }
-
-    ipam_config {
-        aux_address = {}
-        gateway     = "10.238.50.1"
-        ip_range    = "10.238.50.50/28"
-        subnet      = "10.238.50.0/24"
-    }
-}
-
 resource "docker_network" "WGI" {
     name         = "WGI"
     attachable   = false
@@ -528,7 +405,7 @@ resource "docker_network" "WGI" {
 
     options      = {
         "ipvlan_mode" = "l2"
-        "parent"      = "lxdbr3"
+        "parent"      = "lxdbr2"
     }
 
     ipam_config {
