@@ -1,0 +1,2442 @@
+/* MIT License | Copyright (c) Stephan Ango (@kepano) 
+Cards snippet for Obsidian
+author: @kepano
+version: 2.0.0
+Support my work:
+https://github.com/sponsors/kepano
+*/
+:root {
+  --cards-min-width: 180px;
+  --cards-max-width: 1fr;
+  --cards-mobile-width: 120px;
+  --cards-image-height: 400px;
+  --cards-padding: 1.2em;
+  --cards-image-fit: contain;
+  --cards-background: transparent;
+  --cards-border-width: 1px;
+  --cards-aspect-ratio: auto;
+  --cards-columns: repeat(auto-fit, minmax(var(--cards-min-width), var(--cards-max-width))); }
+
+@media (max-width: 400pt) {
+  :root {
+    --cards-min-width:var(--cards-mobile-width); } }
+.cards.table-100 table.dataview tbody,
+.table-100 .cards table.dataview tbody {
+  padding: 0.25rem 0.75rem; }
+
+.cards table.dataview tbody {
+  clear: both;
+  padding: 0.5rem 0;
+  display: grid;
+  grid-template-columns: var(--cards-columns);
+  grid-column-gap: 0.75rem;
+  grid-row-gap: 0.75rem; }
+.cards table.dataview > tbody > tr {
+  background-color: var(--cards-background);
+  border: var(--cards-border-width) solid var(--background-modifier-border);
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0 0 calc(var(--cards-padding)/3) 0;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: box-shadow 0.15s linear;
+  max-width: var(--cards-max-width); }
+.cards table.dataview > tbody > tr:hover {
+  border: var(--cards-border-width) solid var(--background-modifier-border-hover);
+  box-shadow: 0 4px 6px 0px rgba(0, 0, 0, 0.05), 0 1px 3px 1px rgba(0, 0, 0, 0.025);
+  transition: box-shadow 0.15s linear; }
+.cards table.dataview tbody > tr > td {
+  /* Paragraphs */
+  /* Links */
+  /* Buttons */
+  /* Lists */
+  /* Images */ }
+  .cards table.dataview tbody > tr > td:first-child {
+    font-weight: var(--bold-weight); }
+  .cards table.dataview tbody > tr > td:first-child a {
+    padding: 0 0 calc(var(--cards-padding)/3);
+    display: block; }
+  .cards table.dataview tbody > tr > td:not(:first-child) {
+    font-size: 90%;
+    color: var(--text-muted); }
+  .cards table.dataview tbody > tr > td .el-p {
+    display: block;
+    width: 100%; }
+  .cards table.dataview tbody > tr > td > *:not(.el-embed-image) {
+    padding: calc(var(--cards-padding)/3) 0; }
+  .cards table.dataview tbody > tr > td:not(:last-child):not(:first-child) > .el-p:not(.el-embed-image) {
+    border-bottom: 1px solid var(--background-modifier-border);
+    width: 100%; }
+  .cards table.dataview tbody > tr > td a {
+    text-decoration: none; }
+  .cards table.dataview tbody > tr > td > button {
+    width: 100%;
+    margin: calc(var(--cards-padding)/2) 0; }
+  .cards table.dataview tbody > tr > td:last-child > button {
+    margin-bottom: calc(var(--cards-padding)/6); }
+  .cards table.dataview tbody > tr > td > ul {
+    width: 100%;
+    padding: 0.25em 0 !important;
+    margin: 0 auto !important; }
+  .cards table.dataview tbody > tr > td:not(:last-child) > ul {
+    border-bottom: 1px solid var(--background-modifier-border); }
+  .cards table.dataview tbody > tr > td .el-embed-image {
+    background-color: var(--background-secondary);
+    display: block;
+    margin: 0 calc(var(--cards-padding)/-2) 0 calc(var(--cards-padding)/-2);
+    width: calc(100% + var(--cards-padding)); }
+  .cards table.dataview tbody > tr > td img {
+    aspect-ratio: var(--cards-aspect-ratio);
+    width: 100%;
+    object-fit: var(--cards-image-fit);
+    max-height: var(--cards-image-height);
+    background-color: var(--background-secondary);
+    vertical-align: bottom; }
+
+.markdown-source-view.mod-cm6.cards .dataview.table-view-table > tbody > tr > td,
+.trim-cols .cards table.dataview tbody > tr > td {
+  white-space: normal; }
+
+.cards .dataview.table-view-table > tbody > tr > td,
+.cards table.dataview tbody > tr > td,
+.markdown-source-view.mod-cm6.cards .dataview.table-view-table > tbody > tr > td,
+.markdown-source-view.mod-cm6.cards table.dataview tbody > tr > td {
+  border-bottom: none;
+  padding: 0 !important;
+  line-height: 1.2;
+  width: calc(100% - var(--cards-padding));
+  margin: 0 auto;
+  overflow: visible !important;
+  max-width: 100%;
+  display: flex; }
+
+.links-int-on .cards table.dataview tbody > tr > td a {
+  text-decoration: none; }
+
+
+/* Block button */
+.markdown-source-view.mod-cm6.cards .edit-block-button {
+  top: 0px; }
+
+/* ------------------- */
+/* Sorting menu */
+.cards.table-100 table.dataview thead > tr,
+.table-100 .cards table.dataview thead > tr {
+  right: 0.75rem; }
+
+.table-100 .cards table.dataview thead:before,
+.cards.table-100 table.dataview thead:before {
+  margin-right: 0.75rem; }
+
+.theme-light .cards table.dataview thead:before {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 100 100"><path fill="black" d="M49.792 33.125l-5.892 5.892L33.333 28.45V83.333H25V28.45L14.438 39.017L8.542 33.125L29.167 12.5l20.625 20.625zm41.667 33.75L70.833 87.5l-20.625 -20.625l5.892 -5.892l10.571 10.567L66.667 16.667h8.333v54.883l10.567 -10.567l5.892 5.892z"></path></svg>'); }
+
+.cards .el-pre + .el-lang-dataview .table-view-thead {
+  padding-top: 8px; }
+.cards table.dataview thead {
+  user-select: none;
+  width: 180px;
+  display: block;
+  float: right;
+  position: relative;
+  text-align: right;
+  height: 24px;
+  padding-bottom: 4px; }
+.cards table.dataview thead:hover:before {
+  opacity: 0.5;
+  background-color: var(--background-modifier-hover); }
+.cards table.dataview thead:before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 10px;
+  height: 16px;
+  background-repeat: no-repeat;
+  cursor: var(--cursor);
+  text-align: right;
+  padding: var(--size-4-1) var(--size-4-2);
+  margin-bottom: 2px;
+  border-radius: var(--radius-s);
+  font-weight: 500;
+  font-size: var(--font-adaptive-small);
+  opacity: 0.25;
+  background-position: center center;
+  background-size: 16px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 100 100"><path fill="white" d="M49.792 33.125l-5.892 5.892L33.333 28.45V83.333H25V28.45L14.438 39.017L8.542 33.125L29.167 12.5l20.625 20.625zm41.667 33.75L70.833 87.5l-20.625 -20.625l5.892 -5.892l10.571 10.567L66.667 16.667h8.333v54.883l10.567 -10.567l5.892 5.892z"></path></svg>'); }
+.cards table.dataview thead > tr {
+  top: -1px;
+  position: absolute;
+  display: none;
+  z-index: 9;
+  border: 1px solid var(--background-modifier-border-hover);
+  background-color: var(--background-secondary);
+  box-shadow: var(--shadow-s);
+  padding: 6px;
+  border-radius: var(--radius-m);
+  flex-direction: column;
+  margin: 26px 0 0 0;
+  width: 100%; }
+.cards table.dataview thead:hover > tr {
+  display: flex; }
+.cards table.dataview thead > tr > th {
+  display: block;
+  padding: 3px 30px 3px 6px !important;
+  border-radius: var(--radius-s);
+  width: 100%;
+  font-weight: 400;
+  color: var(--text-normal);
+  cursor: var(--cursor);
+  border: none;
+  font-size: var(--font-ui-small); }
+.cards table.dataview thead > tr > th[sortable-style="sortable-asc"],
+.cards table.dataview thead > tr > th[sortable-style="sortable-desc"] {
+  color: var(--text-normal); }
+.cards table.dataview thead > tr > th:hover {
+  color: var(--text-normal);
+  background-color: var(--background-modifier-hover); }
+
+/* ------------------- */
+/* Helper classes */
+.cards.cards-16-9 {
+  --cards-aspect-ratio: 16/9; }
+.cards.cards-1-1 {
+  --cards-aspect-ratio: 1/1; }
+.cards.cards-2-1 {
+  --cards-aspect-ratio: 2/1; }
+.cards.cards-2-3 {
+  --cards-aspect-ratio: 2/3; }
+.cards.cards-cols-1 {
+  --cards-columns: repeat(1, minmax(0, 1fr)); }
+.cards.cards-cols-2 {
+  --cards-columns: repeat(2, minmax(0, 1fr)); }
+.cards.cards-cover table.dataview tbody > tr > td img {
+  object-fit: cover; }
+.cards.cards-align-bottom table.dataview tbody > tr > td:last-child {
+  align-items: flex-end;
+  flex-grow: 1; }
+
+@media (max-width: 400pt) {
+  .cards table.dataview tbody > tr > td:not(:first-child) {
+    font-size: 80%; } }
+@media (min-width: 400pt) {
+  .cards-cols-3 {
+    --cards-columns: repeat(3, minmax(0, 1fr)); }
+
+  .cards-cols-4 {
+    --cards-columns: repeat(4, minmax(0, 1fr)); }
+
+  .cards-cols-5 {
+    --cards-columns: repeat(5, minmax(0, 1fr)); }
+
+  .cards-cols-6 {
+    --cards-columns: repeat(6, minmax(0, 1fr)); }
+
+  .cards-cols-7 {
+    --cards-columns: repeat(7, minmax(0, 1fr)); }
+
+  .cards-cols-8 {
+    --cards-columns: repeat(8, minmax(0, 1fr)); } }
+
+/* Table helper classes for alternate styles */
+/* MIT License | Copyright (c) Stephan Ango (@kepano) */
+.table-small table:not(.calendar) {
+  --table-text-size: 85%; }
+
+.table-tiny table:not(.calendar) {
+  --table-text-size: 75%; }
+
+.row-hover th:first-child,
+.row-hover th:first-child,
+.row-alt.markdown-source-view.mod-cm6 th:first-child,
+.row-alt.markdown-source-view.mod-cm6 td:first-child,
+.row-alt table:not(.calendar) th:first-child,
+.row-alt table:not(.calendar) tbody > tr > td:first-child,
+.table-lines.markdown-source-view.mod-cm6 th:first-child,
+.table-lines.markdown-source-view.mod-cm6 td:first-child,
+.table-lines table:not(.calendar) thead > tr > th:first-child,
+.table-lines table:not(.calendar) tbody > tr > td:first-child {
+  padding-left: 10px; }
+
+.row-alt {
+  --table-row-alt-background: var(--background-table-rows); }
+
+.col-alt {
+  --table-column-alt-background: var(--background-table-rows); }
+
+.table-tabular table:not(.calendar) {
+  font-variant-numeric: tabular-nums; }
+
+.table-lines {
+  --table-border-width: 1px;
+  --table-header-border-width: 1px;
+  --table-column-first-border-width: 1px;
+  --table-column-last-border-width: 1px;
+  --table-row-last-border-width: 1px; }
+
+.table-nowrap {
+  --table-white-space: nowrap; }
+
+.trim-cols,
+.table-nowrap .table-wrap {
+  --table-white-space: normal; }
+
+.table-numbers table:not(.calendar) {
+  counter-reset: section; }
+  .table-numbers table:not(.calendar) > thead > tr > th:first-child::before {
+    content: " ";
+    padding-right: 0.5em;
+    display: inline-block;
+    min-width: 2em; }
+  .table-numbers table:not(.calendar) > tbody > tr > td:first-child::before {
+    counter-increment: section;
+    content: counter(section) " ";
+    text-align: center;
+    padding-right: 0.5em;
+    display: inline-block;
+    min-width: 2em;
+    color: var(--text-faint);
+    font-variant-numeric: tabular-nums; }
+
+.row-lines table:not(.calendar) tbody > tr > td,
+.row-lines .table-view-table > tbody > tr > td {
+  border-bottom: 1px solid var(--background-modifier-border); }
+.row-lines table:not(.calendar) tbody > tr:last-child > td {
+  border-bottom: none; }
+
+.col-lines table:not(.calendar) tbody > tr > td:not(:last-child),
+.col-lines .table-view-table thead > tr > th:not(:last-child),
+.col-lines .table-view-table > tbody > tr > td:not(:last-child) {
+  border-right: 1px solid var(--background-modifier-border); }
+
+/* Image zoom  */
+/* MIT License | Copyright (c) Stephan Ango (@kepano) */
+body:not(.zoom-off) .view-content div:not(.canvas-node-content) img {
+  max-width: 100%;
+  cursor: zoom-in; }
+body:not(.zoom-off) .view-content img:active {
+  cursor: zoom-out; }
+body:not(.zoom-off) .view-content .markdown-preview-view img[referrerpolicy='no-referrer']:active {
+  background-color: var(--background-primary);
+  padding: 10px; }
+body:not(.zoom-off) .view-content .markdown-preview-view img[referrerpolicy='no-referrer']:active,
+body:not(.zoom-off) .view-content .image-embed:not(.canvas-node-content):active {
+  aspect-ratio: unset;
+  cursor: zoom-out;
+  display: block;
+  z-index: 200;
+  position: fixed;
+  max-height: calc(100% + 1px);
+  max-width: 100%;
+  height: calc(100% + 1px);
+  width: 100%;
+  object-fit: contain;
+  margin: -0.5px auto 0 !important;
+  text-align: center;
+  padding: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; }
+body:not(.zoom-off) .view-content .image-embed:not(.canvas-node-content):active:after {
+  background-color: var(--background-primary);
+  opacity: 0.9;
+  content: " ";
+  height: calc(100% + 1px);
+  width: 100%;
+  position: fixed;
+  left: 0;
+  right: 1px;
+  z-index: 0; }
+body:not(.zoom-off) .view-content .image-embed:not(.canvas-node-content):active img {
+  aspect-ratio: unset;
+  top: 50%;
+  z-index: 99;
+  transform: translateY(-50%);
+  padding: 0;
+  margin: 0 auto;
+  width: calc(100% - 20px);
+  max-height: 95vh;
+  object-fit: contain;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  opacity: 1; }
+
+/* Dataview and tables */
+.table-100 .el-table table,
+.table-100 .el-lang-dataview .dataview.table-view-table,
+.table-100 .el-lang-dataviewjs .dataview.table-view-table,
+.markdown-preview-view.table-100.is-readable-line-width .el-table table,
+.markdown-preview-view.table-100.is-readable-line-width .el-lang-dataview .dataview.table-view-table,
+.markdown-preview-view.table-100.is-readable-line-width .el-lang-dataviewjs .dataview.table-view-table {
+  max-width: 100% !important;
+  width: 100% !important; }
+
+.table-max .el-table table,
+.table-max .el-lang-dataview .dataview.table-view-table,
+.table-max .el-lang-dataviewjs .dataview.table-view-table,
+.markdown-preview-view.table-max .el-table table,
+.markdown-preview-view.table-max .el-lang-dataview .dataview.table-view-table,
+.markdown-preview-view.table-max .el-lang-dataviewjs .dataview.table-view-table {
+  max-width: 100% !important; }
+
+.table-wide .markdown-preview-view.is-readable-line-width .el-table table,
+.table-wide .markdown-preview-view.is-readable-line-width .el-lang-dataview .dataview.table-view-table,
+.table-wide .markdown-preview-view.is-readable-line-width .el-lang-dataviewjs .dataview.table-view-table,
+.markdown-preview-view.is-readable-line-width.table-wide .el-table table,
+.markdown-preview-view.is-readable-line-width.table-wide .el-lang-dataview .dataview.table-view-table,
+.markdown-preview-view.is-readable-line-width.table-wide .el-lang-dataviewjs .dataview.table-view-table {
+  max-width: var(--line-width-wide) !important; }
+
+.table-100 table th:first-child,
+.table-100 table td:first-child,
+.table-100 .dataview.table-view-table th:first-child,
+.table-100 .dataview.table-view-table td:first-child,
+.table-100 .markdown-source-view.mod-cm6 td:first-child,
+.table-100 .markdown-source-view.mod-cm6 th:first-child {
+  padding-left: 20px !important; }
+.table-100 table th:last-child,
+.table-100 table td:last-child,
+.table-100 .dataview.table-view-table th:last-child,
+.table-100 .dataview.table-view-table td:last-child {
+  padding-right: 20px; }
+
+/* Live Preview */
+.chart-max.markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .block-language-chart,
+.chart-max .markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .block-language-chart,
+.map-max.markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .block-language-leaflet,
+.map-max .markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .block-language-leaflet,
+.table-max.markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-table-widget > table,
+.table-max .markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-table-widget > table,
+.table-max.markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-embed-block > .block-language-dataview,
+.table-max .markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-embed-block > .block-language-dataview,
+.table-max.markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-embed-block > .block-language-dataviewjs,
+.table-max .markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-embed-block > .block-language-dataviewjs,
+.table-max.markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-embed-block.cm-table-widget > div:not(.edit-block-button),
+.table-max .markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-embed-block.cm-table-widget > div:not(.edit-block-button),
+.img-max.markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-content > .image-embed,
+.img-max .markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-content > .image-embed,
+.img-max.markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-content > img,
+.img-max .markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-content > img {
+  width: var(--max-width) !important;
+  max-width: var(--max-width) !important;
+  transform: none !important;
+  padding-left: 0;
+  margin: 0 auto !important; }
+
+.chart-wide.markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .block-language-chart,
+.chart-wide .markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .block-language-chart,
+.map-wide.markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .block-language-leaflet,
+.map-wide .markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .block-language-leaflet,
+.table-wide.markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-table-widget > table,
+.table-wide .markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-table-widget > table,
+.table-wide.markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-embed-block > .block-language-dataview,
+.table-wide .markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-embed-block > .block-language-dataview,
+.table-wide.markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-embed-block > .block-language-dataviewjs,
+.table-wide .markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-embed-block > .block-language-dataviewjs,
+.table-wide.markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-embed-block.cm-table-widget > div:not(.edit-block-button),
+.table-wide .markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-embed-block.cm-table-widget > div:not(.edit-block-button),
+.img-wide.markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-content > .image-embed,
+.img-wide .markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-content > .image-embed,
+.img-wide.markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-content > img,
+.img-wide .markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-content > img {
+  width: var(--line-width-wide) !important;
+  max-width: var(--max-width);
+  transform: none !important;
+  padding-left: 0;
+  margin: 0 auto !important; }
+
+.chart-100.markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .block-language-chart,
+.chart-100 .markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .block-language-chart,
+.map-100.markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .block-language-leaflet,
+.map-100 .markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .block-language-leaflet,
+.table-100.markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width table,
+.table-100 .markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width table,
+.table-100.markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-embed-block > .block-language-dataview,
+.table-100 .markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-embed-block > .block-language-dataview,
+.table-100.markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-embed-block > .block-language-dataviewjs,
+.table-100 .markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-embed-block > .block-language-dataviewjs,
+.table-100.markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-embed-block.cm-table-widget > div:not(.edit-block-button),
+.table-100 .markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-embed-block.cm-table-widget > div:not(.edit-block-button),
+.img-100.markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-content > .image-embed,
+.img-100 .markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-content > .image-embed,
+.img-100.markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-content > img,
+.img-100 .markdown-source-view.mod-cm6.is-live-preview.is-readable-line-width .cm-content > img {
+  width: 100% !important;
+  max-width: 100% !important;
+  transform: none !important;
+  margin: 0 auto !important;
+  padding-left: 0; }
+
+/* Custom line width with folding offset */
+@media (max-width: 400pt) {
+  .is-mobile {
+    --folding-offset:0px; } }
+.markdown-source-view.wide,
+.markdown-preview-view.wide {
+  --line-width-adaptive:var(--line-width-wide); }
+
+.markdown-source-view.max,
+.markdown-preview-view.max {
+  --line-width-adaptive:300em;
+  --line-width-wide:300em; }
+
+/* With readable line width */
+.markdown-preview-view.is-readable-line-width .markdown-preview-sizer {
+  max-width: var(--max-width);
+  width: var(--line-width-adaptive);
+  padding-left: 0; }
+
+.markdown-source-view.is-readable-line-width .CodeMirror {
+  padding-left: 0;
+  padding-right: 0;
+  margin: 0 auto 0 auto;
+  width: var(--line-width-adaptive);
+  max-width: var(--max-width); }
+
+/* Readable line width off */
+.markdown-reading-view .markdown-preview-view:not(.is-readable-line-width) > .markdown-preview-sizer {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-left: var(--folding-offset); }
+
+.is-mobile .markdown-source-view.mod-cm6 .cm-gutters {
+  padding-right: 0; }
+
+/* Requires Minimal plugin 5.2.1+ */
+.minimal-readable-off .view-header-title-container {
+  width: var(--max-width); }
+
+/* Max width for readable-line length off */
+.markdown-source-view.mod-cm6:not(.is-readable-line-width) .inline-title,
+.markdown-source-view.mod-cm6:not(.is-readable-line-width) .cm-contentContainer {
+  max-width: var(--max-width);
+  margin: 0 0 0 calc(50% - var(--max-width)/2) !important;
+  padding-left: var(--folding-offset); }
+
+.markdown-source-view.mod-cm6 .cm-content > .cm-embed-block[contenteditable=false] {
+  overflow-x: auto; }
+
+
+/* Dataview plugin */
+body .table-view-table > thead > tr > th,
+.markdown-preview-view .table-view-table > thead > tr > th {
+  font-weight: 400;
+  font-size: var(--table-text-size);
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--background-modifier-border);
+  cursor: var(--cursor); }
+
+table.dataview ul.dataview-ul {
+  list-style: none;
+  padding-inline-start: 0;
+  margin-block-start: 0em !important;
+  margin-block-end: 0em !important; }
+
+.markdown-source-view.mod-cm6 .table-view-table > tbody > tr > td,
+.markdown-preview-view .table-view-table > tbody > tr > td {
+  max-width: var(--max-col-width); }
+
+body .dataview.small-text {
+  color: var(--text-faint); }
+
+/* Style Settings preferences */
+.style-settings-container[data-level="2"] {
+  background: var(--background-secondary);
+  border: 1px solid var(--ui1);
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin: 2px 0 2px -20px; }
+
+.workspace-leaf-content[data-type="style-settings"] .view-content {
+  padding: var(--size-4-4) 0 var(--size-4-4) var(--folding-offset); }
+.workspace-leaf-content[data-type="style-settings"] .view-content > div {
+  width: var(--line-width-adaptive);
+  max-width: var(--max-width);
+  margin: 0 auto; }
+.workspace-leaf-content[data-type="style-settings"] .style-settings-heading[data-level="0"] .setting-item-name {
+  padding-left: 17px; }
+.workspace-leaf-content[data-type="style-settings"] .setting-item {
+  max-width: 100%;
+  margin: 0 auto; }
+.workspace-leaf-content[data-type="style-settings"] .setting-item-name {
+  position: relative; }
+.workspace-leaf-content[data-type="style-settings"] .style-settings-collapse-indicator {
+  position: absolute;
+  left: 0; }
+
+.setting-item-heading.style-settings-heading,
+.style-settings-container .style-settings-heading {
+  cursor: var(--cursor); }
+
+.modal.mod-settings .setting-item .pickr button.pcr-button {
+  box-shadow: none;
+  border-radius: 40px;
+  height: 24px;
+  width: 24px; }
+
+.setting-item .pickr .pcr-button:after,
+.setting-item .pickr .pcr-button:before {
+  border-radius: 40px;
+  box-shadow: none;
+  border: none; }
+
+.setting-item.setting-item-heading.style-settings-heading.is-collapsed {
+  border-bottom: 1px solid var(--background-modifier-border); }
+
+.setting-item.setting-item-heading.style-settings-heading {
+  border: 0;
+  padding: 10px 0 5px;
+  margin-bottom: 0; }
+
+.mod-root .workspace-leaf-content[data-type="style-settings"] .style-settings-container .setting-item:not(.setting-item-heading) {
+  flex-direction: row;
+  align-items: center;
+  padding: 0.5em 0; }
+
+.workspace-split:not(.mod-root) .workspace-leaf-content[data-type="style-settings"] .setting-item-name {
+  font-size: var(--font-adaptive-smaller); }
+
+.setting-item .style-settings-import,
+.setting-item .style-settings-export {
+  text-decoration: none;
+  font-size: var(--font-ui-small);
+  font-weight: 500;
+  color: var(--text-muted);
+  margin: 0;
+  padding: 2px 8px;
+  border-radius: 5px;
+  cursor: var(--cursor); }
+
+.style-settings-import:hover,
+.style-settings-export:hover {
+  background-color: var(--background-modifier-hover);
+  color: var(--text-normal);
+  cursor: var(--cursor); }
+
+.themed-color-wrapper > div + div {
+  margin-top: 0;
+  margin-left: 6px; }
+
+.theme-light .themed-color-wrapper > .theme-light {
+  background-color: transparent; }
+
+.theme-light .themed-color-wrapper > .theme-dark {
+  background-color: rgba(0, 0, 0, 0.8); }
+
+.theme-dark .themed-color-wrapper > .theme-dark {
+  background-color: transparent; }
+
+/* Remove hover effect */
+body:not(.row-hover) .dataview.task-list-item:hover,
+body:not(.row-hover) .dataview.task-list-basic-item:hover,
+body:not(.row-hover) .table-view-table > tbody > tr:hover {
+  background-color: transparent !important;
+  box-shadow: none; }
+
+
+/* @settings
+name: Minimal
+id: minimal-style
+settings:
+	-
+		id: instructions
+		title: Welcome 👋
+		type: heading
+		level: 2
+		collapsed: true
+		description: Use the Minimal Theme Settings plugin to access hotkeys, adjust features, select fonts, and choose from preset color schemes. Use the settings below for more granular customization. Visit minimal.guide for documentation.
+	-
+		id: interface
+		title: Interface colors
+		type: heading
+		level: 2
+		collapsed: true
+	-
+		id: base
+		title: Base color
+		description: Defines all background and border colors unless overridden in more granular settings
+		type: variable-themed-color
+		format: hsl-split
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: bg1
+		title: Primary background
+		description: Background color for the main window
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: bg2
+		title: Secondary background
+		description: Background color for left sidebar and menus
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: bg3
+		title: Active background
+		description: Background color for hovered buttons and currently selected file
+		type: variable-themed-color
+		opacity: true
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: ui1
+		title: Border color
+		type: variable-themed-color
+		description: For buttons, divider lines, and outlined elements
+		opacity: true
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: ui2
+		title: Highlighted border color
+		description: Used when hovering over buttons, dividers, and outlined elements
+		type: variable-themed-color
+		opacity: true
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: ui3
+		title: Active border color
+		description: Used when clicking buttons and outlined elements
+		type: variable-themed-color
+		opacity: true
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: accent-color
+		title: Accent color
+		type: heading
+		level: 2
+		collapsed: true
+	-
+		id: ax1
+		title: Accent color
+		type: variable-themed-color
+		description: Used primarily for links
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: ax2
+		title: Accent color (hover)
+		type: variable-themed-color
+		description: Used primarily for hovered links
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: ax3
+		title: Accent color interactive
+		type: variable-themed-color
+		description: Used for buttons, checklists, toggles
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: sp1
+		title: Text on accent
+		type: variable-themed-color
+		description: Used primarily for text on accented buttons
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: extended-palette
+		title: Extended colors
+		type: heading
+		level: 2
+		collapsed: true
+	-
+		id: color-red
+		title: Red
+		description: Extended palette colors are defaults used for progress bar status, syntax highlighting, colorful headings, and graph nodes
+		type: variable-themed-color
+		opacity: true
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: color-orange
+		title: Orange
+		type: variable-themed-color
+		opacity: true
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: color-yellow
+		title: Yellow
+		type: variable-themed-color
+		opacity: true
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: color-green
+		title: Green
+		type: variable-themed-color
+		opacity: true
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: color-cyan
+		title: Cyan
+		type: variable-themed-color
+		opacity: true
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: color-blue
+		title: Blue
+		type: variable-themed-color
+		opacity: true
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: color-purple
+		title: Purple
+		type: variable-themed-color
+		opacity: true
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: color-pink
+		title: Pink
+		type: variable-themed-color
+		opacity: true
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: active-line
+		title: Active line
+		type: heading
+		level: 2
+		collapsed: true
+	-
+		id: active-line-on
+		title: Highlight active line
+		description: Adds a background to current line in editor
+		type: class-toggle
+		default: false
+	-
+		id: active-line-bg
+		title: Active line background
+		description: Using a low opacity color is recommended to avoid conflicting with highlights
+		type: variable-themed-color
+		opacity: true
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: blockquotes
+		title: Blockquotes
+		type: heading
+		level: 2
+		collapsed: true
+	-
+		id: blockquote-color
+		title: Blockquote text color
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: blockquote-background-color
+		title: Blockquote background color
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: blockquote-border-color
+		title: Blockquote border color
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: blockquote-border-thickness
+		title: Blockquote border thickness
+		type: variable-number-slider
+		format: px
+		default: 1
+		min: 0
+		max: 5
+		step: 1
+	-
+		id: blockquote-size
+		title: Blockquote font size
+		description: Accepts any CSS font-size value
+		type: variable-text
+		default: ''
+	-
+		id: blockquote-font-style
+		title: Blockquote font style
+		type: variable-select
+		allowEmpty: false
+		default: normal
+		options:
+			-
+				label: Normal
+				value: normal
+			-
+				label: Italic
+				value: italic
+	-
+		id: callouts
+		title: Callouts
+		type: heading
+		level: 2
+		collapsed: true
+	-
+		id: callouts-style
+		title: Callout style
+		type: class-select
+		allowEmpty: false
+		default: callouts-default
+		options:
+			-
+				label: Filled
+				value: callouts-default
+			-
+				label: Outlined
+				value: callouts-outlined
+	-
+		id: callout-blend-mode
+		title: Color blending
+		description: Blend the color of nested callouts
+		type: variable-select
+		allowEmpty: false
+		default: var(--highlight-mix-blend-mode)
+		options:
+			-
+				label: On
+				value: var(--highlight-mix-blend-mode)
+			-
+				label: Off
+				value: normal
+	-
+		id: canvas
+		title: Canvas
+		type: heading
+		level: 2
+		collapsed: true
+	-
+		id: canvas-dot-pattern
+		title: Canvas dot pattern
+		description: Color for background dot pattern
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: code-blocks
+		title: Code blocks
+		type: heading
+		level: 2
+		collapsed: true
+	-
+		id: code-size
+		title: Code font size
+		description: Accepts any CSS font-size value
+		type: variable-text
+		default: 13px
+	-
+		id: minimal-code-scroll
+		title: Scroll long lines
+		description: Turns off line wrap for code
+		type: class-toggle
+		default: false
+	-
+		id: code-background
+		title: Code background color
+		description: Background for code blocks
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: code-normal
+		title: Code text color
+		description: Color of code when syntax highlighting is not present
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: syntax-highlighting
+		title: Syntax highlighting
+		type: heading
+		level: 3
+		collapsed: false
+	-
+		id: code-comment
+		title: "Syntax: comments"
+		description: Syntax highlighting for comments
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: code-function
+		title: "Syntax: functions"
+		description: Syntax highlighting for functions
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: code-keyword
+		title: "Syntax: keywords"
+		description: Syntax highlighting for keywords
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: code-important
+		title: "Syntax: important"
+		description: Syntax highlighting for important text
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: code-operator
+		title: "Syntax: operators"
+		description: Syntax highlighting for operators
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: code-property
+		title: "Syntax: properties"
+		description: Syntax highlighting for properties
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: code-punctuation
+		title: "Syntax: punctuation"
+		description: Syntax highlighting for punctuation
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: code-string
+		title: "Syntax: strings"
+		description: Syntax highlighting for strings
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: code-tag
+		title: "Syntax: tags"
+		description: Syntax highlighting for tags
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: code-value
+		title: "Syntax: values"
+		description: Syntax highlighting for values
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: dataview
+		title: Dataview
+		type: heading
+		level: 2
+		collapsed: true
+	-
+		id: trim-cols
+		title: Trim Dataview columns
+		description: Disables word wrapping in table cells, and trims long text
+		type: class-toggle
+		default: true
+	-
+		id: max-col-width
+		title: Dataview maximum column width
+		description: Maximum width for Dataview columns, accepts any CSS width value
+		type: variable-text
+		default: 18em
+	-
+		id: embed-blocks
+		title: Embeds and transclusions
+		type: heading
+		level: 2
+		collapsed: true
+	-
+		id: embed-strict
+		title: Use strict embed style globally
+		description: Transclusions appear seamlessly in the flow of text. Can be enabled per file using the embed-strict helper class
+		type: class-toggle
+		default: false
+	-
+		id: embed-hide-title
+		title: Hide embed titles
+		description: Hide title of the transcluded file
+		type: class-toggle
+		default: false
+	-
+		id: embed-underline
+		title: Underline embedded text
+		description: Transcluded text is underlined. Can be enabled per file using the embed-underline helper class
+		type: class-toggle
+		default: false
+	-
+		id: embed-decoration-style
+		title: Embedded text underline style
+		type: variable-select
+		description: Requires underlines to be enabled
+		allowEmpty: true
+		default: solid
+		options:
+			-
+				label: Solid
+				value: solid
+			-
+				label: Dashed
+				value: dashed
+			-
+				label: Dotted
+				value: dotted
+			-
+				label: Double
+				value: double
+			-
+				label: Wavy
+				value: wavy
+	-
+		id: embed-decoration-color
+		title: Embedded text underline color
+		type: variable-themed-color
+		description: Requires underlines to be enabled
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: graphs
+		title: Graphs
+		type: heading
+		level: 2
+		collapsed: true
+	-
+		id: graph-line
+		title: Line color
+		description: Changing graph colors requires closing and reopening graph panes or restarting Obsidian
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: graph-node
+		title: Node color
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: graph-node-focused
+		title: Active node color
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-  
+		id: graph-node-tag
+		title: Tag node color
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-  
+		id: graph-node-attachment
+		title: Attachment node color
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-  
+		id: graph-node-unresolved
+		title: Unresolved node color
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: headings
+		title: Headings
+		type: heading
+		level: 2
+		collapsed: true
+	-
+		id: level-1-headings
+		title: Level 1 Headings
+		type: heading
+		level: 3
+		collapsed: true
+	-
+		id: h1-font
+		title: H1 font
+		description: Name of the font as it appears on your system
+		type: variable-text
+		default: ''
+	-
+		id: h1-size
+		title: H1 font size
+		description: Accepts any CSS font-size value
+		type: variable-text
+		default: 1.125em
+	-
+		id: h1-weight
+		title: H1 font weight
+		type: variable-number-slider
+		default: 600
+		min: 100
+		max: 900
+		step: 100
+	-
+		id: h1-color
+		title: H1 text color
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: h1-variant
+		title: H1 font variant
+		type: variable-select
+		allowEmpty: false
+		default: normal
+		options:
+			-
+				label: Normal
+				value: normal
+			-
+				label: Small caps
+				value: small-caps
+			-
+				label: All small caps
+				value: all-small-caps 
+	-
+		id: h1-style
+		title: H1 font style
+		type: variable-select
+		allowEmpty: false
+		default: normal
+		options:
+			-
+				label: Normal
+				value: normal
+			-
+				label: Italic
+				value: italic
+	-
+		id: h1-l
+		title: H1 divider line
+		description: Adds a border below the heading
+		type: class-toggle
+		default: false
+	-
+		id: level-2-headings
+		title: Level 2 Headings
+		type: heading
+		level: 3
+		collapsed: true
+	-
+		id: h2-font
+		title: H2 font
+		description: Name of the font as it appears on your system
+		type: variable-text
+		default: ''
+	-
+		id: h2-size
+		title: H2 font size
+		description: Accepts any CSS font-size value
+		type: variable-text
+		default: 1em
+	-
+		id: h2-weight
+		title: H2 font weight
+		type: variable-number-slider
+		default: 600
+		min: 100
+		max: 900
+		step: 100
+	-
+		id: h2-color
+		title: H2 text color
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: h2-variant
+		title: H2 font variant
+		type: variable-select
+		allowEmpty: false
+		default: normal
+		options:
+			-
+				label: Normal
+				value: normal
+			-
+				label: Small caps
+				value: small-caps
+			-
+				label: All small caps
+				value: all-small-caps
+	-
+		id: h2-style
+		title: H2 font style
+		type: variable-select
+		allowEmpty: false
+		default: normal
+		options:
+			-
+				label: Normal
+				value: normal
+			-
+				label: Italic
+				value: italic
+	-
+		id: h2-l
+		title: H2 divider line
+		description: Adds a border below the heading
+		type: class-toggle
+		default: false
+	-
+		id: level-3-headings
+		title: Level 3 Headings
+		type: heading
+		level: 3
+		collapsed: true
+	-
+		id: h3-font
+		title: H3 font
+		description: Name of the font as it appears on your system
+		type: variable-text
+		default: ''
+	-
+		id: h3-size
+		title: H3 font size
+		description: Accepts any CSS font-size value
+		type: variable-text
+		default: 1em
+	-
+		id: h3-weight
+		title: H3 font weight
+		type: variable-number-slider
+		default: 600
+		min: 100
+		max: 900
+		step: 100
+	-
+		id: h3-color
+		title: H3 text color
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: h3-variant
+		title: H3 font variant
+		type: variable-select
+		allowEmpty: false
+		default: normal
+		options:
+			-
+				label: Normal
+				value: normal
+			-
+				label: Small caps
+				value: small-caps
+			-
+				label: All small caps
+				value: all-small-caps
+	-
+		id: h3-style
+		title: H3 font style
+		type: variable-select
+		allowEmpty: false
+		default: normal
+		options:
+			-
+				label: Normal
+				value: normal
+			-
+				label: Italic
+				value: italic
+	-
+		id: h3-l
+		title: H3 divider line
+		description: Adds a border below the heading
+		type: class-toggle
+		default: false
+	-
+		id: level-4-headings
+		title: Level 4 Headings
+		type: heading
+		level: 3
+		collapsed: true
+	-
+		id: h4-font
+		title: H4 font
+		description: Name of the font as it appears on your system
+		type: variable-text
+		default: ''
+	-
+		id: h4-size
+		title: H4 font size
+		description: Accepts any CSS font-size value
+		type: variable-text
+		default: 0.9em
+	-
+		id: h4-weight
+		title: H4 font weight
+		type: variable-number-slider
+		default: 500
+		min: 100
+		max: 900
+		step: 100
+	-
+		id: h4-color
+		title: H4 text color
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: h4-variant
+		title: H4 font variant
+		type: variable-select
+		allowEmpty: false
+		default: small-caps
+		options:
+			-
+				label: Normal
+				value: normal
+			-
+				label: Small caps
+				value: small-caps
+			-
+				label: All small caps
+				value: all-small-caps 
+	-
+		id: h4-style
+		title: H4 font style
+		type: variable-select
+		allowEmpty: false
+		default: normal
+		options:
+			-
+				label: Normal
+				value: normal
+			-
+				label: Italic
+				value: italic
+	-
+		id: h4-l
+		title: H4 divider line
+		description: Adds a border below the heading
+		type: class-toggle
+		default: false   
+	-
+		id: level-5-headings
+		title: Level 5 Headings
+		type: heading
+		level: 3
+		collapsed: true
+	-
+		id: h5-font
+		title: H5 font
+		description: Name of the font as it appears on your system
+		type: variable-text
+		default: ''
+	- 
+		id: h5-size
+		title: H5 font size
+		description: Accepts any CSS font-size value
+		type: variable-text
+		default: 0.85em
+	-
+		id: h5-weight
+		title: H5 font weight
+		type: variable-number-slider
+		default: 500
+		min: 100
+		max: 900
+		step: 100
+	-
+		id: h5-color
+		title: H5 text color
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: h5-variant
+		title: H5 font variant
+		type: variable-select
+		allowEmpty: false
+		default: small-caps
+		options:
+			-
+				label: Normal
+				value: normal
+			-
+				label: Small caps
+				value: small-caps
+			-
+				label: All small caps
+				value: all-small-caps 
+	-
+		id: h5-style
+		title: H5 font style
+		type: variable-select
+		allowEmpty: false
+		default: normal
+		options:
+			-
+				label: Normal
+				value: normal
+			-
+				label: Italic
+				value: italic
+	-
+		id: h5-l
+		title: H5 divider line
+		description: Adds a border below the heading
+		type: class-toggle
+		default: false
+	-
+		id: level-6-headings
+		title: Level 6 Headings
+		type: heading
+		level: 3
+		collapsed: true
+	-
+		id: h6-font
+		title: H6 font
+		description: Name of the font as it appears on your system
+		type: variable-text
+		default: ''
+	-
+		id: h6-size
+		title: H6 font size
+		description: Accepts any CSS font-size value
+		type: variable-text
+		default: 0.85em
+	-
+		id: h6-weight
+		title: H6 font weight
+		type: variable-number-slider
+		default: 400
+		min: 100
+		max: 900
+		step: 100
+	-
+		id: h6-color
+		title: H6 text color
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: h6-variant
+		title: H6 font variant
+		type: variable-select
+		allowEmpty: false
+		default: small-caps
+		options:
+			-
+				label: Normal
+				value: normal
+			-
+				label: Small caps
+				value: small-caps
+			-
+				label: All small caps
+				value: all-small-caps
+	-
+		id: h6-style
+		title: H6 font style
+		type: variable-select
+		allowEmpty: false
+		default: normal
+		options:
+			-
+				label: Normal
+				value: normal
+			-
+				label: Italic
+				value: italic
+	-
+		id: h6-l
+		title: H6 divider line
+		type: class-toggle
+		description: Adds a border below the heading
+		default: false
+	-
+		id: icons
+		title: Icons
+		type: heading
+		level: 2
+		collapsed: true
+	-
+		id: icon-muted
+		title: Icon opacity (inactive)
+		type: variable-number-slider
+		default: 0.5
+		min: 0.25
+		max: 1
+		step: 0.05
+	-
+		id: icon-color
+		title: Icon color
+		type: variable-themed-color
+		opacity: true
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: icon-color-hover
+		title: Icon color (hover)
+		type: variable-themed-color
+		opacity: true
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: icon-color-active
+		title: Icon color (active)
+		type: variable-themed-color
+		opacity: true
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: icon-color-focused
+		title: Icon color (focused)
+		type: variable-themed-color
+		opacity: true
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: images
+		title: Images
+		type: heading
+		level: 2
+		collapsed: true
+	-
+		id: image-muted
+		title: Image opacity in dark mode
+		description: Level of fading for images in dark mode. Hover over images to display at full brightness.
+		type: variable-number-slider
+		default: 0.7
+		min: 0.25
+		max: 1
+		step: 0.05
+	-
+		id: zoom-off
+		title: Disable image zoom
+		description: Turns off click + hold to zoom images
+		type: class-toggle
+	-
+		id: image-grid-fit
+		title: Image grid crop
+		description: Sets how images get cropped in a grid
+		type: variable-select
+		default: cover
+		options:
+			-
+				label: Crop to fit
+				value: cover
+			-
+				label: Show full image
+				value: contain
+	-
+		id: image-grid-background
+		title: Image grid background
+		description: Background of images in cells, useful when images are not cropped to fit
+		type: variable-themed-color
+		opacity: true
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: indentation-guides
+		title: Indentation guides
+		type: heading
+		level: 2
+		collapsed: true
+	-
+		id: ig-adjust-reading
+		title: Horizontal adjustment in reading mode
+		type: variable-number-slider
+		default: -0.65
+		min: -1.2
+		max: 0
+		step: 0.05
+		format: em
+	-
+		id: ig-adjust-edit
+		title: Horizontal adjustment in edit mode
+		type: variable-number-slider
+		default: -1
+		min: -10
+		max: 10
+		step: 1
+		format: px
+	-
+		id: indentation-guide-color
+		title: Indentation guide color
+		type: variable-themed-color
+		format: hex
+		opacity:  true
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: indentation-guide-color-active
+		title: Indentation guide color (active)
+		type: variable-themed-color
+		format: hex
+		opacity:  true
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: links
+		title: Links
+		type: heading
+		level: 2
+		collapsed: true
+	-
+		id: links-internal
+		title: Internal links
+		type: heading
+		level: 3
+		collapsed: true
+	-
+		id: link-color
+		title: Internal link color
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: link-color-hover
+		title: Internal link color (hover)
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: link-unresolved-opacity
+		title: Unresolved link opacity
+		type: variable-number-slider
+		default: 0.7
+		min: 0.25
+		max: 1
+		step: 0.05
+	-
+		id: link-unresolved-color
+		title: Unresolved link color
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: link-unresolved-decoration-color
+		title: Unresolved link underline color
+		type: variable-themed-color
+		format: hex
+		opacity:  true
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: links-external
+		title: External links
+		type: heading
+		level: 3
+		collapsed: true
+	-
+		id: link-external-color
+		title: External link color
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: link-external-color-hover
+		title: External link color (hover)
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: lists
+		title: Lists and tasks
+		type: heading
+		level: 2
+		collapsed: true
+	-
+		id: checkbox-color
+		title: Checkbox color
+		description: Background color for completed tasks
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: checkbox-shape
+		title: Checkbox shape
+		type: class-select
+		allowEmpty: false
+		default: checkbox-circle
+		options:
+			-
+				label: Circle
+				value: checkbox-circle
+			-
+				label: Square
+				value: checkbox-square
+	-
+		id: minimal-strike-lists
+		title: Strike completed tasks
+		description: Adds strikethrough line and greyed text for completed tasks
+		type: class-toggle
+		default: false
+	-
+		id: list-spacing
+		title: List item spacing
+		description: Vertical space between list items in em units
+		type: variable-number-slider
+		default: 0.075
+		min: 0
+		max: 0.3
+		step: 0.005
+		format: em
+	-
+		id: list-indent
+		title: Nested list indentation
+		description: Horizontal space from left in em units
+		type: variable-number-slider
+		default: 2
+		min: 1
+		max: 3.5
+		step: 0.1
+		format: em
+	-
+		id: sidebars
+		title: Sidebars
+		type: heading
+		level: 2
+		collapsed: true
+	-
+		id: sidebar-lines-off
+		title: Disable sidebar relationship lines
+		description: Turns off lines in file navigation
+		type: class-toggle
+	-
+		id: sidebar-tabs-style
+		title: Sidebar tab style
+		type: class-select
+		allowEmpty: false
+		default: sidebar-tabs-default
+		options:
+			-
+				label: Index round
+				value: sidebar-tabs-index
+			-
+				label: Index square
+				value: sidebar-tabs-square
+			-
+				label: Modern compact
+				value: sidebar-tabs-default
+			-
+				label: Modern wide
+				value: sidebar-tabs-wide
+			-
+				label: Underline
+				value: sidebar-tabs-underline
+	-
+		id: mobile-left-sidebar-width
+		title: Mobile left sidebar width
+		description: Maximum width for pinned left sidebar on mobile
+		type: variable-number
+		default: 280
+		format: pt
+	-
+		id: mobile-right-sidebar-width
+		title: Mobile right sidebar width
+		description: Maximum width for pinned right sidebar on mobile
+		type: variable-number
+		default: 240
+		format: pt
+	-
+		id: tables
+		title: Tables
+		type: heading
+		level: 2
+		collapsed: true
+	-
+		id: table-text-size
+		title: Table font size
+		description: All of the following settings apply to all tables globally. To turn on these features on a per-note basis use helper classes. See documentation.
+		type: variable-text
+		default: 1em
+	-
+		id: maximize-tables-off
+		title: Maximize table width (beta)
+		description: Tables fill the width of the line
+		type: class-select
+		allowEmpty: false
+		default: maximize-tables
+		options:
+			-
+				label: Always
+				value: maximize-tables
+			-
+				label: Automatic
+				value: maximize-tables-auto
+			-
+				label: Never
+				value: maximize-tables-off
+	-
+		id: row-lines
+		title: Row lines
+		description: Display borders between table rows globally
+		type: class-toggle
+		default: false
+	-
+		id: col-lines
+		title: Column lines
+		description: Display borders between table columns globally
+		type: class-toggle
+		default: false
+	-
+		id: table-lines
+		title: Cell lines
+		description: Display borders around all table cells globally
+		type: class-toggle
+		default: false 
+	-
+		id: row-alt
+		title: Striped rows
+		description: Display striped background in alternating table rows globally
+		type: class-toggle
+		default: false
+	-
+		id: col-alt
+		title: Striped columns
+		description: Display striped background in alternating table columns globally
+		type: class-toggle
+		default: false
+	-
+		id: table-tabular
+		title: Tabular figures
+		description: Use fixed width numbers in tables globally
+		type: class-toggle
+		default: false
+	-
+		id: table-numbers
+		title: Row numbers
+		description: Display row numbers in tables globally
+		type: class-toggle
+		default: false
+	-
+		id: table-nowrap
+		title: Disable line wrap
+		description: Turn off line wrapping in table cells globally
+		type: class-toggle
+		default: false
+	-
+		id: row-hover
+		title: Highlight active row
+		description: Highlight rows on hover
+		type: class-toggle
+		default: false
+	-
+		id: table-row-background-hover
+		title: Active row background
+		description: Background color for hovered tables rows
+		type: variable-themed-color
+		format: hex
+		opacity: true
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: tabs
+		title: Tabs
+		type: heading
+		level: 2
+		collapsed: true
+	-
+		id: header-height
+		title: Tab bar height
+		type: variable-text
+		default: 40px
+	-
+		id: tabs-style
+		title: Tab style
+		type: class-select
+		allowEmpty: false
+		default: tabs-default
+		options:
+			-
+				label: Index round
+				value: tabs-default
+			-
+				label: Index square
+				value: tabs-square
+			-
+				label: Modern
+				value: tabs-modern
+			-
+				label: Underline
+				value: tabs-underline
+	-
+		id: minimal-tab-text-color
+		title: Tab text color
+		type: variable-themed-color
+		format: hex
+		opacity: true
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: minimal-tab-text-color-active
+		title: Tab text color (active)
+		type: variable-themed-color
+		format: hex
+		opacity: true
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: tab-stacks
+		title: Tab stacks
+		type: heading
+		level: 2
+		collapsed: true
+	-
+		id: tab-stacked-pane-width
+		title: Stacked width
+		type: variable-number
+		description: Width of a stacked tab in pixels
+		default: 700
+		format: px
+	-
+		id: tab-stacked-header-width
+		title: Spine width
+		type: variable-number
+		description: Width of the spine in pixels
+		default: 40
+		format: px
+	-
+		id: tab-stacked-spine-orientation
+		title: Spine text orientation
+		type: class-select
+		default: tab-stack-top
+		options:
+			-
+				label: Top
+				value: tab-stack-top
+			-
+				label: Top flipped
+				value: tab-stack-top-flipped
+			-
+				label: Bottom
+				value: tab-stack-bottom
+			-
+				label: Bottom flipped
+				value: tab-stack-bottom-flipped
+			-
+				label: Center
+				value: tab-stack-center
+			-
+				label: Center flipped
+				value: tab-stack-center-flipped
+	-
+		id: tags
+		title: Tags
+		type: heading
+		level: 2
+		collapsed: true
+	-
+		id: minimal-unstyled-tags
+		title: Plain tags
+		description: Tags will render as normal text, overrides settings below
+		type: class-toggle
+		default: false
+	-
+		id: tag-radius
+		title: Tag shape
+		type: variable-select
+		default: 14px
+		options:
+			-
+				label: Pill
+				value: 14px
+			-
+				label: Rounded
+				value: 4px
+			-
+				label: Square
+				value: 0px
+	-
+		id: tag-border-width
+		title: Tag border width
+		type: variable-select
+		default: 1px
+		options:
+			-
+				label: None
+				value: 0
+			-
+				label: Thin
+				value: 1px
+			-
+				label: Thick
+				value: 2px
+	-
+		id: tag-color
+		title: Tag text color
+		type: variable-themed-color
+		opacity: true
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: tag-background
+		title: Tag background color
+		type: variable-themed-color
+		opacity: true
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: tag-background-hover
+		title: Tag background color (hover)
+		type: variable-themed-color
+		opacity: true
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: text
+		title: Text
+		type: heading
+		level: 2
+		collapsed: true
+	-
+		id: tx1
+		title: Normal text color
+		type: variable-themed-color
+		description: Primary text color used by default across all elements
+		opacity: true
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: hl1
+		title: Selected text background
+		type: variable-themed-color
+		opacity: true
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: hl2
+		title: Highlighted text background
+		type: variable-themed-color
+		opacity: true
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: tx2
+		title: Muted text color
+		description: Secondary text such as sidebar note titles and table headings
+		type: variable-themed-color
+		opacity: true
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: tx3
+		title: Faint text color
+		description: tertiary text such as input placeholders, empty checkboxes, and disabled statuses
+		type: variable-themed-color
+		opacity: true
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: italic-color
+		title: Italic text color
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: bold-color
+		title: Bold text color
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: bold-weight
+		title: Bold text weight
+		type: variable-number-slider
+		default: 600
+		min: 100
+		max: 900
+		step: 100
+	-
+		id: spacing-p
+		title: Paragraph spacing
+		description: Space between paragraphs in reading mode
+		type: variable-text
+		default: 0.75em
+	-
+		id: titles
+		title: Titles
+		type: heading
+		level: 2
+		collapsed: true
+	-
+		id: tab-title-bar
+		title: Tab title bar
+		description: Tab title bar must be turned on in Appearance settings
+		type: heading
+		level: 3
+		collapsed: true
+	-
+		id: file-header-visibility
+		title: Tab title visibility
+		description: Visibility of the tab title text
+		type: class-select
+		default: minimal-tab-title-hover
+		options:
+			-
+				label: Hover only
+				value: minimal-tab-title-hover
+			-
+				label: Hidden
+				value: minimal-tab-title-hidden
+			-
+				label: Visible
+				value: minimal-tab-title-visible
+	-
+		id: file-header-font-size
+		title: Tab title font size
+		description: Accepts any CSS font-size value
+		type: variable-text
+		default: 0.9em
+	-
+		id: file-header-font-weight
+		title: Tab title font weight
+		type: variable-number-slider
+		default: 400
+		min: 100
+		max: 900
+		step: 100
+	-
+		id: file-header-justify
+		title: Tab title alignment
+		type: variable-select
+		default: center
+		options:
+			-
+				label: Center
+				value: center
+			-
+				label: Left
+				value: left
+	-
+		id: title-color
+		title: Tab title text color (active)
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: title-color-inactive
+		title: Tab title text color (inactive)
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: inline-title
+		title: Inline title
+		description: Inline titles must be turned on in Appearance settings
+		type: heading
+		level: 3
+		collapsed: true
+	-
+		id: inline-title-font
+		title: Inline title font
+		description: Name of the font as it appears on your system
+		type: variable-text
+		default: ''
+	-
+		id: inline-title-size
+		title: Inline title font size
+		description: Accepts any CSS font-size value
+		type: variable-text
+		default: 1.125em
+	-
+		id: inline-title-weight
+		title: Inline title font weight
+		type: variable-number-slider
+		default: 600
+		min: 100
+		max: 900
+		step: 100
+	-
+		id: inline-title-color
+		title: Inline title text color (active)
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: translucency
+		title: Translucency
+		type: heading
+		level: 2
+		collapsed: true
+	-
+		id: workspace-background-translucent
+		title: Translucent background color
+		type: variable-themed-color
+		opacity: true
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: window-frame
+		title: Window frame
+		type: heading
+		level: 2
+		collapsed: true
+	-
+		id: window-title-off
+		title: Hide window frame title
+		description: Hide title in the custom title bar
+		type: class-toggle
+	-
+		id: frame-background
+		title: Frame background
+		description: Requires colorful window frame
+		type: variable-themed-color
+		opacity: true
+		format: hsl-split
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: frame-icon-color
+		title: Frame icon color
+		description: Requires colorful frame
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: titlebar-text-color-focused
+		title: Frame title color (focused)
+		description: Requires custom title bar
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: titlebar-text-color
+		title: Frame title color (inactive)
+		description: Requires custom title bar
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: titlebar-text-weight
+		title: Frame title font weight
+		description: Requires custom title bar
+		type: variable-number-slider
+		default: 600
+		min: 100
+		max: 900
+		step: 100
+*/
+
+/* @settings
+name: Minimal Cards
+id: minimal-cards-style
+settings:
+	-
+		id: cards-min-width
+		title: Card minimum width
+		type: variable-text
+		default: 180px
+	-
+		id: cards-max-width
+		title: Card maximum width
+		description: Default fills the available width, accepts valid CSS units
+		type: variable-text
+		default: 1fr
+	-
+		id: cards-mobile-width
+		title: Card minimum width on mobile
+		type: variable-text
+		default: 120px
+	-
+		id: cards-padding
+		title: Card padding
+		type: variable-text
+		default: 1.2em
+	-
+		id: cards-image-height
+		title: Card maximum image height
+		type: variable-text
+		default: 400px
+	-
+		id: cards-border-width
+		title: Card border width
+		type: variable-text
+		default: 1px
+	- 
+		id: cards-background
+		title: Card background color
+		type: variable-themed-color
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+*/
+
