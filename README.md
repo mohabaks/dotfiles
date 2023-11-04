@@ -81,19 +81,6 @@ to your own needs. Customize and modify the dotfiles as per your requirements an
 
 ![dwm](https://imgur.com/AFZ7BJp.png)
 
-<table>
-  <tr>
-    <td align="center">Hyprland</td>
-    <td align="center">Bspwm</td>
-    <td align="center">Dwm</td>
-  </tr>
-  <tr>
-    <td align="center"><img src="https://imgur.com/LJTR8r2.png" alt="Image 1" width="200" /></td>
-    <td align="center"><img src="https://i.redd.it/xdv2g6cz2qq51.png" alt="Image 2" width="200" /></td>
-    <td align="center"><img src="https://camo.githubusercontent.com/ee04254a6e2fbba6371abd6433760908cc8086674af7922f6e202075648f72b5/68747470733a2f2f696d6775722e636f6d2f41465a37424a702e706e67" alt="Image 3" width="200" /></td>
-  </tr>
-</table>
-
 My previous rice based on this repo can be found [here](https://www.reddit.com/user/mohabaks/submitted/). Feel free to take a look and get an idea of how the dotfiles can enhance your own workflow.
 
 [dunst]: https://github.com/mohabaks/dotfiles/tree/master/.config/dunst
