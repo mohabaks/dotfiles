@@ -3,7 +3,7 @@
   "modules-left": [
     "custom/arch",
     "hyprland/workspaces",
-    "tray"
+    "tray",
   ],
   "modules-center": [
     "clock"

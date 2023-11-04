@@ -2,25 +2,42 @@
   "layer": "top",
   "modules-left": [
     "custom/arch",
-    "network",
-    "custom/mail",
-    "custom/pacman",
-    "custom/vpn",
-    "tray"
+    "hyprland/workspaces"
   ],
   "modules-center": [
     "clock"
   ],
   "modules-right": [
+    "custom/open",
+    "network",
+    "custom/close",
+    "custom/open",
+    "custom/mail",
+    "custom/close",
+    "custom/open",
+    "custom/pacman",
+    "custom/close",
+    "custom/open",
+    "custom/vpn",
+    "custom/close",
+    "custom/open",
     "temperature",
+    "custom/close",
+    "custom/open",
     "disk",
+    "custom/close",
+    "custom/open",
     "memory",
+    "custom/close",
+    "custom/open",
     "cpu",
-    "battery"
+    "custom/close",
+    "custom/open",
+    "battery",
+    "custom/close"
   ],
   "hyprland/workspaces": {
     "format": "{name}",
-    "format": "{icon}",
     "tooltip": false,
     "all-outputs": true,
     "format-icons": {
@@ -30,6 +47,14 @@
   },
   "custom/arch": {
     "format": "<span font='11'> </span>",
+    "tooltip": false
+  },
+  "custom/open": {
+    "format": "<span color='#302a5c'>[</span>",
+    "tooltip": false
+  },
+  "custom/close": {
+    "format": "<span color='#302a5c'>]</span>",
     "tooltip": false
   },
   "clock": {
