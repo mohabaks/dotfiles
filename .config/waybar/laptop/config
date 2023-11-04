@@ -1,0 +1,122 @@
+{
+  "layer": "top",
+  "modules-left": [
+    "custom/arch",
+    "hyprland/workspaces"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "custom/open",
+    "network",
+    "custom/close",
+    "custom/open",
+    "custom/mail",
+    "custom/close",
+    "custom/open",
+    "custom/pacman",
+    "custom/close",
+    "custom/open",
+    "custom/vpn",
+    "custom/close",
+    "custom/open",
+    "temperature",
+    "custom/close",
+    "custom/open",
+    "disk",
+    "custom/close",
+    "custom/open",
+    "memory",
+    "custom/close",
+    "custom/open",
+    "cpu",
+    "custom/close",
+    "custom/open",
+    "battery",
+    "custom/close"
+  ],
+  "hyprland/workspaces": {
+    "format": "{name}",
+    "tooltip": false,
+    "all-outputs": true,
+    "format-icons": {
+      "active": "",
+      "default": ""
+    }
+  },
+  "custom/arch": {
+    "format": "<span font='11'> </span>",
+    "tooltip": false
+  },
+  "custom/open": {
+    "format": "<span color='#302a5c'>[</span>",
+    "tooltip": false
+  },
+  "custom/close": {
+    "format": "<span color='#302a5c'>]</span>",
+    "tooltip": false
+  },
+  "clock": {
+    "format": "<span color='#b4befe'></span>{:%H:%M}"
+  },
+  "network": {
+    "interface": "wlan0",
+    "format": "{ifname}",
+    "format-wifi": "<span color='#0188aa' >Net</span> {essid}",
+    "format-disconnected": "<span color='#0188aa'>Net</span> No Network",
+    "tooltip": false
+  },
+  "custom/mail": {
+    "format": "<span color='#ec0101' >Msg</span>{}",
+    "interval": 60,
+    "tooltip": false,
+    "exec": "status_mail"
+  },
+  "custom/pacman": {
+    "format": "<span color='#fea44c' >Pkg</span> {}",
+    "tooltip": false,
+    "interval": 3600,
+    "exec": "checkupdates | wc -l",
+    "exec-if": "exit 0",
+    "on-click": "setsid -f st -e sudo pacman -Syu --noconfirm",
+    "signal": 8
+  },
+  "custom/vpn": {
+    "format": "<span color='#367bf0' >Vpn</span> {}",
+    "tooltip": false,
+    "interval": 60,
+    "exec": "status_vpn"
+  },
+  "disk": {
+    "interval": 30,
+    "format": "<span color='#8f04ae' >Dsk</span> {percentage_used}%",
+    "path": "/"
+  },
+  "temperature": {
+    "critical-threshold": 60,
+    "tooltip": false,
+    "format": "<span color='#0188aa' >Tmp</span> {temperatureC}°C"
+  },
+  "memory": {
+    "interval": 30,
+    "format": "<span color='#ee8109' >Mem</span> {percentage}%",
+    "on-click": "setsid -f st -e htop",
+    "max-length": 10
+  },
+  "cpu": {
+    "interval": 10,
+    "format": "<span color='#277fff' >Cpu</span> {avg_frequency}%",
+    "on-click": "setsid -f st -e htop",
+    "max-length": 10
+  },
+  "battery": {
+    "format": "<span color='#de1b2f' >Bat</span> {capacity}%",
+    "format-charging": "<span color='#8f04ae'>Bat</span> Charging {capacity}%",
+    "tooltip": false
+  },
+  "tray": {
+    "icon-size": 21,
+    "spacing": 10
+  }
+}
