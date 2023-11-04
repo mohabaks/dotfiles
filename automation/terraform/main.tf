@@ -405,7 +405,7 @@ resource "docker_network" "WGI" {
 
     options      = {
         "ipvlan_mode" = "l2"
-        "parent"      = "lxdbr2"
+        "parent"      = "lxdbr1"
     }
 
     ipam_config {

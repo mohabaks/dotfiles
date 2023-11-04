@@ -13,7 +13,7 @@
 # About
 
 This repository contains various scripts, configuration files, and settings that 
-I use to customize my workstation and development environment.
+I use to customize my workstation.
 
 ## Contents
 
@@ -21,7 +21,7 @@ This repository includes the following:
 
 |Application|Configs|
 |-----------|-----------|
-|WM|[i3],[bspwm],[dwm]|
+|WM|[i3],[bspwm],[dwm], [hyprland]|
 |Bar|[polybar],[lemonbar],[dwmblocks],[conky]|
 |Shell|[zsh],[bash]|
 |Terminal|[tmux],[urxvt],[st],[alacrity]|
@@ -51,7 +51,7 @@ To use these dotfiles on your system, follow these steps:
 4. Manually copy the desired dotfiles to their respective locations in your system.
 
 > Please note that my dotfiles have evolved and changed over time to suit different 
-  operating systems and tools. It is essential to review and understand each dotfile's 
+  Window Manager. It is essential to review and understand each dotfile's 
   purpose and potential compatibility with your specific environment before copying 
   it to your system.
 
@@ -80,6 +80,7 @@ You can find screenshots or previews of my previous rice based on this repo [her
 [i3]: https://github.com/mohabaks/dotfiles/tree/master/.config/i3-gaps
 [bspwm]: https://github.com/mohabaks/dotfiles/tree/master/.config/bspwm
 [dwm]: https://github.com/mohabaks/dotfiles/tree/master/.config/dwm
+[hyprland]: https://github.com/mohabaks/dotfiles/tree/master/.config/hypr
 [polybar]: https://github.com/mohabaks/dotfiles/tree/master/.config/polybar
 [lemonbar]: https://github.com/mohabaks/dotfiles/tree/master/.config/lemonbar
 [dwmblocks]: https://github.com/mohabaks/dotfiles/tree/master/.config/dwmblocks

@@ -37,6 +37,11 @@ go install -v github.com/OJ/gobuster/v3@latest
 move
 }
 
+hebgp(){
+go install -v github.com/mohabaks/hebgp@latest
+move
+}
+
 gospider(){
 go install -v github.com/jaeles-project/gospider@latest
 move
@@ -87,9 +92,14 @@ GO111MODULE=off go get -u github.com/haccer/subjack
 move
 }
 
+awsenumerator(){
+go install -v github.com/shabarkin/aws-enumerator@latest
+move
+}
 
 main(){
        # Add function for tool to build
+       awsenumerator
 }
 
 main

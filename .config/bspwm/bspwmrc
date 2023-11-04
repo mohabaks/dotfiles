@@ -24,8 +24,8 @@ then
         # Monitor & Destop Settings
         # 
 
-        bspc monitor HDMI1 -d 1 2 3 4 5 
-        #bspc monitor eDP1 -d 3 4 5 6 7 8
+        #bspc monitor HDMI1 -d 1 2 3 4 
+        bspc monitor eDP1 -d 1 2 3 4 5
         bspc monitor HDMI2 -d 6 7 8 9 10
         bspc config -m HDMI2 window_gap          10
         bspc config -m HDMI2 border_width        2
@@ -113,4 +113,4 @@ bspc rule -a Lxappearance state=floating focus=on
 #
 
 # conky
-conky -c $HOME/.conkyrc -d
+#conky -c $HOME/.conkyrc -d

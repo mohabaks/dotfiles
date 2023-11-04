@@ -5,11 +5,11 @@
 
 # terminal emulator
 super + Return
-	urxvtc
+	st
 
 # program launcher
 super + d
-        dmenu_run -p " RUN " -x 5 -y 5 -z 1350 -h 22 -nf "#c3d4f8" -sb "#198388" -sf "#c3d4f8" -nb "#1c212a" -fn "GohuFont-8"
+        dmenu_run -p " RUN " -h 22 -nf "#c3d4f8" -sb "#198388" -sf "#c3d4f8" -nb "#1c212a" -fn "Anonymous Pro-8"
 super + @space
         dmenu_extended_run
 

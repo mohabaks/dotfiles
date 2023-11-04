@@ -1,5 +1,6 @@
 #! /bin/sh
-# Description: Simple script to build go tools from source
+# Description: Simple script to build python tools from source with the help
+#              of docker
 set -e
 set -x
 
@@ -34,11 +35,7 @@ move
 eyewitness(){
 git clone https://github.com/RedSiege/EyeWitness.git
 cd EyeWitness
-pip install netaddr \
-    selenium \
-    fuzzywuzzy \
-    pyvirtualdisplay \
-    python-Levenshtein
+pip install netaddr selenium fuzzywuzzy pyvirtualdisplay python-Levenshtein
 pyinstaller --onefile Python/EyeWitness.py
 move
 }
@@ -86,9 +83,62 @@ pyinstaller --onefile unfurl.py
 move
 }
 
-
-main(){
-       # Add function for tool to build
+certipy(){
+git clone https://github.com/ly4k/Certipy.git
+cd Certipy
+sed -i 's/\\\\/\//' Certipy.spec
+pip install impacket requests requests_ntlm asn1crypto
+pyinstaller Certipy.spec
+move
 }
 
-main
+passthecert(){
+git clone https://github.com/AlmondOffSec/PassTheCert.git
+cd PassTheCert
+pip install impacket requests requests_ntlm
+pyinstaller -F Python/passthecert.py
+move
+}
+
+gitdumper(){
+git clone https://github.com/arthaud/git-dumper.git
+cd git-dumper
+pip install -r requirements.txt
+pyinstaller -F git_dumper.py
+move
+}
+
+s3accountsearch(){
+git clone https://github.com/WeAreCloudar/s3-account-search.git
+cd s3-account-search
+pip install boto3 aws-assume-role-lib
+pyinstaller -F s3_account_search/cli.py
+cp $(pwd)/dist/cli /opt/bin/s3-account-search
+}
+
+jwt_tool(){
+git clone https://github.com/ticarpi/jwt_tool.git
+cd jwt_tool
+pip install -r requirements.txt
+pyinstaller -F jwt_tool.py
+move
+}
+
+jwt_tool(){
+git clone https://github.com/ticarpi/jwt_tool.git
+cd jwt_tool
+pip install -r requirements.txt
+pyinstaller -F jwt_tool.py
+move
+}
+
+pacu(){
+git clone https://github.com/RhinoSecurityLabs/pacu.git
+cd pacu
+pip install -r requirements.txt
+pyinstaller --hidden-import pacu -F cli.py
+cp $(pwd)/dist/cli /opt/bin/pacu
+}
+
+# list of binary to build
+pacu
