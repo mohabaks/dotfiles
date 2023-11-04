@@ -22,7 +22,7 @@ This repository includes the following:
 |Application|Configs|
 |-----------|-----------|
 |WM|[i3],[bspwm],[dwm], [hyprland]|
-|Bar|[polybar],[lemonbar],[dwmblocks],[conky]|
+|Bar|[polybar],[lemonbar],[dwmblocks],[conky], [waybar]|
 |Shell|[zsh],[bash]|
 |Terminal|[tmux],[urxvt],[st],[alacrity]|
 |Editor|[vim]|
@@ -77,13 +77,14 @@ to your own needs. Customize and modify the dotfiles as per your requirements an
 
 ![bspwm](https://camo.githubusercontent.com/640f38bfcbabc0eecc5cebb0aa4364eec172a10a88c4a28f1c27d8ffcbe37067/68747470733a2f2f692e726564642e69742f6d346867356e376469626236312e706e67)
 
-`i3`
+`i3-gaps`
 
 ![i3](https://i.redd.it/z6262cn31zx01.png)
 
 My previous rice based on this repo can be found [here](https://www.reddit.com/user/mohabaks/submitted/). Feel free to take a look and get an idea of how the dotfiles can enhance your own workflow.
 
 [dunst]: https://github.com/mohabaks/dotfiles/tree/master/.config/dunst
+[waybar]: https://github.com/mohabaks/dotfiles/tree/master/.config/waybar
 [docker]: https://github.com/mohabaks/dotfiles/tree/master/etc/docker
 [lxd]: https://github.com/mohabaks/dotfiles/tree/master/etc/lxc
 [colors]: https://github.com/mohabaks/dotfiles/tree/master/.colors
