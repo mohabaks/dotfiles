@@ -63,19 +63,23 @@ to this repository, you are welcome to fork this repository and adapt the dotfil
 to your own needs. Customize and modify the dotfiles as per your requirements and preferences.
 
 
-## Screenshots/Previews
+## Screenshots
 
 `hyprland`
+
 ![hyprland](https://imgur.com/LJTR8r2.png)
 
 `dwm`
+
 ![dwm](https://imgur.com/AFZ7BJp.png)
 
 `bspwm`
+
 ![bspwm](https://camo.githubusercontent.com/640f38bfcbabc0eecc5cebb0aa4364eec172a10a88c4a28f1c27d8ffcbe37067/68747470733a2f2f692e726564642e69742f6d346867356e376469626236312e706e67)
 
 `i3`
-![i3](https://www.reddit.com/media?url=https%3A%2F%2Fi.redd.it%2Fz6262cn31zx01.png)
+
+![i3](https://i.redd.it/z6262cn31zx01.png)
 
 My previous rice based on this repo can be found [here](https://www.reddit.com/user/mohabaks/submitted/). Feel free to take a look and get an idea of how the dotfiles can enhance your own workflow.
 
