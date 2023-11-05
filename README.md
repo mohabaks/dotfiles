@@ -86,7 +86,7 @@ My previous rice based on this repo can be found [here](https://www.reddit.com/u
 [dunst]: https://github.com/mohabaks/dotfiles/tree/master/.config/dunst
 [waybar]: https://github.com/mohabaks/dotfiles/tree/master/.config/waybar
 [docker]: https://github.com/mohabaks/dotfiles/tree/master/etc/docker
-[lxd]: https://github.com/mohabaks/dotfiles/tree/master/etc/lxc
+[lxd]: https://github.com/mohabaks/dotfiles/tree/master/etc/lxd
 [colors]: https://github.com/mohabaks/dotfiles/tree/master/.colors
 [Qubes-os]: https://github.com/mohabaks/dotfiles/tree/master/Qubes-os
 [FreeBSD]: https://github.com/mohabaks/dotfiles/tree/master/FreeBSD/Lenovo-ThinkPad-Yoga_260
