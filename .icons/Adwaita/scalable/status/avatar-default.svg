@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg height="128px" viewBox="0 0 128 128" width="128px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <linearGradient id="a" gradientUnits="userSpaceOnUse" x1="16.98286657496" x2="113.51232281881" y1="91.79046347784" y2="91.79046347784">
+        <stop offset="0" stop-color="#e6f0fc"/>
+        <stop offset="0.0383542" stop-color="#cadff8" stop-opacity="0.996078"/>
+        <stop offset="0.124655" stop-color="#d4e5f9" stop-opacity="0.992157"/>
+        <stop offset="0.901364" stop-color="#b2d0f4" stop-opacity="0.964706"/>
+        <stop offset="0.9589" stop-color="#d0e3f9" stop-opacity="0.964706"/>
+        <stop offset="1" stop-color="#98c1f1" stop-opacity="0.964706"/>
+    </linearGradient>
+    <linearGradient id="b" gradientUnits="userSpaceOnUse" x1="35.05556157496" x2="88.56691281881" y1="91.79046347784" y2="91.79046347784">
+        <stop offset="0" stop-color="#e6f0fc"/>
+        <stop offset="0.230125" stop-color="#cadff8" stop-opacity="0.996078"/>
+        <stop offset="0.383542" stop-color="#d4e5f9" stop-opacity="0.992157"/>
+        <stop offset="0.588996" stop-color="#b2d0f4" stop-opacity="0.964706"/>
+        <stop offset="0.753397" stop-color="#d0e3f9" stop-opacity="0.964706"/>
+        <stop offset="1" stop-color="#98c1f1" stop-opacity="0.964706"/>
+    </linearGradient>
+    <path d="m 65.007812 67.363281 c -24.257812 0.027344 -44.703124 16.957031 -49.898437 39.847657 c -1.597656 5.96875 1.65625 9.007812 5.269531 9.007812 h 88.402344 c 4.75 0 7.4375 -4.191406 6.222656 -8.734375 c -5.097656 -23.042969 -25.625 -40.109375 -49.996094 -40.121094 z m 0 0" fill="url(#a)"/>
+    <path d="m 89.351562 33.375 c 0 14.257812 -11.554687 25.8125 -25.8125 25.8125 c -14.257812 0 -25.816406 -11.554688 -25.816406 -25.8125 s 11.558594 -25.816406 25.816406 -25.816406 c 14.257813 0 25.8125 11.558594 25.8125 25.816406 z m 0 0" fill="url(#b)"/>
+    <path d="m 65.007812 64.082031 c -24.257812 0.03125 -44.703124 16.074219 -49.898437 38.96875 c -1.597656 5.96875 1.65625 9.007813 5.269531 9.007813 h 88.402344 c 4.75 0 7.4375 -4.191406 6.222656 -8.734375 c -5.097656 -23.042969 -25.625 -39.226563 -49.996094 -39.242188 z m 24.34375 -34.046875 c 0 14.257813 -11.554687 25.8125 -25.8125 25.8125 c -14.257812 0 -25.816406 -11.554687 -25.816406 -25.8125 c 0 -14.257812 11.558594 -25.816406 25.816406 -25.816406 c 14.257813 0 25.8125 11.558594 25.8125 25.816406 z m 0 0" fill="#f6f9fe" fill-opacity="0.996078"/>
+</svg>
