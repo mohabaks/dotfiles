@@ -37,7 +37,7 @@ This repository includes the following:
 |E-Mail Client|[mutt],[thunderbird]|
 |Containers|[docker],[lxd]|
 |Knowledge base\|Note-Taking|[obsidian], [joplin]|
-|Automation|[terraform]|
+|Automation|[terraform] [ansible]|
 |Misc|[colors],[Qubes-os],[FreeBSD],[scripts],[popups],[sxhkd]|
 
 
@@ -83,53 +83,54 @@ to your own needs. Customize and modify the dotfiles as per your requirements an
 
 My previous rice based on this repo can be found [here](https://www.reddit.com/user/mohabaks/submitted/). Feel free to take a look and get an idea of how the dotfiles can enhance your own workflow.
 
-[dunst]: https://github.com/mohabaks/dotfiles/tree/master/.config/dunst
-[waybar]: https://github.com/mohabaks/dotfiles/tree/master/.config/waybar
-[docker]: https://github.com/mohabaks/dotfiles/tree/master/etc/docker
-[lxd]: https://github.com/mohabaks/dotfiles/tree/master/etc/lxd
-[colors]: https://github.com/mohabaks/dotfiles/tree/master/.colors
-[Qubes-os]: https://github.com/mohabaks/dotfiles/tree/master/Qubes-os
 [FreeBSD]: https://github.com/mohabaks/dotfiles/tree/master/FreeBSD/Lenovo-ThinkPad-Yoga_260
-[scripts]: https://github.com/mohabaks/dotfiles/tree/master/.local/bin
-[i3]: https://github.com/mohabaks/dotfiles/tree/master/.config/i3-gaps
-[bspwm]: https://github.com/mohabaks/dotfiles/tree/master/.config/bspwm
-[dwm]: https://github.com/mohabaks/dotfiles/tree/master/.config/dwm
-[hyprland]: https://github.com/mohabaks/dotfiles/tree/master/.config/hypr
-[polybar]: https://github.com/mohabaks/dotfiles/tree/master/.config/polybar
-[lemonbar]: https://github.com/mohabaks/dotfiles/tree/master/.config/lemonbar
-[dwmblocks]: https://github.com/mohabaks/dotfiles/tree/master/.config/dwmblocks
-[conky]: https://github.com/mohabaks/dotfiles/tree/master/.config/conky
-[zsh]: https://github.com/mohabaks/dotfiles/tree/master/zsh
-[bash]: https://github.com/mohabaks/dotfiles/tree/master/bash
-[tmux]: https://github.com/mohabaks/dotfiles/blob/master/.config/tmux.conf
-[urxvt]: https://github.com/mohabaks/dotfiles/blob/master/.x/.Xresources
-[st]: https://github.com/mohabaks/dotfiles/tree/master/.config/st
+[Qubes-os]: https://github.com/mohabaks/dotfiles/tree/master/Qubes-os
 [alacrity]: https://github.com/mohabaks/dotfiles/tree/master/.config/alacritty
-[vim]: https://github.com/mohabaks/dotfiles/tree/master/vim
-[ranger]: https://github.com/mohabaks/dotfiles/tree/master/.config/ranger
-[pcmanfm]: https://github.com/mohabaks/dotfiles/tree/master/.config/pcmanfm
-[dmenu]: https://github.com/mohabaks/dotfiles/tree/master/.config/dmenu
-[rofi]: https://github.com/mohabaks/dotfiles/tree/master/.config/rofi
-[dmenu-extended]: https://github.com/mohabaks/dotfiles/tree/master/.config/dmenu-extended
-[firefox]: https://github.com/mohabaks/dotfiles/tree/master/.config/mozilla/firefox
-[qutebrowser]: https://github.com/mohabaks/dotfiles/tree/master/.config/qutebrowser
-[luakit]: https://github.com/mohabaks/dotfiles/tree/master/.config/luakit
-[mpv]: https://github.com/mohabaks/dotfiles/tree/master/.config/mpv
-[ncmpcpp]: https://github.com/mohabaks/dotfiles/tree/master/.config/ncmpcpp
-[mpd]: https://github.com/mohabaks/dotfiles/tree/master/.config/mpd
+[ansible]: https://github.com/mohabaks/dotfiles/tree/master/automation/ansible
+[bash]: https://github.com/mohabaks/dotfiles/tree/master/bash
+[bspwm]: https://github.com/mohabaks/dotfiles/tree/master/.config/bspwm
 [cava]: https://github.com/mohabaks/dotfiles/tree/master/.config/cava
+[colors]: https://github.com/mohabaks/dotfiles/tree/master/.colors
+[compton]: https://github.com/mohabaks/dotfiles/blob/master/.config/compton.conf
+[conky]: https://github.com/mohabaks/dotfiles/tree/master/.config/conky
 [discord]: https://github.com/mohabaks/dotfiles/tree/master/.config/BetterDiscord/themes
-[weechat]: https://github.com/mohabaks/dotfiles/tree/master/.config/weechat
-[irssi]: https://github.com/mohabaks/dotfiles/tree/master/.config/irssi
+[dmenu-extended]: https://github.com/mohabaks/dotfiles/tree/master/.config/dmenu-extended
+[dmenu]: https://github.com/mohabaks/dotfiles/tree/master/.config/dmenu
+[docker]: https://github.com/mohabaks/dotfiles/tree/master/etc/docker
+[dunst]: https://github.com/mohabaks/dotfiles/tree/master/.config/dunst
 [dust]: https://github.com/mohabaks/dotfiles/tree/master/.config/dunst
+[dwm]: https://github.com/mohabaks/dotfiles/tree/master/.config/dwm
+[dwmblocks]: https://github.com/mohabaks/dotfiles/tree/master/.config/dwmblocks
+[firefox]: https://github.com/mohabaks/dotfiles/tree/master/.config/mozilla/firefox
+[hyprland]: https://github.com/mohabaks/dotfiles/tree/master/.config/hypr
+[i3]: https://github.com/mohabaks/dotfiles/tree/master/.config/i3-gaps
+[irssi]: https://github.com/mohabaks/dotfiles/tree/master/.config/irssi
+[joplin]: https://github.com/mohabaks/dotfiles/tree/master/.config/joplin-desktop/
+[lemonbar]: https://github.com/mohabaks/dotfiles/tree/master/.config/lemonbar
+[luakit]: https://github.com/mohabaks/dotfiles/tree/master/.config/luakit
+[lxd]: https://github.com/mohabaks/dotfiles/tree/master/etc/lxd
+[mpd]: https://github.com/mohabaks/dotfiles/tree/master/.config/mpd
+[mpv]: https://github.com/mohabaks/dotfiles/tree/master/.config/mpv
+[mutt]: https://github.com/mohabaks/dotfiles/tree/master/.config/mutt
+[ncmpcpp]: https://github.com/mohabaks/dotfiles/tree/master/.config/ncmpcpp
+[obsidian]: https://github.com/mohabaks/dotfiles/tree/master/.config/obsidian/themes
+[pcmanfm]: https://github.com/mohabaks/dotfiles/tree/master/.config/pcmanfm
+[picom]: https://github.com/mohabaks/dotfiles/blob/master/.config/picom.conf
+[polybar]: https://github.com/mohabaks/dotfiles/tree/master/.config/polybar
+[popups]: https://github.com/mohabaks/dotfiles/tree/master/.config/popups
+[qutebrowser]: https://github.com/mohabaks/dotfiles/tree/master/.config/qutebrowser
+[ranger]: https://github.com/mohabaks/dotfiles/tree/master/.config/ranger
+[rofi]: https://github.com/mohabaks/dotfiles/tree/master/.config/rofi
+[scripts]: https://github.com/mohabaks/dotfiles/tree/master/.local/bin
+[st]: https://github.com/mohabaks/dotfiles/tree/master/.config/st
+[sxhkd]: https://github.com/mohabaks/dotfiles/tree/master/.config/sxhkd
+[terraform]: https://github.com/mohabaks/dotfiles/tree/master/automation/terraform
+[thunderbird]: https://github.com/mohabaks/dotfiles/tree/master/.config/thunderbird/chrome
+[tmux]: https://github.com/mohabaks/dotfiles/blob/master/.tmux.conf
+[urxvt]: https://github.com/mohabaks/dotfiles/blob/master/.x/.Xresources
+[vim]: https://github.com/mohabaks/dotfiles/tree/master/vim
+[waybar]: https://github.com/mohabaks/dotfiles/tree/master/.config/waybar
+[weechat]: https://github.com/mohabaks/dotfiles/tree/master/.config/weechat
 [xfce4-notifyd]: https://github.com/mohabaks/dotfiles/tree/master/.config/xfce4-notifyd/themes
 [zathura]: https://github.com/mohabaks/dotfiles/tree/master/.config/zathura
-[compton]: https://github.com/mohabaks/dotfiles/blob/master/.config/compton.conf
-[picom]: https://github.com/mohabaks/dotfiles/blob/master/.config/picom.conf
-[mutt]: https://github.com/mohabaks/dotfiles/tree/master/.config/mutt
-[thunderbird]: https://github.com/mohabaks/dotfiles/tree/master/.config/thunderbird/chrome
-[obsidian]: https://github.com/mohabaks/dotfiles/tree/master/.config/obsidian/themes
-[joplin]: https://github.com/mohabaks/dotfiles/tree/master/.config/joplin-desktop/
-[popups]: https://github.com/mohabaks/dotfiles/tree/master/.config/popups
-[terraform]: https://github.com/mohabaks/dotfiles/tree/master/automation/terraform
-[sxhkd]: https://github.com/mohabaks/dotfiles/tree/master/.config/sxhkd
+[zsh]: https://github.com/mohabaks/dotfiles/tree/master/zsh
