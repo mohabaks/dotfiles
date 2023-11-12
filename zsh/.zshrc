@@ -18,6 +18,7 @@ PROMPT_EOL_MARK=""
 # configure key keybindings
 bindkey -e                                        # emacs key bindings
 bindkey ' ' magic-space                           # do history expansion on space
+bindkey '^U' backward-kill-line                   # ctrl + U
 bindkey '^[[3;5~' kill-word                       # ctrl + Supr
 bindkey '^[[3~' delete-char                       # delete
 bindkey '^[[1;5C' forward-word                    # ctrl + ->
@@ -29,8 +30,8 @@ bindkey '^[[F' end-of-line                        # end
 bindkey '^[[Z' undo                               # shift + tab undo last action
 
 # enable completion features
-autoload -Uz compinit
-compinit -d ~/.cache/zcompdump
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit -d ~/.cache/zcompdump
 zstyle ':completion:*:*:*:*:*' menu select
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete
@@ -44,6 +45,7 @@ zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p
 zstyle ':completion:*' use-compctl false
 zstyle ':completion:*' verbose true
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+complete -C '/usr/bin/aws_completer' aws
 
 # History configurations
 HISTFILE=~/.zsh_history
@@ -91,22 +93,26 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 configure_prompt() {
-    prompt_symbol=㉿
+    #prompt_symbol=㉿
+    prompt_symbol=💀
+    # Skull emoji for root terminal
     [ "$EUID" -eq 0 ] && prompt_symbol=💀
     case "$PROMPT_ALTERNATIVE" in
         twoline)
-            PROMPT=$'%F{%(#.black.green)}┌──${debian_chroot:+($debian_chroot)─}${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))─}(%B%F{%(#.red.black)}%n$prompt_symbol%m%b%F{%(#.black.green)})-[%B%F{reset}%(6~.%-1~/…/%4~.%5~)%b%F{%(#.black.green)}]\n└─%B%(#.%F{red}#.%F{black}$)%b%F{reset} '
-            RPROMPT=$'%(?.. %? %F{red}%B⨯%b%F{reset})%(1j. %j %F{yellow}%B⚙%b%F{reset}.)'
+            PROMPT=$'%F{%(#.blue.red)}┌──${debian_chroot:+($debian_chroot)─}${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))─}(%F{green}%n%F{%(#.red.yellow)}'$prompt_symbol%f$'%F{blue}%m%F{%(#.blue.red)})-[%B%F{cyan}%(6~.%-1~/…/%4~.%5~)%b%F{%(#.blue.red)}]\n└─%B%(#.%F{red}#.%F{yellow}$)%b%F{reset} '
+            # Right-side prompt with exit codes and background processes
+            #RPROMPT=$'%(?.. %? %F{red}%B⨯%b%F{reset})%(1j. %j %F{yellow}%B⚙%b%F{reset}.)'
             ;;
         oneline)
-            PROMPT=$'${debian_chroot:+($debian_chroot)}${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))}%B%F{%(#.red.black)}%n@%m%b%F{reset}:%B%F{%(#.black.green)}%~%b%F{reset}%(#.#.$) '
+            PROMPT=$'${debian_chroot:+($debian_chroot)}${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))}%B%F{%(#.red.blue)}%n@%m%b%F{reset}:%B%F{%(#.blue.green)}%~%b%F{reset}%(#.#.$) '
             RPROMPT=
             ;;
         backtrack)
-            PROMPT=$'${debian_chroot:+($debian_chroot)}${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))}%B%F{red}%n@%m%b%F{reset}:%B%F{black}%~%b%F{reset}%(#.#.$) '
+            PROMPT=$'${debian_chroot:+($debian_chroot)}${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))}%B%F{red}%n@%m%b%F{reset}:%B%F{blue}%~%b%F{reset}%(#.#.$) '
             RPROMPT=
             ;;
     esac
+    unset prompt_symbol
 }
 
 # The following block is surrounded by two delimiters.
@@ -123,45 +129,45 @@ if [ "$color_prompt" = yes ]; then
     configure_prompt
 
     # enable syntax-highlighting
-    if [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && [ "$color_prompt" = yes ]; then
-        . /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    if [ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+        . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
         ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
         ZSH_HIGHLIGHT_STYLES[default]=none
-        ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=red,bold
+        ZSH_HIGHLIGHT_STYLES[unknown-token]=underline
         ZSH_HIGHLIGHT_STYLES[reserved-word]=fg=cyan,bold
         ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=green,underline
-        ZSH_HIGHLIGHT_STYLES[global-alias]=fg=magenta
+        ZSH_HIGHLIGHT_STYLES[global-alias]=fg=green,bold
         ZSH_HIGHLIGHT_STYLES[precommand]=fg=green,underline
-        ZSH_HIGHLIGHT_STYLES[commandseparator]=fg=black,bold
+        ZSH_HIGHLIGHT_STYLES[commandseparator]=fg=blue,bold
         ZSH_HIGHLIGHT_STYLES[autodirectory]=fg=green,underline
-        ZSH_HIGHLIGHT_STYLES[path]=underline
+        ZSH_HIGHLIGHT_STYLES[path]=bold
         ZSH_HIGHLIGHT_STYLES[path_pathseparator]=
         ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]=
-        ZSH_HIGHLIGHT_STYLES[globbing]=fg=black,bold
-        ZSH_HIGHLIGHT_STYLES[history-expansion]=fg=black,bold
+        ZSH_HIGHLIGHT_STYLES[globbing]=fg=blue,bold
+        ZSH_HIGHLIGHT_STYLES[history-expansion]=fg=blue,bold
         ZSH_HIGHLIGHT_STYLES[command-substitution]=none
-        ZSH_HIGHLIGHT_STYLES[command-substitution-delimiter]=fg=magenta
+        ZSH_HIGHLIGHT_STYLES[command-substitution-delimiter]=fg=magenta,bold
         ZSH_HIGHLIGHT_STYLES[process-substitution]=none
-        ZSH_HIGHLIGHT_STYLES[process-substitution-delimiter]=fg=magenta
-        ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=fg=magenta
-        ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=fg=magenta
+        ZSH_HIGHLIGHT_STYLES[process-substitution-delimiter]=fg=magenta,bold
+        ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=fg=magenta,bold
+        ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=fg=blue
         ZSH_HIGHLIGHT_STYLES[back-quoted-argument]=none
-        ZSH_HIGHLIGHT_STYLES[back-quoted-argument-delimiter]=fg=black,bold
+        ZSH_HIGHLIGHT_STYLES[back-quoted-argument-delimiter]=fg=blue,bold
         ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=yellow
         ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=yellow
         ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]=fg=yellow
         ZSH_HIGHLIGHT_STYLES[rc-quote]=fg=magenta
-        ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]=fg=magenta
-        ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]=fg=magenta
-        ZSH_HIGHLIGHT_STYLES[back-dollar-quoted-argument]=fg=magenta
+        ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]=fg=magenta,bold
+        ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]=fg=magenta,bold
+        ZSH_HIGHLIGHT_STYLES[back-dollar-quoted-argument]=fg=magenta,bold
         ZSH_HIGHLIGHT_STYLES[assign]=none
-        ZSH_HIGHLIGHT_STYLES[redirection]=fg=black,bold
+        ZSH_HIGHLIGHT_STYLES[redirection]=fg=blue,bold
         ZSH_HIGHLIGHT_STYLES[comment]=fg=black,bold
         ZSH_HIGHLIGHT_STYLES[named-fd]=none
         ZSH_HIGHLIGHT_STYLES[numeric-fd]=none
         ZSH_HIGHLIGHT_STYLES[arg0]=fg=green
         ZSH_HIGHLIGHT_STYLES[bracket-error]=fg=red,bold
-        ZSH_HIGHLIGHT_STYLES[bracket-level-1]=fg=black,bold
+        ZSH_HIGHLIGHT_STYLES[bracket-level-1]=fg=blue,bold
         ZSH_HIGHLIGHT_STYLES[bracket-level-2]=fg=green,bold
         ZSH_HIGHLIGHT_STYLES[bracket-level-3]=fg=magenta,bold
         ZSH_HIGHLIGHT_STYLES[bracket-level-4]=fg=yellow,bold
@@ -169,7 +175,7 @@ if [ "$color_prompt" = yes ]; then
         ZSH_HIGHLIGHT_STYLES[cursor-matchingbracket]=standout
     fi
 else
-    PROMPT='${debian_chroot:+($debian_chroot)}%n@%m:%~%# '
+    PROMPT='${debian_chroot:+($debian_chroot)}%n@%m:%~%(#.#.$) '
 fi
 unset color_prompt force_color_prompt
 
@@ -211,6 +217,8 @@ precmd() {
 # enable color support of ls, less and man, and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    export LS_COLORS="$LS_COLORS:ow=30;44:" # fix ls color for folders with 777 permissions
+
     alias ls='ls --color=auto'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
@@ -221,12 +229,12 @@ if [ -x /usr/bin/dircolors ]; then
     alias diff='diff --color=auto'
     alias ip='ip --color=auto'
 
-    export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
-    export LESS_TERMCAP_md=$'\E[1;30m'     # begin bold
+    export LESS_TERMCAP_mb=$'\E[1;34m'     # begin blink
+    export LESS_TERMCAP_md=$'\E[1;32m'     # begin bold
     export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
-    export LESS_TERMCAP_so=$'\E[01;33m'    # begin reverse video
+    export LESS_TERMCAP_so=$'\E[01;35m'    # begin reverse video
     export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
-    export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
+    export LESS_TERMCAP_us=$'\E[1;31m'     # begin underline
     export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 
     # Take advantage of $LS_COLORS for completion as well
@@ -240,13 +248,26 @@ alias la='ls -A'
 alias l='ls -CF'
 
 # enable auto-suggestions based on the history
-if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-    . /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+if [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    . /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
     # change suggestion color
     ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#999'
 fi
 
+if [ -f /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh ]; then
+	. /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+fi
+
+if [ -f /usr/share/zsh/plugins/zsh-lxd-completion/lxd-completion-zsh.plugin.zsh ]; then
+	. /usr/share/zsh/plugins/zsh-lxd-completion/lxd-completion-zsh.plugin.zsh
+fi
 # enable command-not-found if installed
 if [ -f /etc/zsh_command_not_found ]; then
     . /etc/zsh_command_not_found
 fi
+
+export LANG=en_US.utf8
+export PATH=$HOME/.local/bin:$HOME/go/bin:$PATH
+
+source $HOME/.zsh_aliases
+source <(kubectl completion zsh)
