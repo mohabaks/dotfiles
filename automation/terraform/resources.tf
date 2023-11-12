@@ -86,7 +86,7 @@ resource "lxd_profile" "dropbox" {
       source = "/home/${var.USER}/Downloads"
       shift = "true"
     }
-}
+  }
 }
 
 resource "lxd_profile" "tools" {
@@ -103,7 +103,18 @@ resource "lxd_profile" "tools" {
       source = "/opt/tools"
       shift = "true"
     }
-}
+  }
+
+  device {
+    name = "aws"
+    type = "disk"
+
+    properties = {
+      path = "/home/${var.USER}/.aws"
+      source = "/home/${var.USER}/.aws"
+      shift = "true"
+    }
+  }
 }
 
 resource "lxd_profile" "ricer" {
