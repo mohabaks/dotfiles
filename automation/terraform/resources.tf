@@ -1,48 +1,42 @@
-#------------------------------------------------------------------------------
-#                               LXD Resources 
-#------------------------------------------------------------------------------
-
 #
 # Network
 #
 
 resource "lxd_network" "lxdbr0" {
   name = "lxdbr0"
-
-  config = {
-    "ipv4.address" = "none"
-    "ipv4.dhcp" =  "false"
-    "ipv4.firewall" =  "false"
-    "ipv4.nat" = "false"
-    "ipv6.address" = "none"
-    "ipv6.dhcp" =  "false"
-    "ipv6.firewall" =  "false"
-    "ipv6.nat" = "false"
-  }
-
-  description = "LAN Network"
-}
-
-resource "lxd_network" "lxdbr1" {
-  name = "lxdbr1"
-
-  config = {
-    "ipv4.address" = "none"
-    "ipv4.dhcp" =  "false"
-    "ipv4.firewall" =  "false"
-    "ipv4.nat" = "false"
-    "ipv6.address" = "none"
-    "ipv6.dhcp" =  "false"
-    "ipv6.firewall" =  "false"
-    "ipv6.nat" = "false"
-  }
-
   description = "PWN Network"
+
+  config = {
+    "ipv4.address" = "auto"
+    "ipv4.dhcp" =  true  
+    "ipv4.firewall" =  true
+    "ipv4.nat" =  true 
+    "ipv6.address" = "none"
+    "ipv6.dhcp" =  false
+    "ipv6.firewall" =  false
+  }
 }
+
+# resource "lxd_network" "lxdbr1" {
+#   name = "lxdbr1"
+
+#   config = {
+#     "ipv4.address" = "none"
+#     "ipv4.dhcp" =  "false"
+#     "ipv4.firewall" =  "false"
+#     "ipv4.nat" = "false"
+#     "ipv6.address" = "none"
+#     "ipv6.dhcp" =  "false"
+#     "ipv6.firewall" =  "false"
+#     "ipv6.nat" = "false"
+#   }
+
+#   description = "MLW Network"
+# }
 
 
 #
-# Profiles
+# Profile
 #
 
 resource "lxd_profile" "default" {
@@ -61,23 +55,6 @@ resource "lxd_profile" "default" {
   }
 }
 
-resource "lxd_profile" "lan" {
-  name = "lan"
-  
-  description = "LAN Network"
-
-  device {
-    name = "eth0"
-    type = "nic"
-
-    properties = {
-      name = "eth0"
-      nictype = "bridged"
-      parent = "lxdbr0"
-    }
-  }
-}
-
 resource "lxd_profile" "pwn" {
   name = "pwn"
   
@@ -90,7 +67,7 @@ resource "lxd_profile" "pwn" {
     properties = {
       name = "eth0"
       nictype = "bridged"
-      parent = "lxdbr1"
+      parent = "lxdbr0"
     }
   }
 }
@@ -105,13 +82,29 @@ resource "lxd_profile" "dropbox" {
     type = "disk"
 
     properties = {
-      path = "/home/var.USER/Downloads"
-      source = "/home/var.USER/Downloads"
+      path = "/home/${var.USER}/Downloads"
+      source = "/home/${var.USER}/Downloads"
       shift = "true"
     }
 }
 }
 
+resource "lxd_profile" "tools" {
+  name = "tools"
+
+  description = "Additional Tools"
+
+  device {
+    name = "tools"
+    type = "disk"
+
+    properties = {
+      path = "/opt/tools"
+      source = "/opt/tools"
+      shift = "true"
+    }
+}
+}
 
 resource "lxd_profile" "ricer" {
   name = "ricer"
@@ -123,8 +116,9 @@ resource "lxd_profile" "ricer" {
     type = "disk"
 
     properties = {
-       path = "/home/var.USER/.fonts"
-       source = "/home/var.USER/.fonts"
+       path = "/home/${var.USER}/.fonts"
+       source = "/home/${var.USER}/.fonts"
+       shift = "true"
     }
   }
 
@@ -133,8 +127,46 @@ resource "lxd_profile" "ricer" {
     type = "disk"
 
     properties = {
-       path = "/home/var.USER/.config/gtk-3.0"
-       source = "/home/var.USER/.config/gtk-3.0"
+       path = "/home/${var.USER}/.config/gtk-3.0"
+       source = "/home/${var.USER}/.config/gtk-3.0"
+       shift = "true"
+       shift = "true"
+    }
+  }
+
+  device {
+    name = "gtk-2.0"
+    type = "disk"
+
+    properties = {
+       path = "/home/${var.USER}/.config/gtk-2.0"
+       source = "/home/${var.USER}/.config/gtk-2.0"
+       shift = "true"
+       shift = "true"
+    }
+  }
+
+  device {
+    name = "xsettingsd"
+    type = "disk"
+
+    properties = {
+       path = "/home/${var.USER}/.config/xsettingsd"
+       source = "/home/${var.USER}/.config/xsettingsd"
+       shift = "true"
+       shift = "true"
+    }
+  }
+
+  device {
+    name = "nwg-look"
+    type = "disk"
+
+    properties = {
+       path = "/home/${var.USER}/.config/nwg-look"
+       source = "/home/${var.USER}/.config/nwg-look"
+       shift = "true"
+       shift = "true"
     }
   }
 
@@ -143,8 +175,9 @@ resource "lxd_profile" "ricer" {
     type = "disk"
 
     properties = {
-       path = "/home/var.USER/.gtkrc-2.0"
-       source = "/home/var.USER/.gtkrc-2.0"
+       path = "/home/${var.USER}/.gtkrc-2.0"
+       source = "/home/${var.USER}/.gtkrc-2.0"
+       shift = "true"
     }
   }
 
@@ -153,8 +186,9 @@ resource "lxd_profile" "ricer" {
     type = "disk"
 
     properties = {
-       path = "/home/var.USER/.icons"
-       source = "/home/var.USER/.icons"
+       path = "/home/${var.USER}/.icons"
+       source = "/home/${var.USER}/.icons"
+       shift = "true"
     }
   }
 
@@ -163,8 +197,9 @@ resource "lxd_profile" "ricer" {
     type = "disk"
 
     properties = {
-       path = "/home/var.USER/.themes"
+       path = "/home/${var.USER}/.themes"
        source = "/usr/share/themes"
+       shift = "true"
     }
   }
 
@@ -173,23 +208,24 @@ resource "lxd_profile" "ricer" {
     type = "disk"
 
     properties = {
-       path = "/home/var.USER/config/Trolltech.conf"
-       source = "/home/var.USER/config/Trolltech.conf"
+       path = "/home/${var.USER}/.config/Trolltech.conf"
+       source = "/home/${var.USER}/.config/Trolltech.conf"
+       shift = "true"
     }
   }
 }
 
-resource "lxd_profile" "x11" {
-  name = "x11"
+resource "lxd_profile" "gui" {
+  name = "gui"
   
   config = {
     "environment.DISPLAY" = ":0"
   }
 
-  description = "X11 GUI"
+  description = "Wayland/Xorg applications"
 
   device {
-    name = "X0"
+    name = "Xsocket"
     type = "proxy"
 
     properties = {
@@ -202,71 +238,86 @@ resource "lxd_profile" "x11" {
   }
 
   device {
-    name = "gpu"
+    name = "Waylandsocket"
+    type = "proxy"
+
+    properties = {
+      bind = "container"
+      connect = "unix:/run/user/1000/wayland-1"
+      listen =  "unix:/mnt/wayland/wayland-0"
+      uid = "1000"
+      gid = "1000"
+      "security.gid" = "1000"
+      "security.uid" = "1000"
+      mode = "0777"
+    }
+  }
+
+  device {
+    name = "mygpu"
     type = "gpu"
 
     properties = {}
   }
 }
 
-resource "lxd_profile" "sys-net" {
-  name = "sys-net"
+#
+# Storage
+#
+
+resource "lxd_storage_pool" "docker" {
+  name   = "docker"
+  driver = "btrfs"
+  config = {
+    source = "/var/lib/lxd/disks/docker.img"
+    size = "10GiB"
+  }
+}
+
+#
+# Volume
+#
+
+resource "lxd_volume" "blackarch" {
+  name = "blackarch"
+  pool = "${lxd_storage_pool.docker.name}"
+}
+
+#
+# Container
+#
+
+resource "lxd_instance" "blackarch" {
+  name = "blackarch"
+  image = "images:archlinux"
+  type = "container"
+  profiles = ["default", "pwn", "gui", "ricer", "dropbox"]
 
   config = {
-    "limits.cpu" =  "1"
-    "limits.memory" = "512MiB"
-    "security.privileged" = "true"
-  }
-
-  description = "System Network"
-
-  device {
-    name = "eth0"
-    type = "nic"
-
-    properties = {
-      name = "eth0"
-      parent = "lxdbr0"
-      nictype = "bridged"
-    }
+     "security.nesting" = true 
+     "security.syscalls.intercept.mknod" = true 
+     "security.syscalls.intercept.setxattr" = true
   }
 
   device {
-    name = "eth1"
-    type = "nic"
+    name = "docker"
+    type = "disk"
 
     properties = {
-      name = "eth1"
-      parent = "lxdbr1"
-      nictype = "bridged"
+      path = "/var/lib/docker"
+      source = "${lxd_volume.blackarch.name}"
+      pool = "${lxd_storage_pool.docker.name}"
     }
   }
 
-  device {
-    name = "wlan0"
-    type = "nic"
-
-    properties = {
-      name = "wlan0"
-      parent = "wlan0"
-      nictype = "physical"
-    }
+  limits = {
+    cpu = 4
+    memory = "8GiB"
   }
 }
 
 #
-# Containers
-#
-
-resource "lxd_instance" "sys-net" {
-  name = "sys-net"
-  image = "images:alpine/edge"
-  type = "container"
-  profiles = ["default", "sys-net"]
-}
-
-#
-# Virtaul Machines
+# Virtaul Machine
 #
 
 # resource "lxd_container" "whonix-gateway" {
