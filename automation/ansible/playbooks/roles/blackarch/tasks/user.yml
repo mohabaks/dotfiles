@@ -1,0 +1,14 @@
+- name: create a user and add to a group
+  ansible.builtin.user:
+    name: "{{ username }}"
+    groups: wheel,video,wireshark,docker
+    shell: /bin/zsh
+    append: yes
+    state: present
+
+- name: wheel to execute any command without password
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers
+    regexp: '^# %wheel ALL=\(ALL:ALL\) NOPASSWD: ALL'
+    line: '%wheel ALL=(ALL:ALL) NOPASSWD: ALL'
+    state: present

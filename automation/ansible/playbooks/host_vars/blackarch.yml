@@ -1,0 +1,60 @@
+username: "{{ lookup('env', 'USER') }}"
+archlinux_mirror_http: "Server = http://archlinux.mirror.liquidtelecom.com/$repo/os/$arch"
+archlinux_mirror_https: "Server = https://archlinux.mirror.liquidtelecom.com/$repo/os/$arch"
+repo_root: "{{ lookup('env', 'HOME') }}/Repositories/dotfiles"
+packages:
+  - amass
+  - aws-cli-v2
+  - bloodhound 
+  - bloodhound-python
+  - brutespray 
+  - burpsuite
+  - chromium
+  - clairvoyance
+  - crackql
+  - dex2jar
+  - docker
+  - enum4linux-ng
+  - evil-winrm 
+  - ffuf
+  - firefox
+  - gau
+  - ghidra 
+  - git
+  - gobuster
+  - gobuster
+  - graphql-cop
+  - graphql-path-enum
+  - graphw00f
+  - jadx
+  - john
+  - jwt-tool
+  - kubectl
+  - ldapdomaindump
+  - ldapscripts
+  - masscan
+  - metasploit
+  - networkminer
+  - nmap
+  - nuclei
+  - nuclei-templates
+  - openvpn
+  - rpctools
+  - smbclient
+  - smbmap
+  - sqlmap
+  - sublist3r
+  - theharvester
+  - tmux
+  - vim
+  - wfuzz 
+  - whatweb
+  - wireshark-qt
+  - wl-clipboard
+  - wpscan
+  - ysoserial
+  - zsh
+  - zsh-autosuggestions
+  - zsh-completions
+  - zsh-history-substring-search
+  - zsh-syntax-highlighting

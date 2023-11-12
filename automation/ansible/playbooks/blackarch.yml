@@ -1,0 +1,7 @@
+---
+- name: Playbook To Install Blackarch
+  hosts: blackarch
+
+  roles:
+    - role: blackarch
+      state: present

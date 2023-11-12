@@ -1,0 +1,36 @@
+---
+- name: check if strap.sh exists
+  stat:
+    path: /opt/strap.sh
+  register: marker_file
+
+- name: download strap.sh and run if doesn't exists
+  ansible.builtin.shell: |
+    curl -o /opt/strap.sh https://blackarch.org/strap.sh
+    chmod +x /opt/strap.sh
+    /opt/strap.sh
+    pacman -Syu --noconfirm
+  when: not marker_file.stat.exists
+
+- name: enable multilib repo
+  ansible.builtin.blockinfile:
+    path: /etc/pacman.conf
+    insertbefore: EOF
+    block: |
+      [multilib]
+      Include = /etc/pacman.d/mirrorlist
+    state: present
+
+- name: updating mirror list
+  ansible.builtin.blockinfile:
+    path: /etc/pacman.d/mirrorlist
+    insertbefore: BOF
+    block: |
+      {{ archlinux_mirror_http }}
+      {{ archlinux_mirror_https }}
+    state: present
+
+- name: updating repos
+  community.general.pacman:
+    update_cache: yes
+    upgrade: yes

@@ -1,0 +1,10 @@
+---
+- name: customize user shell
+  copy:
+    src: "{{ item }}"
+    dest: "/home/{{ username }}/"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+  with_fileglob:
+    - "{{ repo_root }}/zsh/.*"
+    - "{{ repo_root }}/.tmux.conf"
