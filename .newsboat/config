@@ -6,9 +6,10 @@
 #
 
 auto-reload yes
-macro y set browser "mpv %u"; open-in-browser ; set browser "firefox %u"
+browser "firefox --private-window %u"
+macro y set browser "mpv %u"; open-in-browser; set browser "firefox --private-window %u"
 cleanup-on-quit yes
-download-path "/home/anon/Videos/Podcasts"
+download-path "~/Podcasts"
 feed-sort-order title-dec
 max-downloads 4
 notify-always yes
