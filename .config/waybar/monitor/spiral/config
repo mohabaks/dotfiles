@@ -1,34 +1,69 @@
 {
   "layer": "top",
   "modules-left": [
+    "custom/arch",
+    "hyprland/workspaces",
+    "custom/sep-open",
     "network",
+    "custom/sep-close",
+    "custom/sep-open",
     "custom/mail",
+    "custom/sep-close",
+    "custom/sep-open",
     "custom/pacman",
+    "custom/sep-close",
+    "custom/sep-open",
     "custom/vpn",
-    "tray"
+    "custom/sep-close"
   ],
   "modules-center": [
     "clock"
   ],
   "modules-right": [
+    "custom/sep-open",
     "temperature",
+    "custom/sep-close",
+    "custom/sep-open",
+    "custom/cons",
+    "custom/sep-close",
+    "custom/sep-open",
+    "custom/vms",
+    "custom/sep-close",
+    "custom/sep-open",
     "disk",
+    "custom/sep-close",
+    "custom/sep-open",
     "memory",
+    "custom/sep-close",
+    "custom/sep-open",
     "cpu",
-    "battery"
+    "custom/sep-close",
+    "custom/sep-open",
+    "battery",
+    "custom/sep-close",
+    "tray"
   ],
   "hyprland/workspaces": {
-    "format": "{name}",
-    "format": "{icon}",
+    "format": "<span font='14'>{icon}</span>",
     "tooltip": false,
     "all-outputs": true,
     "format-icons": {
-      "active": "",
-      "default": ""
+      "active": "",
+      "default": ""
     }
   },
   "custom/arch": {
-    "format": "<span font='11'> </span>",
+    "format": "<span font='16'> </span>",
+    "tooltip": false
+  },
+  "clock": {
+    "format": "<span color='#b4befe'></span>{:%b %d %H:%M}"
+  },
+  "network": {
+    "interface": "wlan0",
+    "format": "{ifname}",
+    "format-wifi": "<span color='#0188aa' >Net</span> {essid}",
+    "format-disconnected": "<span color='#0188aa'>Net</span> No Network",
     "tooltip": false
   },
   "custom/mail": {
@@ -52,15 +87,25 @@
     "interval": 60,
     "exec": "status_vpn"
   },
-  "clock": {
-    "format": "<span color='#b4befe'></span>{:%H:%M}"
+  "custom/cons": {
+    "format": "<span color='#ec0101' >Con</span> {}",
+    "tooltip": false,
+    "interval": 30,
+    "exec": "status_cons"
   },
-  "network": {
-    "interface": "wlan0",
-    "format": "{ifname}",
-    "format-wifi": "<span color='#0188aa' >Net</span> {essid}",
-    "format-disconnected": "<span color='#0188aa'>Net</span> Disconnected",
-    "tooltip": false
+  "custom/vms": {
+    "format": "<span color='#05a1f7' >Vms</span> {}",
+    "tooltip": false,
+    "interval": 30,
+    "exec": "status_vms"
+  },
+  "custom/sep-open": {
+    "format": "[ ",
+    "tooltip": false,
+  },
+  "custom/sep-close": {
+    "format": "]",
+    "tooltip": false,
   },
   "disk": {
     "interval": 30,
@@ -83,16 +128,6 @@
     "format": "<span color='#277fff' >Cpu</span> {avg_frequency}%",
     "on-click": "setsid -f st -e htop",
     "max-length": 10
-  },
-  "clock": {
-    "format": "<span color='#b4befe'></span>{:%H:%M}"
-  },
-  "network": {
-    "interface": "wlan0",
-    "format": "{ifname}",
-    "format-wifi": "<span color='#0188aa' >Net</span> {essid}",
-    "format-disconnected": "<span color='#0188aa'>Net</span> No Network",
-    "tooltip": false
   },
   "battery": {
     "format": "<span color='#de1b2f' >Bat</span> {capacity}%",

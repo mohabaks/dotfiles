@@ -1,16 +1,18 @@
 {
   "layer": "top",
   "modules-left": [
-    "network",
-    "custom/mail",
-    "custom/pacman",
-    "custom/vpn",
-    "tray"
+    "custom/arch",
+    "hyprland/workspaces",
+    "tray",
   ],
   "modules-center": [
     "clock"
   ],
   "modules-right": [
+    "network",
+    "custom/mail",
+    "custom/pacman",
+    "custom/vpn",
     "temperature",
     "disk",
     "memory",
@@ -19,7 +21,6 @@
   ],
   "hyprland/workspaces": {
     "format": "{name}",
-    "format": "{icon}",
     "tooltip": false,
     "all-outputs": true,
     "format-icons": {
@@ -28,7 +29,17 @@
     }
   },
   "custom/arch": {
-    "format": "<span font='11'> </span>",
+    "format": "<span font='14'> </span>",
+    "tooltip": false
+  },
+  "clock": {
+    "format": "<span color='#b4befe'></span>{:%H:%M}"
+  },
+  "network": {
+    "interface": "wlan0",
+    "format": "{ifname}",
+    "format-wifi": "<span color='#0188aa' >Net</span> {essid}",
+    "format-disconnected": "<span color='#0188aa'>Net</span> No Network",
     "tooltip": false
   },
   "custom/mail": {
@@ -52,16 +63,6 @@
     "interval": 60,
     "exec": "status_vpn"
   },
-  "clock": {
-    "format": "<span color='#b4befe'></span>{:%H:%M}"
-  },
-  "network": {
-    "interface": "wlan0",
-    "format": "{ifname}",
-    "format-wifi": "<span color='#0188aa' >Net</span> {essid}",
-    "format-disconnected": "<span color='#0188aa'>Net</span> Disconnected",
-    "tooltip": false
-  },
   "disk": {
     "interval": 30,
     "format": "<span color='#8f04ae' >Dsk</span> {percentage_used}%",
@@ -83,16 +84,6 @@
     "format": "<span color='#277fff' >Cpu</span> {avg_frequency}%",
     "on-click": "setsid -f st -e htop",
     "max-length": 10
-  },
-  "clock": {
-    "format": "<span color='#b4befe'></span>{:%H:%M}"
-  },
-  "network": {
-    "interface": "wlan0",
-    "format": "{ifname}",
-    "format-wifi": "<span color='#0188aa' >Net</span> {essid}",
-    "format-disconnected": "<span color='#0188aa'>Net</span> No Network",
-    "tooltip": false
   },
   "battery": {
     "format": "<span color='#de1b2f' >Bat</span> {capacity}%",

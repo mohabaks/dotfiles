@@ -3,7 +3,7 @@
   font-family: 'Anonymous Pro', 'Symbols Nerd Font Mono';
   font-size: 11px;
   font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
-  min-height: 15px;
+  min-height: 25px;
 }
 
 window#waybar {
@@ -40,34 +40,33 @@ window#waybar {
   background-color: #100e1f;
   margin-top: 5px;
   margin-right: 5px;
-  margin-left: 5px;
+  margin-left: 8px;
   padding-top: 1px;
   padding-left: 10px;
   padding-right: 5px;
   color: #277fff;
 }
 
-#network {
+#clock, #custom-mail, #custom-pacman, #custom-vpn, #temperature, #disk, #memory, #cpu, #network, #battery{
   border-radius: 5px;
   background-color: #100e1f;
+  color: #c3d4f8;
   margin-top: 5px;
-  margin-right: 5px;
-  margin-left: 5px;
-  padding-top: 3px;
-  padding-bottom: 2px;
   padding-left: 5px;
   padding-right: 5px;
-  color: #c3d4f8;
+  padding-top: 0px;
+  margin-right: 5px;
 }
 
-#clock, #custom-mail, #custom-pacman, #custom-vpn, #temperature, #disk, #memory, #cpu, #battery{
+#battery{
   border-radius: 5px;
   background-color: #100e1f;
   color: #c3d4f8;
   margin-top: 5px;
+  margin-right: 10px;
   padding-left: 5px;
   padding-right: 5px;
-  padding-top: 3px;
+  padding-top: 0px;
   margin-right: 5px;
 }
 

@@ -3,25 +3,29 @@
   font-family: 'Anonymous Pro', 'Symbols Nerd Font Mono';
   font-size: 11px;
   font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
-  min-height: 15px;
+  min-height: 22px;
 }
 
 window#waybar {
   background: transparent;
 }
 
+#waybar > box {
+    border-radius: 8px;
+    margin: 5px 5px 5px 5px;
+    box-shadow: 1px 1px 3px 1px #18152f;
+    background-color: #100e1f;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
 #workspaces {
-  border-radius: 5px;
-  background-color: #100e1f;
   margin-top: 5px;
-  margin-right: 5px;
-  padding-top: 1px;
-  padding-left: 5px;
-  padding-right: 5px;
+  margin-bottom: 5px;
 }
 
 #workspaces button {
-    padding: 0 5px;
+    padding: 0px 5px;
     background: transparent;
     color: #c3d4f8;
 }
@@ -36,48 +40,28 @@ window#waybar {
 }
 
 #custom-arch {
-  border-radius: 5px;
-  background-color: #100e1f;
-  margin-top: 5px;
-  margin-right: 5px;
-  margin-left: 5px;
-  padding-top: 1px;
   padding-left: 10px;
   padding-right: 5px;
   color: #277fff;
 }
 
-#network {
-  border-radius: 5px;
-  background-color: #100e1f;
-  margin-top: 5px;
-  margin-right: 5px;
-  margin-left: 5px;
-  padding-top: 3px;
-  padding-bottom: 2px;
-  padding-left: 5px;
+#custom-sep-close {
   padding-right: 5px;
-  color: #c3d4f8;
+  color: #302a5c;
 }
 
-#clock, #custom-mail, #custom-pacman, #custom-vpn, #temperature, #disk, #memory, #cpu, #battery{
-  border-radius: 5px;
-  background-color: #100e1f;
+#custom-sep-open {
+  color: #302a5c;
+}
+
+#clock, #custom-mail, #custom-pacman, #custom-vpn, #custom-cons, #custom-vms, #temperature, #disk, #memory, #cpu, #network, #battery{
   color: #c3d4f8;
-  margin-top: 5px;
-  padding-left: 5px;
   padding-right: 5px;
-  padding-top: 3px;
-  margin-right: 5px;
 }
 
 #tray{
-  border-radius: 5px;
   background: transparent;
-  margin-top: 5px;
-  padding-left: 5px;
   padding-right: 5px;
-  margin-right: 5px;
 }
 
 #clock {
