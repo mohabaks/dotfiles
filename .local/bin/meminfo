@@ -1,0 +1,6 @@
+#!/bin/bash
+
+mem_used=$(free -h|grep Mem|awk '{print $3}')
+mem_total=$(free -h|grep Mem|awk '{print $2}')
+
+echo -n ${mem_used}/${mem_total}
