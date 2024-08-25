@@ -1,0 +1,51 @@
+# ▒███████▒ ▄▄▄     ▄▄▄█████▓ ██░ ██  █    ██  ██▀███   ▄▄▄       ██▀███   ▄████▄  
+# ▒ ▒ ▒ ▄▀░▒████▄   ▓  ██▒ ▓▒▓██░ ██▒ ██  ▓██▒▓██ ▒ ██▒▒████▄    ▓██ ▒ ██▒▒██▀ ▀█  
+# ░ ▒ ▄▀▒░ ▒██  ▀█▄ ▒ ▓██░ ▒░▒██▀▀██░▓██  ▒██░▓██ ░▄█ ▒▒██  ▀█▄  ▓██ ░▄█ ▒▒▓█    ▄ 
+# ▄▀▒   ░░██▄▄▄▄██░ ▓██▓ ░ ░▓█ ░██ ▓▓█  ░██░▒██▀▀█▄  ░██▄▄▄▄██ ▒██▀▀█▄  ▒▓▓▄ ▄██▒
+# ▒███████▒ ▓█   ▓██▒ ▒██▒ ░ ░▓█▒░██▓▒▒█████▓ ░██▓ ▒██▒ ▓█   ▓██▒░██▓ ▒██▒▒ ▓███▀ ░
+# ░▒▒ ▓░▒░▒ ▒▒   ▓▒█░ ▒ ░░    ▒ ░░▒░▒░▒▓▒ ▒ ▒ ░ ▒▓ ░▒▓░ ▒▒   ▓▒█░░ ▒▓ ░▒▓░░ ░▒ ▒  ░
+# ░░▒ ▒ ░ ▒  ▒   ▒▒ ░   ░     ▒ ░▒░ ░░░▒░ ░ ░   ░▒ ░ ▒░  ▒   ▒▒ ░  ░▒ ░ ▒░  ░  ▒   
+# ░ ░ ░ ░ ░  ░   ▒    ░       ░  ░░ ░ ░░░ ░ ░   ░░   ░   ░   ▒     ░░   ░ ░        
+# ░ ░          ░  ░         ░  ░  ░   ░        ░           ░  ░   ░     ░ ░      
+# ░                                                                       ░        
+#  
+
+set font                        "Monofur Nerd Font 11"
+set default-bg                  "#010409" #00
+set default-fg                  "#c3d4f8" #01
+
+set statusbar-fg                "#30363d" #04
+set statusbar-bg                "#121314" #01
+
+set inputbar-bg                 "#121314" #00 
+set inputbar-fg                 "#30363d" #02
+
+set notification-error-bg       "#12a0a1" #08
+set notification-error-fg       "#c3d4f8" #00
+
+set notification-warning-bg     "#9fef00" #08
+set notification-warning-fg     "#c3d4f8" #00
+
+set highlight-color             "#30363d" #0A
+set highlight-active-color      "#c3d4f8" #0D
+
+set completion-highlight-fg     "#000000" #02
+set completion-highlight-bg     "#0188aa" #0C
+
+set completion-bg               "#010409" #02
+set completion-fg               "#c3d4f8" #0C
+
+set notification-bg             "#ffaf00" #0B
+set notification-fg             "#c3d4f8" #00
+
+set recolor-lightcolor          "#010409" #00
+set recolor-darkcolor           "#c3d4f8" #06
+set recolor                     "true"
+
+# setting recolor-keep true will keep any color your pdf has.
+# if it is false, itll just be black and white
+set recolor-keephue             "false"
+
+# Copy to clipboard
+set selection-clipboard clipboard
+set sandbox none

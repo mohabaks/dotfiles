@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Anonymous Pro:pixelsize=11:antialias=true:autohint=true";
+static char *font = "Monofur Nerd Font:pixelsize=15:antialias=true:autohint=true";
 static int borderpx = 2;
 
 /*
@@ -83,33 +83,33 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-unsigned int alpha = 0xcc;
+unsigned int alpha = 0xff;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 
           /* 8 normal colors */
-          [0] = "#151515", /* black   */
-          [1] = "#ff0000", /* red     */
-          [2] = "#57657b", /* green   */
-          [3] = "#ff0000", /* yellow  */
-          [4] = "#57657b", /* blue    */
-          [5] = "#ff0000", /* magenta */
-          [6] = "#81a2be", /* cyan    */
+          [0] = "#0d1117", /* black   */
+          [1] = "#8c4665", /* red     */
+          [2] = "#287373", /* green   */
+          [3] = "#7c7c99", /* yellow  */
+          [4] = "#395573", /* blue    */
+          [5] = "#5e468c", /* magenta */
+          [6] = "#31658c", /* cyan    */
           [7] = "#c3d4f8", /* white   */
 
           /* 8 bright colors */
-          [8]  = "#373b41", /* black   */
-          [9]  = "#ff0000", /* red     */
-          [10] = "#57657b", /* green   */
-          [11] = "#ff0000", /* yellow  */
-          [12] = "#57657b", /* blue    */
-          [13] = "#ff0000", /* magenta */
-          [14] = "#81a2be", /* cyan    */
+          [8]  = "#8d969d", /* black   */
+          [9]  = "#bf4d80", /* red     */
+          [10] = "#53a6a6", /* green   */
+          [11] = "#9e9ecb", /* yellow  */
+          [12] = "#477ab3", /* blue    */
+          [13] = "#7e62b3", /* magenta */
+          [14] = "#6096bf", /* cyan    */
           [15] = "#c3d4f8", /* white   */
 
           /* special colors */
-          [256] = "#080808", /* background */
+          [256] = "#010409", /* background */
           [257] = "#c3d4f8", /* foreground */
 };
 

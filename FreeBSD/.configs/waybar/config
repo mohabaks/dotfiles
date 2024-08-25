@@ -1,0 +1,106 @@
+{
+  "layer": "top",
+  "modules-left": [
+    "custom/logo",
+    "hyprland/workspaces",
+    "tray",
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "temperature",
+    "disk",
+    "memory",
+    "cpu",
+    "battery"
+  ],
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "tooltip": false,
+    "all-outputs": false,
+    "format-icons": {
+      "active": "",
+      "default": ""
+    },
+    "persistent-workspaces" : {
+	"1": [],
+	"2": [],
+	"3": [],
+	"4": [],
+	"5": []
+    }
+  },
+  "custom/logo": {
+    "format": "<span font='14'> </span>",
+    "tooltip": false
+  },
+  "clock": {
+    "format": "<span color='#b4befe'></span>{:%H:%M}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+	"format": {
+	    "today": "<span color='#8c4665'>{}</span>"
+	}
+    }
+  },
+  "network": {
+    "interface": "wlan0",
+    "format": "{ifname}",
+    "format-wifi": "<span color='#0188aa' >Net</span> {essid}",
+    "format-disconnected": "<span color='#0188aa'>Net</span> No Network",
+    "tooltip": false
+  },
+  "custom/mail": {
+    "format": "<span color='#ec0101' >Msg</span>{}",
+    "interval": 60,
+    "tooltip": false,
+    "exec": "status_mail"
+  },
+  "custom/pacman": {
+    "format": "<span color='#fea44c' >Pkg</span> {}",
+    "tooltip": false,
+    "interval": 3600,
+    "exec": "checkupdates | wc -l",
+    "exec-if": "exit 0",
+    "on-click": "setsid -f st -e sudo pacman -Syu --noconfirm",
+    "signal": 8
+  },
+  "custom/vpn": {
+    "format": "<span color='#367bf0' >Vpn</span> {}",
+    "tooltip": false,
+    "interval": 60,
+    "exec": "status_vpn"
+  },
+  "disk": {
+    "interval": 30,
+    "format": "<span color='#7e62b3' font='14'></span> {percentage_used}%",
+    "path": "/"
+  },
+  "temperature": {
+    "critical-threshold": 60,
+    "tooltip": false,
+    "format": "<span color='#0188aa' font='14'></span> {temperatureC}°C"
+  },
+  "memory": {
+    "interval": 30,
+    "format": "<span color='#00faf1' font='14'></span>  {percentage}%",
+    "on-click": "setsid -f st -e htop",
+    "max-length": 10
+  },
+  "cpu": {
+    "interval": 10,
+    "format": "<span color='#477ab3' font='14'></span>  {avg_frequency}%",
+    "on-click": "setsid -f st -e htop",
+    "max-length": 10
+  },
+  "battery": {
+    "format": "<span color='#ff005e' font='14'>󰁹</span> {capacity}% ",
+    "format-charging": "<span color='#ff005e' font='14'>󰂄</span> Charging {capacity}% ",
+    "tooltip": false
+  },
+  "tray": {
+    "icon-size": 21,
+    "spacing": 10
+  }
+}

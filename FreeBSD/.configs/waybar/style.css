@@ -1,0 +1,86 @@
+* {
+  font-family: 'Monofur Nerd Font', 'Symbols Nerd Font Mono';
+  font-size: 16px;
+  font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
+  min-height: 28px;
+}
+
+window#waybar{
+  background: transparent;
+}
+
+window#waybar>box {
+  background-color: #010409;
+  border: 2px;
+  border-color: rgba(69,69,89,0.67);
+  border-style: solid;
+  border-radius: 0.8em;
+  margin: 5px;
+  padding: 0px;
+}
+
+#workspaces {
+  padding-left: 0px;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    background: transparent;
+    color: #c3d4f8;
+}
+
+#workspaces button.active {
+    padding: 0 5px;
+    color: #0188aa;
+}
+
+/*
+#workspaces button:hover {
+    background-color: #0188aa;
+}
+*/
+
+#custom-logo {
+  color: #ff005e;
+  margin-left: 10px;
+}
+
+#clock, #custom-mail, #custom-pacman, #custom-vpn, #temperature, #disk, #memory, #cpu, #network, #battery{
+  background-color: #010409;
+  color: #c3d4f8;
+  padding-left: 8px;
+}
+
+#battery{
+  border-radius: 0.8em;
+  color: #c3d4f8;
+}
+
+#tray{
+  border-radius: 5px;
+  background: transparent;
+  margin-top: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-right: 5px;
+}
+
+#clock {
+  margin-right: 0;
+}
+
+#temperature.critical{
+  color: #de1b2f;
+}
+
+/* tooltip box */
+tooltip {
+    background-color: rgba(1, 4, 9, 0.8);
+    border: 1px solid #454559;
+}
+
+/* tooltip content */
+tooltip label {
+    color: #c3d4f8;
+    font: 16px Monofur Nerd Font;
+}

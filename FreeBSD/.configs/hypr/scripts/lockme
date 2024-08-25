@@ -1,0 +1,5 @@
+#!/bin/bash
+
+swayidle -w timeout 300 '$HOME/.config/hypr/scripts/lockscreen' \
+	    timeout 600 'doas pm-suspend' \
+	    before-sleep '$HOME/.config/hypr/scripts/lockscreen' &
