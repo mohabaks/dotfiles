@@ -1,112 +1,36 @@
-#! /usr/bin/bash
-#                                                                      
-#  ▄▄                                                                   
-#  ██                                                                   
-#  ██▄███▄   ▄▄█████▄  ██▄███▄  ██      ██ ████▄██▄   ██▄████   ▄█████▄ 
-#  ██▀  ▀██  ██▄▄▄▄ ▀  ██▀  ▀██ ▀█  ██  █▀ ██ ██ ██   ██▀      ██▀    ▀ 
-#  ██    ██   ▀▀▀▀██▄  ██    ██  ██▄██▄██  ██ ██ ██   ██       ██       
-#  ███▄▄██▀  █▄▄▄▄▄██  ███▄▄██▀  ▀██  ██▀  ██ ██ ██   ██       ▀██▄▄▄▄█ 
-#  ▀▀ ▀▀▀     ▀▀▀▀▀▀   ██ ▀▀▀     ▀▀  ▀▀   ▀▀ ▀▀ ▀▀   ▀▀         ▀▀▀▀▀  
-#                      ██                                               
-#    
-#                                     Config by: https://github.com/mohabaks
-#
-#
-
-# Set border color
-BLK="#3b4252"
-
-# Check if the monitor is connected
-if `xrandr -q | grep -q "HDMI2 connected"`
-then
-
-        #
-        # Monitor & Destop Settings
-        # 
-
-        bspc monitor HDMI1 -d 1 2 
-        bspc monitor HDMI2 -d 3 4
-        bspc monitor eDP1 -d 5 6 7 8 9 10
-        bspc config -m HDMI2 window_gap           10
-        bspc config -m HDMI2 border_width         2
-        bspc config -m HDMI1 window_gap           10
-        bspc config -m HDMI1 border_width         2
-        bspc config -m eDP1 window_gap            0
-        bspc config -m eDP1 border_width          1
-
-        #
-        # Global Settings
-        #
-
-        bspc config -m HDMI2 normal_border_color   "$BLK"
-        bspc config -m HDMI1 normal_border_color   "$BLK"
-        bspc config -m eDP1 normal_border_color    "$BLK"
-        bspc config -m HDMI2 active_border_color   "$BLK"
-        bspc config -m HDMI1 active_border_color   "$BLK"
-        bspc config -m eDP1 active_border_color    "$BLK"
-        bspc config -m HDMI2 focused_border_color  "$BLK"
-        bspc config -m HDMI1 focused_border_color  "$BLK"
-        bspc config -m eDP1 focused_border_color   "$BLK"
-        bspc config -m HDMI2 urgent_border_color   "$BLK"
-        bspc config -m HDMI1 urgent_border_color   "$BLK"
-        bspc config -m eDP1 urgent_border_color    "$BLK"
-        bspc config -m HDMI2 presel_border_color   "$BLK"
-        bspc config -m HDMI1 presel_border_color   "$BLK"
-        bspc config -m eDP1 presel_border_color    "$BLK"
-
-	# Start polybar
-	polybar --config=$HOME/.config/polybar/config mybar 2> /dev/null &
-
-
-
-else
-	# Check focus for bspwm and color border for Qubes
-	$HOME/.config/bspwm/change_focused_border_color.py &
-	
-	bspc config border_width         1
-	bspc config window_gap           0
-
-	bspc config split_ratio          0.50
-	bspc config borderless_monocle   true
-	bspc config gapless_monocle      true
-	bspc config focus_by_distance    true
-	bspc config history_aware_focus  true
-	bspc config bottom_padding       25
-
-	bspc monitor -d I II III IV
-
-	bspc config normal_border_color   "$BLK"
-	bspc config focused_border_color  "$BLK"
-	bspc config urgent_border_color   "$BLK"
-	bspc config presel_border_color   "$BLK"
-
-	# Start polybar
-	polybar --config=$HOME/.config/polybar/config mybar 2> /dev/null &
-fi
-
+#!/usr/bin/sh
+COLOR="#282828"
 
 #
-# Global Settings
+#  Global Settings
 #
 
-bspc config split_ratio           0.50
-bspc config borderless_monocle    false
-bspc config gapless_monocle       false
+bspc monitor -d 1 2 3 4 5 6 7 8 9
 
+bspc config border_width         2
+bspc config window_gap          10
+
+bspc config split_ratio          0.50
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+bspc config top_padding          40
+
+bspc config normal_border_color  "$COLOR"
+bspc config focused_border_color "$COLOR"
+bspc config urgent_border_color  "$COLOR"
+bspc config presel_border_color  "$COLOR"
 
 #
 #  Rule Settings
 #
 
-# apps in float mode
-bspc rule -a Nitrogen state=floating focus=on
-bspc rule -a feh state=floating focus=on
 bspc rule -a Lxappearance state=floating focus=on
 bspc rule -a Pavucontrol state=floating focus=on
 bspc rule -a Qubes-update-gui state=floating focus=on
+bspc rule -a Nitrogen state=floating focus=on
 
-# 
-#  Other Settings
 #
-$HOME/.local/bin/qubes-xdg-autostart &
-compton --config $HOME/.compton.conf -b
+# Autostart apps
+#
+
+$HOME/.config/bspwm/autostart

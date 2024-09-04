@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=St Terminal
+Comment=Terminal Emulator
+Exec=st
+Icon=org.xfce.terminal
+Terminal=false
+Type=Application
+Categories=GTK;System;TerminalEmulator;
+StartupNotify=true
+Actions=preferences;
+
+X-Desktop-File-Install-Version=0.26

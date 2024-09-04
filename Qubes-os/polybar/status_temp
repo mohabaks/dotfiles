@@ -1,0 +1,5 @@
+#!/bin/bash
+
+temp=$(sensors|tail -n2|awk '{print $NF}'|tr -d +)
+
+echo "$temp"

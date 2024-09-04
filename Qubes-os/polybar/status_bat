@@ -1,0 +1,18 @@
+#!/bin/bash
+# Description: A simple script that uses dunst and notify-send to notify the
+#              mohabaks when the battery is criticaly low or full. I find this
+#              useful when since Igot rid of my status bar
+
+export DISPLAY=:0
+
+if [[ -d /sys/class/power_supply/BAT0 ]]; then
+
+        batteryPower=$(cat /sys/class/power_supply/BAT0/capacity)
+        batteryState=$(cat /sys/class/power_supply/BAT0/status)
+
+        if [[ "${batteryState}" == "Charging" ]]; then
+                echo " charging ${batteryPower}%"
+        else
+                echo " ${batteryPower}%"
+        fi
+fi	

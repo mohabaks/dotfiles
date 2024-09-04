@@ -1,0 +1,19 @@
+#!/bin/bash
+#Description: lockscreen
+fg=ebdbb2
+bg=1d2021
+color0=689d6a
+color1=d65d0e
+color2=458588
+
+i3lock -i $HOME/Pictures/Walls/LAP/03.png \
+       --ring-color   $color1 \
+       --bshl-color   $color0  \
+       --keyhl-color  $color2 \
+       --date-color   $fg \
+       --time-color   $fg \
+       --inside-color $bg \
+       --clock \
+       --nofork \
+       --time-font "Monofur Nerd Font" \
+       --date-font "Monofur Nerd Font" &

@@ -1,0 +1,99 @@
+#!/usr/bin/bash
+# Author: https://github.com/mohabaks
+# Description: quick script to install needed apps from fedora-<RELEASE_NO>-minimal templates. 
+# 	       This template is for use by sys-firewakll, sys-usb, sys-net
+set -x
+msg(){
+ echo -e "[+]\033 [32m$@\033[0m"
+}
+
+packages_install(){
+msg Doing system updates
+dnf update -y
+msg Installing packages
+dnf install -y \
+	@hardware-support \
+	NetworkManager-fortisslvpn \
+	NetworkManager-openvpn \
+	NetworkManager-wifi \
+	cryptsetup \
+	dbus-x11 \
+	dunst \
+	gnome-keyring \
+	gvfs \
+	gvfs-fuse \
+	gvfs-gphoto2 \
+	gvfs-mtp \
+	gvfs-nfs \
+	gvfs-smb \
+	less \
+	network-manager-applet \
+	nmap \
+	ntfs-3g \
+	polkit \
+	psmisc \
+	qt5-qtstyleplugins \
+	qubes-core-agent-dom0-updates \
+	qubes-core-agent-network-manager \
+	qubes-core-agent-networking \
+	qubes-core-agent-passwordless-root \
+	qubes-core-agent-thunar \
+	qubes-ctap \
+	qubes-gpg-split \
+	qubes-input-proxy-sender \
+	qubes-mgmt-salt-vm-connector \
+	qubes-usb-proxy \
+	tar \
+	tcpdump \
+	telnet \
+	thunar-archive-plugin \
+	thunar-media-tags-plugin \
+	thunar-volman \
+	tumbler \
+	tumbler-extras \
+	tinyproxy
+}
+
+look_and_feel(){
+	local WORK_DIR="/home/user/QubesIncoming/dom0"
+	msg Copying confs, icons, and fonts
+	cp -rf ${WORK_DIR}/.fonts/* /usr/share/fonts/
+	cp -rf ${WORK_DIR}/Flat-Remix-Blue-Dark /usr/share/icons/
+	cp -rf ${WORK_DIR}/material_cursors /usr/share/icons/
+	cp -rf ${WORK_DIR}/.themes/* /usr/share/themes/
+	cp -rf ${WORK_DIR}/conf/dunstrc /etc/xdg/dunst/dunstrc
+	cp ${WORK_DIR}/conf/Trolltech.conf /etc/xdg/Trolltech.conf
+	echo -e "QT_QPA_PLATFORMTHEME=gtk2\nGSK_RENDERE=cairo\nLIBGL_ALWAYS_SOFTWARE=1"|tee /etc/environment
+
+	mkdir -p /etc/dconf/db/qubes.d
+	mkdir -p /etc/gtk-3.0
+	mkdir -p /etc/gtk-2.0
+
+	cp -rf ${WORK_DIR}/conf/10-global-theme-settings /etc/dconf/db/qubes.d/
+	dconf update
+	cp -rf ${WORK_DIR}/conf/dconf_user_profile /etc/dconf/profile/user
+	
+	cp ${WORK_DIR}/conf/gtkrc-2.0 /etc/gtk-2.0/gtkrc
+	cp ${WORK_DIR}/conf/settings.ini /etc/gtk-3.0/settings.ini
+	cp -rf ${WORK_DIR}/.themes/* /usr/share/themes/
+}
+
+copy_binaries(){
+	local WORK_DIR="/home/user/QubesIncoming/dom0"
+	msg Copying binaries
+	cp ${WORK_DIR}/bin/* /usr/bin/
+	cp ${WORK_DIR}/conf/st.desktop /usr/share/applications/
+}
+
+cleanup(){
+	local TARGET_DIR="/home/user/QubesIncoming"
+	msg Doing cleanup for $TARGET_DIR
+	rm -rf $TARGET_DIR
+	rm -rf /var/cache/dnf/*
+}
+
+# main
+packages_install
+look_and_feel
+copy_binaries
+cleanup

@@ -1,0 +1,6 @@
+[org/gnome/desktop/interface]
+cursor-theme="material_cursors"
+gtk-theme="Killer"
+icon-theme="Flat-Remix-Blue-Dark"
+font-name="Monofur Nerd Font 11"
+monospace-font-name="Monospace 11"
