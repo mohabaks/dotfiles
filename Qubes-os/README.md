@@ -29,6 +29,8 @@ Screenshots
 -----------
 ### Current
 
+![gruvboxes](https://imgur.com/vjXsacH.png)
+
 ### Previous
 `Laptop (On)` `Dual Monitors (Off)`
 
