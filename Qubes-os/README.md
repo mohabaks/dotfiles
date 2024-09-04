@@ -9,7 +9,7 @@ For the current (R4.2) setup the following are packages installed to have a work
 
 Using `untrusted` qube download the zip archive for this [repo](https://github.com/mohabaks/dotfiles)
 
-From `dom0` install required packages and transfer the downloaded `master.zip` from `untrusted` qube and copy required files.
+From `dom0` install required packages and transfer the downloaded `dotfiles-master.zip` from `untrusted` qube and copy required files.
 
 ```
 $ sudo qubes-dom0-update xss-lock i3lock polybar rofi dmenu lxappearance scrot dunst bspwm sxhkd picom
@@ -22,7 +22,7 @@ $ cp -r dotfiles-master/Qubes-os/sxhkd $HOME/.config
 $ cp -r dotfiles-master/Qubes-os/picom $HOME/.config
 $ cp -r dotfiles-master/Qubes-os/dunst $HOME/.config
 $ cp -r dotfiles-master/Qubes-os/.xinitrc $HOME/
-$ sudo cp dotfiles-master/i3-settings-qubes/qubes-i3-sensible-terminal /usr/bin/sensible-terminal
+$ sudo cp dotfiles-master/Qubes-os/i3-settings-qubes/qubes-i3-sensible-terminal /usr/bin/sensible-terminal
 ```
 
 Screenshots
