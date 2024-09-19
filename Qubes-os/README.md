@@ -30,10 +30,12 @@ Screenshots
 ### Current
 
 `bspwm`
+
 ![bspwm](https://imgur.com/vjXsacH.png)
 
 `dwm`
-[dwm](https://i.imgur.com/fv5zxNK.png)
+
+![dwm](https://i.imgur.com/fv5zxNK.png)
 
 ### Previous
 `Laptop (On)` `Dual Monitors (Off)`
