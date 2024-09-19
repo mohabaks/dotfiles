@@ -29,7 +29,11 @@ Screenshots
 -----------
 ### Current
 
-![gruvboxes](https://imgur.com/vjXsacH.png)
+`bspwm`
+![bspwm](https://imgur.com/vjXsacH.png)
+
+`dwm`
+[dwm](https://imgur.com/fv5zxNK.png)
 
 ### Previous
 `Laptop (On)` `Dual Monitors (Off)`
