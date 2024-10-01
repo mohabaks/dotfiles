@@ -1,0 +1,6 @@
+#!/usr/local/bin/bash
+# Description: quick script to fetch bitcoin price
+if ping -c1 8.8.8.8 &>/dev/null;then
+	price=$(curl -s https://blockchain.info/q/24hrprice)
+	echo -n " $price"
+fi

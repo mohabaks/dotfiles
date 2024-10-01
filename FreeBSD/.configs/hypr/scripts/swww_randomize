@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/local/bin/bash
 
 # This script will randomly go through the files of a directory, setting it
 # up as the wallpaper at regular intervals
@@ -17,14 +17,9 @@ if pgrep swww-daemon;then
 	pkill -9 swww-daemon
 fi
 
-swww init
+swww-daemon &
 
-if `xrandr -q | grep -q "HDMI-A-1 connected"`
-then
-        dir="$HOME/Pictures/Walls/MON/"
-else
-        dir="$HOME/Pictures/Walls/LAP/"
-fi
+dir="$HOME/Pictures/Walls/MON/"
 
 # Edit below to control the images transition
 #export SWWW_TRANSITION_FPS=60

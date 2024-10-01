@@ -1,0 +1,6 @@
+#!/usr/local/bin/bash
+if ping -c1 8.8.8.8 &>/dev/null;then
+	echo -n "CyberOpsLAN"
+else
+	echo -n "N/A"
+fi

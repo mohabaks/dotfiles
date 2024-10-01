@@ -1,20 +1,19 @@
-#!/bin/bash
+#!/usr/local/bin/bash
+
+image="$HOME/Pictures/Walls/MON/01.png"
 
 lockscreen(){
 
         exec swaylock -i "$image" \
 	     --ring-color=00000000 \
-	     --key-hl-color=c3d4f8 \
-	     --bs-hl-color=c3d4f8 \
-	     --text-color=c3d4f8 \
-	     --font "Anonymous Pro" \
-	     --effect-blur 20x5 \
-	     --clock \
+	     --key-hl-color=ebdbb2 \
+	     --bs-hl-color=ebdbb2 \
+	     --text-color=ebdbb2 \
+	     --font "Monofur Nerd Font" \
 	     --indicator-idle-visible \
 	     --line-color=00000000 \
 	     --font-size 11 \
 	     --inside-color 11080808 &
 }
 
-image="$HOME/Pictures/Walls/MON/12.jpg"
-lockscreen       
+lockscreen 
